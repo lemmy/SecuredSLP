@@ -49,7 +49,7 @@ public class TestActivator implements BundleActivator {
 		startTests();
 	}
 
-	private void startTests() throws Exception {
+	protected void startTests() {
 		TestSuite suite = new TestSuite();
 		Collection collection = new ArrayList();
 		
@@ -62,9 +62,18 @@ public class TestActivator implements BundleActivator {
 			Method[] methods = clazz.getMethods();
 			for (int i = 0; i < methods.length; i++) {
 				if (methods[i].getName().startsWith("test")) {
-					TestCase testCase = (TestCase) clazz.newInstance();
-					testCase.setName(methods[i].getName());
-					suite.addTest(testCase);
+					TestCase testCase;
+					try {
+						testCase = (TestCase) clazz.newInstance();
+						testCase.setName(methods[i].getName());
+						suite.addTest(testCase);
+					} catch (InstantiationException e) {
+						// may never happen
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						// may never happen
+						e.printStackTrace();
+					}
 				}
 			}
 		}
