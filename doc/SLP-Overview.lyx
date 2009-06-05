@@ -1,0 +1,123 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass scrartcl
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Section
+SLP Overview
+\end_layout
+
+\begin_layout Standard
+The Service Locator Protocol (SLP) is an IETF standard
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Guttman1999"
+
+\end_inset
+
+.
+ Version 2 was published in 1999 and has seen wide adoption since.
+\end_layout
+
+\begin_layout Itemize
+SLP addresses only service discovery and leaves service invocation unspecified.
+\end_layout
+
+\begin_layout Itemize
+Service description consist of unique URLs (locating the service in the
+ network) and attribute-value paris.
+\end_layout
+
+\begin_layout Itemize
+User Agents (UA) may query for services by optionally using a LDAP style
+ filter.
+\end_layout
+
+\begin_layout Itemize
+Service Agents (SA) answer to UA querying for services if no Directory Agent
+ (DA) is present.
+ This mode is called multicast convergence, which utilized multicast messages
+ for querying and unicast answers.
+\end_layout
+
+\begin_layout Itemize
+SLP requires SAs to register them selves if a DA enters the network.
+ Making SA aware of the DA is done by the DA sending out multicast beacons.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+This built-in fallback to infrastructure mode can be seen as a potential
+ security threat.
+ An attacker might simply assume the role of the DA and learn about all
+ existing services.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+SLP allows grouping services in scopes.
+ This can only be used for administrative scoping as it does not prevent
+ attackers from learning about service via traffic sniffing.
+\end_layout
+
+\begin_layout Itemize
+Regarding security, SLP provides only a PKI-based mechanism for signing
+ service advertisements.
+\end_layout
+
+\begin_layout Itemize
+Thus this paper is going to pick up on 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hollick2001"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document
