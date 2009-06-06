@@ -513,11 +513,11 @@ class SLPConfiguration {
 		return CONVERGENCE_FAILERCOUNT;
 	}
 	
-	public boolean getDebugEnabled() {
+	boolean getDebugEnabled() {
 		return DEBUG_ENABLED;
 	}
 
-	public int getTCPTimeout() {
+	int getTCPTimeout() {
 		// TODO wire this to the properties if necessary
 		return 5000; // 5sec
 	}

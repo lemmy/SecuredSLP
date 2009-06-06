@@ -43,11 +43,12 @@
 \begin_body
 
 \begin_layout Section
-SLP Overview
+Service Location Protocol
 \end_layout
 
 \begin_layout Standard
-The Service Locator Protocol (SLP) is an IETF standard
+The Service Location Protocol (SLP) is an IETF standard published in 1997.
+ It has since been superseeded by version 2 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Guttman1999"
@@ -55,36 +56,186 @@ key "Guttman1999"
 \end_inset
 
 .
- Version 2 was published in 1999 and has seen wide adoption since.
+ Since its publication, it has seen wide adoption ranging from embedded
+ devices up the enterprise scale applications.
+ This paper will be based on SLPv2, though most of this paper possibly also
+ applies to SLPv1.
+\end_layout
+
+\begin_layout Subsection
+Protocols basics
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Protocols-basics"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+SLP is a discovery-only protocol which explicitly leaves service invocation
+ unspecified.
+ A service is represented by a service description that consist of a Uniform
+ Resource Locator (URL) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Berners-Lee1994"
+
+\end_inset
+
+ which uniquely locates the service in a network.
+ Additionally a service description may contain attribute-value pairs.
+\begin_inset Newline newline
+\end_inset
+
+An UA may query for services by optionally using a Lightweight Directory
+ Access Protocol (LDAP) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Howes1997"
+
+\end_inset
+
+ style filter.
+ A query is sent out via multicast and answered by all matching SAs.
+ If present, a DA may act as a service cache.
+ In this mode UAs as well as SAs do not use multicast directly, but via
+ the DA employing unicast communication.
+\begin_inset Newline newline
+\end_inset
+
+SLP requires SAs to register with a DA when it enters the network.
+ Making SAs aware of newly available DAs is done by sending out multicast
+ beacons by the DA.
+\begin_inset Newline newline
+\end_inset
+
+SLP allows grouping services in scopes.
+ SAs and DAs may only answer to queries if configured for the given scope.
+ If no scope is provided, the default scope is automatically applied.
+ SLP specifies no means to learn of all existing scopes, which might lead
+ to the regard scoping as a security feature.
+ However, since communication is not encrypted, a simple traffic sniffer
+ allows an attacker to learn of all existing scopes.
+\end_layout
+
+\begin_layout Subsection
+Authentication and Integrity
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+It doesn't even support a Certificate Authority???
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Regarding security, SLP provides only pre-established trust relationships
+ based on asymmetric keying.
+ This allows for DAs, SAa and UAs to authentication each other.
+\begin_inset Newline newline
+\end_inset
+
+On top of that asymmetric keying allows to verify message integrity by all
+ parties.
+ The built-in algorithm is Digital Signature Algorithm (DSA) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kravitz1993"
+
+\end_inset
+
+ with Secure Hash Algorithm 1 (SHA1) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Eastlake3rd2001"
+
+\end_inset
+
+ used for hashing, though other algorithms are possible as vendor extensions.
+\end_layout
+
+\begin_layout Subsection
+Replay Prevention
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+Timestamps which appear to not be part of the integrity checks
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To prevent replay attacks 
+\end_layout
+
+\begin_layout Subsection
+Availability
 \end_layout
 
 \begin_layout Itemize
-SLP addresses only service discovery and leaves service invocation unspecified.
+Multicast communications makes the protocol robust and can be sean as means
+ to garantuee availability
+\end_layout
+
+\begin_layout Subsection
+Confidentiality and Authorization
+\end_layout
+
+\begin_layout Standard
+As shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Protocols-basics"
+
+\end_inset
+
+, SLP does not allow for messages to be encrypted.
+ This means that confidentiality cannot be enforced with SLP.
+ An attacker might simply eavesdrop on the network traffic and learn over
+ time about existing services.
+ This does not even require an UA actively querieng for servieces, because
+ SAs periodically reregister service at the end of the service lifetime.
 \end_layout
 
 \begin_layout Itemize
-Service description consist of unique URLs (locating the service in the
- network) and attribute-value paris.
-\end_layout
+Thus this paper picks up on 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hollick2001"
 
-\begin_layout Itemize
-User Agents (UA) may query for services by optionally using a LDAP style
- filter.
-\end_layout
+\end_inset
 
-\begin_layout Itemize
-Service Agents (SA) answer to UA querying for services if no Directory Agent
- (DA) is present.
- This mode is called multicast convergence, which utilized multicast messages
- for querying and unicast answers.
-\end_layout
-
-\begin_layout Itemize
-SLP requires SAs to register them selves if a DA enters the network.
- Making SA aware of the DA is done by the DA sending out multicast beacons.
+, who extends the SLP protocol by
 \end_layout
 
 \begin_deeper
+\begin_layout Itemize
+Excludes DA entirely, but does not show a way to technically disable DAs,
+ though the protocol will always fall back to DA mode.
+ But is a DA even harmful in the outlined SLP extension?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I won't be able to cache confidential service registrations as it cannot
+ read them
+\end_layout
+
+\begin_layout Itemize
+I can prevent SAs and UAs from forming a security group by holding back
+ plain service annoucements used to establish SGs.
+\end_layout
+
 \begin_layout Itemize
 This built-in fallback to infrastructure mode can be seen as a potential
  security threat.
@@ -93,22 +244,280 @@ This built-in fallback to infrastructure mode can be seen as a potential
 \end_layout
 
 \end_deeper
+\end_deeper
 \begin_layout Itemize
-SLP allows grouping services in scopes.
- This can only be used for administrative scoping as it does not prevent
- attackers from learning about service via traffic sniffing.
-\end_layout
-
-\begin_layout Itemize
-Regarding security, SLP provides only a PKI-based mechanism for signing
- service advertisements.
-\end_layout
-
-\begin_layout Itemize
-Thus this paper is going to pick up on 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Hollick2001"
+
+\end_inset
+
+ names Availability, Confidentiallity as well as Integrity as crucial parts
+ of communications in open networks...
+\end_layout
+
+\begin_layout Standard
+
+\lang american
+\begin_inset Float table
+wide true
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\lang american
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="2">
+<features>
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+Requirements 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+Implemented by SLP
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+Secure service (de)registraion 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
++
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+Genuine discovery 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
++
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+Replay prevention 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+n/a
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+Location anonymity 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+n/a
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+Identity anonymity 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+n/a
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+Authorized discovery 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+Controlled discovery 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+Confidential discovery 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\lang american
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\lang american
+\begin_inset Caption
+
+\begin_layout Plain Layout
+
+\lang american
+SLP 's security capabilities according to 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Cotroneo2004"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 

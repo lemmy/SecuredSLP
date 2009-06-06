@@ -85,6 +85,13 @@ filename "Abstract.lyx"
 
 \begin_inset CommandInset include
 LatexCommand input
+filename "Introduction.lyx"
+
+\end_inset
+
+
+\begin_inset CommandInset include
+LatexCommand input
 filename "SLP-Overview.lyx"
 
 \end_inset
@@ -103,7 +110,6 @@ filename "Conclusion.lyx"
 \start_of_appendix
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-btprint "btPrintAll"
 bibfiles "bibtex"
 options "alphadin"
 
