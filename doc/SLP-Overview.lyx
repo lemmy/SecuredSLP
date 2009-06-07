@@ -34,7 +34,7 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tracking_changes false
+\tracking_changes true
 \output_changes false
 \author "" 
 \author "" 
@@ -332,8 +332,8 @@ key "Guttman1999"
  in 1999.
  Since its publication, it has seen wide adoption ranging from embedded
  devices up to enterprise scale applications.
- This paper will be based on SLPv2, though most of this paper possibly also
- applies to SLPv1.
+ This paper will be based on SLPv2, though most of it possibly also applies
+ to SLPv1.
 \end_layout
 
 \begin_layout Subsection
@@ -350,7 +350,7 @@ name "sub:Protocols-basics"
 \begin_layout Standard
 SLP is a discovery-only protocol which explicitly leaves the service invocation
  out.
- A service is represented by a service description that consist of a Uniform
+ A service is represented by a service description that consists of a Uniform
  Resource Locator (URL) 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -397,7 +397,7 @@ SLP requires SAs to register with a DA when a DA enters the network.
 \end_inset
 
 SLP allows grouping services in scopes.
- A scope is a string that is part of all messagees
+ A scope is a string that is part of all messages
 \begin_inset Foot
 status collapsed
 
@@ -441,7 +441,7 @@ It doesn't even support a Certificate Authority???
 \begin_layout Standard
 Regarding security, SLP provides only pre-established trust relationships
  based on digital signatures using asymmetric keying.
- This allows for DAs, SAa and UAs to authentication each other.
+ This allows for DAs, SAa and UAs to authenticate each other.
 \begin_inset Newline newline
 \end_inset
 
@@ -574,7 +574,7 @@ Neither is message rate-limiting or throttling defined in SLP.
  with maliciously messages like queries or service replies.
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset Note Note
 status collapsed
 
@@ -626,7 +626,7 @@ reference "sub:Protocols-basics"
 
 \end_inset
 
-, SLP does not allow for messages to be encrypted.
+, SLP does not allow messages to be encrypted.
  This means that confidentiality cannot be enforced with SLP.
  An attacker might simply eavesdrop on the network traffic and learn about
  existing services over time.

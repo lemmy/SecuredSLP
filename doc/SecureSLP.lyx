@@ -34,9 +34,9 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tracking_changes false
+\tracking_changes true
 \output_changes false
-\author "" 
+\author "Markus Alexander Kuppe,,,," 
 \author "" 
 \end_header
 
@@ -123,9 +123,13 @@ reference "sub:Authentication-and-Integrity"
 \begin_inset Newline newline
 \end_inset
 
-Since SLP already comes with support for X.509 certificates already, it appears
- to be easiest to base trust on such keys and just eliminate the need to
- manually set them up keys and implement proper key distribution protocols.
+Since SLP already comes with support for X.509 certificates, it appears to
+ be easiest to base trust on such keys and just eliminate the need to manually
+ set them up keys and implement proper key distribution protocols
+\change_inserted 0 1244393272
+ 
+\change_unchanged
+instead.
 \begin_inset Newline newline
 \end_inset
 
@@ -291,8 +295,8 @@ Unless each SG uses a unique multicast group and or port range
 \end_inset
 
 .
- Therefore complete encryption of the SLP message payload would just not
- only cause severe performance penalties for non SG members, but force group
+ Therefore complete encryption of the SLP message payload would not only
+ cause severe performance penalties for non SG members, but force group
  members to try all associated keys in worst case.
  
 \begin_inset CommandInset citation
@@ -333,7 +337,7 @@ we will later show that DAs may optionally be part of security groups
  initiator of a SG always needs to assume the role of an SA anyway.
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset Note Note
 status collapsed
 
