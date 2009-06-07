@@ -1,0 +1,282 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass scrartcl
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Secure SLP
+\end_layout
+
+\begin_layout Standard
+Having identified confidentiality and authorization (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Confidentiality-and-Authorization"
+
+\end_inset
+
+) as essential security features in MANETs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Cotroneo2004"
+
+\end_inset
+
+, this paper will outline ways to secure SLP.
+ These protocol extensions are to be backward compatible and secured agents
+ are to be deployable in existing networks incrementally.
+\end_layout
+
+\begin_layout Subsection
+Reputation-based trust or certificate authorities
+\end_layout
+
+\begin_layout Standard
+Before we can start implementing confidentiality, we need to focus on trust
+ in SLP first.
+ As shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Authentication-and-Integrity"
+
+\end_inset
+
+, SLP only supports pre-established asymmetric keys as means to trust.
+ While this rather simplistic approach is acceptable in centrally managed
+ networks like enterprise LANs, it is not for MANETs.
+ A MANET qualifies itself as a network of nomadic devices without prior
+ knowledge of each other.
+ Thus mechanisms are needed that can establish trust between strangers.
+\begin_inset Newline newline
+\end_inset
+
+A novel approach is shown in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Na2008"
+
+\end_inset
+
+, that build 
+\end_layout
+
+\begin_layout Itemize
+Requires a central DF
+\end_layout
+
+\begin_layout Itemize
+Can be based on the user (user interaction)
+\end_layout
+
+\begin_layout Standard
+Since SLP already comes with support for X.509 certificates
+\end_layout
+
+\begin_layout Itemize
+well known
+\end_layout
+
+\begin_layout Itemize
+only works when CA is reachable, thus reputation based as fall back?
+\end_layout
+
+\begin_layout Subsection
+Confidentiality via Security Groups
+\end_layout
+
+\begin_layout Itemize
+Thus this paper picks up on 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hollick2001"
+
+\end_inset
+
+, who extends the SLP protocol by
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Excludes DA entirely, but does not show a way to technically disable DAs,
+ though the protocol will always fall back to DA mode.
+ But is a DA even harmful in the outlined SLP extension?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I won't be able to cache confidential service registrations as it cannot
+ read them
+\end_layout
+
+\begin_layout Itemize
+I can prevent SAs and UAs from forming a security group by holding back
+ plain service announcements used to establish SGs.
+\end_layout
+
+\begin_layout Itemize
+This built-in fallback to infrastructure mode can be seen as a potential
+ security threat.
+ An attacker might simply assume the role of the DA and learn about all
+ existing services.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hollick2001"
+
+\end_inset
+
+ names Availability, Confidentiality as well as Integrity as crucial parts
+ of communications in open networks...
+\end_layout
+
+\begin_layout Itemize
+All messages between UA and SA are to be encrypted in a security group by
+ traditional encryption mechanisms
+\end_layout
+
+\begin_layout Itemize
+Security Group (SG)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Based on pre-established trust groups 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Authentication-and-Integrity"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Shared secret not necessarily based on public keys used for authentication
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Alternatively learn about unfamiliar devices by monitoring their behavior
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Reputation-based models as defined in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Na2008"
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+All members of a security group share a common secret (symmetric encryption)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+man in the middle attacks?!
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+IPSec for pair-wise secure communication, Secure multicast for group communicati
+on?
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Joining a SG is a two stage process, where a group members must authenticate
+ and authorize a peer first and provide the shared secret
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Subsection
+Multicast convergence and Directory Agents
+\end_layout
+
+\begin_layout Subsection
+Time stamps
+\end_layout
+
+\begin_layout Plain Layout
+(see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Replay-Prevention"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Redundantly transmit the time stamp as part of the attribute list
+\end_layout
+
+\begin_layout Subsection
+Incremental service registration
+\end_layout
+
+\begin_layout Itemize
+Require the incremental service registration to be signed by the originator
+ of the service registration.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
