@@ -44,6 +44,13 @@
 
 \begin_layout Section
 Secure SLP
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Secure-SLP"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -61,18 +68,45 @@ key "Cotroneo2004"
 
 \end_inset
 
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hollick2001"
+
+\end_inset
+
 , this paper will outline ways to secure SLP.
  These protocol extensions are to be backward compatible and secured agents
  are to be deployable in existing networks incrementally.
 \end_layout
 
 \begin_layout Subsection
-Reputation-based trust or certificate authorities
+Web of Trust or Public Key Infrastructure
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Itemize
+well known
+\end_layout
+
+\begin_layout Itemize
+only works when CA is reachable, thus web of trust as fall back?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Self signed if no CA in reach, better use web of trust
+\end_layout
+
+\end_deeper
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Before we can start implementing confidentiality, we need to focus on trust
- in SLP first.
+Before we can start implementing confidentiality, we need to focus on the
+ trust relationships in SLP first.
  As shown in 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -89,69 +123,87 @@ reference "sub:Authentication-and-Integrity"
 \begin_inset Newline newline
 \end_inset
 
-A novel approach is shown in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Na2008"
+Since SLP already comes with support for X.509 certificates already, it appears
+ to be easiest to base trust on such keys and just eliminate the need to
+ manually set them up keys and implement proper key distribution protocols.
+\begin_inset Newline newline
+\end_inset
+
+This problem has been solved by at least two well know solutions:
+\end_layout
+
+\begin_layout Description
+Web
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+Trust
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+ A web of trust, Non-repudiation, No immediate revocation
+\end_layout
 
 \end_inset
 
-, that build 
+
 \end_layout
 
-\begin_layout Itemize
-Requires a central DF
+\begin_layout Description
+Public
+\begin_inset space ~
+\end_inset
+
+Key
+\begin_inset space ~
+\end_inset
+
+Infrastructure
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+ authorities
 \end_layout
 
-\begin_layout Itemize
-Can be based on the user (user interaction)
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Since SLP already comes with support for X.509 certificates
-\end_layout
-
-\begin_layout Itemize
-well known
-\end_layout
-
-\begin_layout Itemize
-only works when CA is reachable, thus reputation based as fall back?
+Both technologies solve the key distribution protocol successfully.
+ However each has its shortcoming in MANETs.
 \end_layout
 
 \begin_layout Subsection
 Confidentiality via Security Groups
-\end_layout
+\begin_inset Note Note
+status collapsed
 
-\begin_layout Itemize
-Thus this paper picks up on 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Hollick2001"
-
-\end_inset
-
-, who extends the SLP protocol by
-\end_layout
-
-\begin_deeper
 \begin_layout Itemize
 Excludes DA entirely, but does not show a way to technically disable DAs,
  though the protocol will always fall back to DA mode.
  But is a DA even harmful in the outlined SLP extension?
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 I won't be able to cache confidential service registrations as it cannot
  read them
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 I can prevent SAs and UAs from forming a security group by holding back
  plain service announcements used to establish SGs.
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 This built-in fallback to infrastructure mode can be seen as a potential
  security threat.
@@ -161,17 +213,6 @@ This built-in fallback to infrastructure mode can be seen as a potential
 
 \end_deeper
 \end_deeper
-\begin_layout Itemize
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Hollick2001"
-
-\end_inset
-
- names Availability, Confidentiality as well as Integrity as crucial parts
- of communications in open networks...
-\end_layout
-
 \begin_layout Itemize
 All messages between UA and SA are to be encrypted in a security group by
  traditional encryption mechanisms
@@ -200,23 +241,6 @@ Shared secret not necessarily based on public keys used for authentication
 
 \end_deeper
 \begin_layout Itemize
-Alternatively learn about unfamiliar devices by monitoring their behavior
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Reputation-based models as defined in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Na2008"
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
 All members of a security group share a common secret (symmetric encryption)
 \end_layout
 
@@ -235,6 +259,78 @@ on?
 \begin_layout Itemize
 Joining a SG is a two stage process, where a group members must authenticate
  and authorize a peer first and provide the shared secret
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Once a usable mechanism for trust has been established we can use it to
+ create security groups (SGs) among agents.
+ SGs have been proposed by 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hollick2001"
+
+\end_inset
+
+.
+ A SG is a group of agents which share a common secret (symmetric key).
+ This key is used to encrypt all their communication between each other.
+ Due to the fact that the same two peers might be part of different SGs,
+ the key association cannot be based on the sender address
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Unless each SG uses a unique multicast group and or port range
+\end_layout
+
+\end_inset
+
+.
+ Therefore complete encryption of the SLP message payload would just not
+ only cause severe performance penalties for non SG members, but force group
+ members to try all associated keys in worst case.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hollick2001"
+
+\end_inset
+
+ suggests to revert to Internet layer encryption with Internet Protocol
+ Security (IPSec) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kent2005"
+
+\end_inset
+
+ for peer communication and leaves securing multicast communication open.
+ However, this paper takes a different approach and uses application layer
+ encryption with Transport Layer Security (TLS) and Datagram Transport Layer
+ Security (DTLS) for UDP to support both unicast as well as multicast communicat
+ion at once.
+\begin_inset Newline newline
+\end_inset
+
+An agent has to be trusted by a member of the security group to join it.
+ Optionally authorization can be enforced during group joining.
+ SGs can be created by all agent types
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+we will later show that DAs may optionally be part of security groups
+\end_layout
+
+\end_inset
+
+, though since advertising a SG has to be made with traditional SLP, an
+ initiator of a SG always needs to assume the role of an SA anyway.
 \end_layout
 
 \begin_layout Plain Layout
