@@ -34,7 +34,7 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tracking_changes true
+\tracking_changes false
 \output_changes false
 \author "Markus Alexander Kuppe,,,," 
 \author "" 
