@@ -36,6 +36,7 @@
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
+\author "" 
 \author "Markus Alexander Kuppe,,,," 
 \author "" 
 \end_header
@@ -81,7 +82,7 @@ key "Hollick2001"
 \end_layout
 
 \begin_layout Subsection
-Web of Trust or Public Key Infrastructure
+Web of Trust or Public Key Infrastructure and reputation-based trust
 \begin_inset Note Note
 status collapsed
 
@@ -126,7 +127,7 @@ reference "sub:Authentication-and-Integrity"
 Since SLP already comes with support for X.509 certificates, it appears to
  be easiest to base trust on such keys and just eliminate the need to manually
  set them up keys and implement proper key distribution protocols
-\change_inserted 0 1244393272
+\change_inserted 1 1244393272
  
 \change_unchanged
 instead.
@@ -182,7 +183,37 @@ status collapsed
 
 \begin_layout Standard
 Both technologies solve the key distribution protocol successfully.
- However each has its shortcoming in MANETs.
+ However each has its own shortcoming in MANETs.
+\begin_inset Newline newline
+\end_inset
+
+To balance off said shortcomings a reputation-based trust model may be used
+ on top of static key-based trust models.
+ Reputation-based trust takes the behavior of an agent
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+e.g.
+ amount of network messages sent
+\end_layout
+
+\end_inset
+
+ over time into account.
+ It then uses its behavior as input parameters for a continuous function
+ that marks trustworthiness, indifference or mistrust of the agent.
+ The key-based model is used to bootstrap the reputation-based model by
+ means of recommendation.
+ A details definition of a reputation-based trust model can be found in
+ Secure Pervasive Discovery Protocol (SPDP) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Almenarez2003"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -271,8 +302,8 @@ Joining a SG is a two stage process, where a group members must authenticate
 \end_layout
 
 \begin_layout Standard
-Once a usable mechanism for trust has been established we can use it to
- create security groups (SGs) among agents.
+Once a usable and reliable trust mechanism has been established we can use
+ it to create security groups (SGs) among agents.
  SGs have been proposed by 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -306,10 +337,23 @@ key "Hollick2001"
 \end_inset
 
  suggests to revert to Internet layer encryption with Internet Protocol
- Security (IPSec) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Kent2005"
+ Security (IPSec)
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+RFC 4301 - 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+http://www.ietf.org/rfc/rfc4301.txt
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 

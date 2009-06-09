@@ -34,7 +34,7 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\tracking_changes true
+\tracking_changes false
 \output_changes false
 \author "" 
 \author "" 
@@ -43,7 +43,7 @@
 \begin_body
 
 \begin_layout Section
-Future Work
+Conlusion and Future Work
 \end_layout
 
 \begin_layout Standard

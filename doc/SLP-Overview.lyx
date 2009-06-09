@@ -351,10 +351,23 @@ name "sub:Protocols-basics"
 SLP is a discovery-only protocol which explicitly leaves the service invocation
  out.
  A service is represented by a service description that consists of a Uniform
- Resource Locator (URL) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Berners-Lee1994"
+ Resource Locator (URL)
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+RFC 1738 - 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+http://www.ietf.org/rfc/rfc1738.txt
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -364,18 +377,44 @@ key "Berners-Lee1994"
 \end_inset
 
 An UA may query for services by optionally using a Lightweight Directory
- Access Protocol (LDAP) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Howes1997"
+ Access Protocol (LDAP)
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+RFC 2254 - 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+http://www.ietf.org/rfc/rfc2254.txt
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
  style filter.
- A query is sent out via multicast 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Armstrong1992"
+ A query is sent out via multicast
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+RFC 1301 - 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+http://www.ietf.org/rfc/rfc1301.txt
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
