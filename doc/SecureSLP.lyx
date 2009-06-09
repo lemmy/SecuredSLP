@@ -218,6 +218,13 @@ key "Almenarez2003"
 
 \begin_layout Subsection
 Confidentiality via Security Groups
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Confidentiality-via-Security"
+
+\end_inset
+
+
 \begin_inset Note Note
 status collapsed
 

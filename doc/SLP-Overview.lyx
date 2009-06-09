@@ -353,7 +353,7 @@ SLP is a discovery-only protocol which explicitly leaves the service invocation
  A service is represented by a service description that consists of a Uniform
  Resource Locator (URL)
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 RFC 1738 - 
@@ -379,7 +379,7 @@ http://www.ietf.org/rfc/rfc1738.txt
 An UA may query for services by optionally using a Lightweight Directory
  Access Protocol (LDAP)
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 RFC 2254 - 
@@ -400,7 +400,7 @@ http://www.ietf.org/rfc/rfc2254.txt
  style filter.
  A query is sent out via multicast
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 RFC 1301 - 
@@ -565,10 +565,52 @@ key "Wikipedia2009"
  To prevent such replay attacks, SLP timestamps each signed message with
  32-bit unsigned fixed-point number UNIX time.
  The time stamp indicates when the signature expires.
- The time stamp is not part of the signed data and can thus be tampered
+ The time stamp is not part of the signed data and thus can be tampered
  with.
+ Using a time stamp also does not fully prevent replay attacks as it leaves
+ the door open to replay attack for duration of signature life-time.
+ Hence a nonce
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+random, non-guessable and externally uninfluencable data
 \end_layout
 
+\end_inset
+
+, that is to be included in the intial request (Service-/AttributeRequest)
+ and signed by the responder undeniable associates the request with one
+ response.
+ However, we will show in later sections of this paper (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Confidentiality-via-Security"
+
+\end_inset
+
+), that replay attacks will be taken care of by the newly introduced encryption
+ methods.
+\end_layout
+
+\begin_layout Subsection
+Man-in-the-Middle attacks
+\end_layout
+
+\begin_layout Itemize
+Schutz vor MITM-Angriffen bietet auch die sogenannte Integrity Protection
+\end_layout
+
+\begin_layout Itemize
+Nachricht erhalten Identitätsstempel/Message Authentication Code (MAC)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+symmetrisches Authentifizierungsverfahren und braucht daher 
+\end_layout
+
+\end_deeper
 \begin_layout Subsection
 Availability
 \end_layout
@@ -616,6 +658,10 @@ Neither is message rate-limiting or throttling defined in SLP.
 \begin_layout Standard
 \begin_inset Note Note
 status collapsed
+
+\begin_layout Subsection
+Non-Repudiation
+\end_layout
 
 \begin_layout Subsection
 Anonymity
