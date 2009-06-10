@@ -1,4 +1,4 @@
-#LyX 1.6.3 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -46,6 +46,7 @@
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
+\author "" 
 \author "" 
 \end_header
 
@@ -97,7 +98,7 @@ MANET
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -127,18 +128,18 @@ work.
  MANET is a dynamic network architecture specially designed for mobile devices
  in a wireless environment.
  A MANET makes a dynamic and decentralized behavior for network peers possible.
- There are no fixed devices in a MANET like a server that are always online.
+ There are no fixed devices in a MANET like servers that are always on-line.
  All peers can connect or disconnect to the network anytime and without
  any problems.
  An important requirement to MANET is the mobility of all devices in the
  network.
- That is every peer is moveable and can change its position in the real
- world what impacts on the network.
+ That is every peer is movable and can change its position in the real world
+ what impacts on the network.
  So the MANET manages the connections and makes sure devices can easily
  join or leave the network.
  How the MANET works is not a part of this paper.
- Father we don't treat security issues in MANET itself and assume that it
- is secure.
+ Furthermore we don't treat security issues in MANET itself and assume that
+ it is secure.
 \end_layout
 
 \begin_layout Subsection
@@ -147,7 +148,14 @@ Service discovery architecture
 
 \begin_layout Standard
 There are three important architecture approaches used for service discovery
- [2008-SD-SURVEY-COMST.pdf].
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ververidis2008"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -273,8 +281,13 @@ Confidentiality
 \end_layout
 
 \begin_layout Standard
-[Security Requirements in Service Oriented Architectures.pdf] suggests securing
- the registration and deregistration of the services.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Cotroneo2004"
+
+\end_inset
+
+ suggests securing the registration and deregistration of the services.
  If a service is to be registered/deregistered it is important that authenticati
 on, authorization, integrity and confidentiality are maintained.
  In that way only authorized server agents can register or deregister their

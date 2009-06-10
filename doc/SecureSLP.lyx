@@ -37,8 +37,8 @@
 \tracking_changes false
 \output_changes false
 \author "" 
-\author "Markus Alexander Kuppe,,,," 
 \author "" 
+\author "Markus Alexander Kuppe,,,," 
 \end_header
 
 \begin_body
@@ -127,7 +127,7 @@ reference "sub:Authentication-and-Integrity"
 Since SLP already comes with support for X.509 certificates, it appears to
  be easiest to base trust on such keys and just eliminate the need to manually
  set them up keys and implement proper key distribution protocols
-\change_inserted 1 1244393272
+\change_inserted 2 1244393272
  
 \change_unchanged
 instead.
@@ -194,7 +194,7 @@ To balance off said shortcomings a reputation-based trust model may be used
 status collapsed
 
 \begin_layout Plain Layout
-e.g.
+E.g.
  amount of network messages sent
 \end_layout
 
@@ -345,8 +345,19 @@ key "Hollick2001"
 
  suggests to revert to Internet layer encryption with Internet Protocol
  Security (IPSec)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kent2005"
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 RFC 4301 - 
@@ -354,7 +365,13 @@ RFC 4301 -
 status collapsed
 
 \begin_layout Plain Layout
+
 http://www.ietf.org/rfc/rfc4301.txt
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -379,7 +396,7 @@ An agent has to be trusted by a member of the security group to join it.
 status collapsed
 
 \begin_layout Plain Layout
-we will later show that DAs may optionally be part of security groups
+We will later show that DAs may optionally be part of security groups
 \end_layout
 
 \end_inset

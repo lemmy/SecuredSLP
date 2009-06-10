@@ -47,6 +47,28 @@ Conlusion and Future Work
 \end_layout
 
 \begin_layout Standard
+MANETs are becoming increasingly common due to the wide availability of
+ mobile device technology.
+ When such a device enters a network, it wants to learn about the services
+ offered by other peers or advertise its own services.
+ Service discovery protocols have been around to answer this requirement
+ for a while.
+ A most prominent and widely adopted one being SLP.
+ However, SLP has not been designed for MANETs upfront.
+ Thus the protocol has to undergo a renewal to make it fit for open networks.
+\begin_inset Newline newline
+\end_inset
+
+This paper describes the fundamental security implications that arise from
+ open networks.
+ It picks up these implications in the scope of SLP and compiles a detailed
+ threat analysis for SLP in open networks.
+ It then continues to extend the current version of SLP with security enhancemen
+t to strengthen the protocol for use in untrusted and hostile environments
+ by staying backward compatibility with earlier protocol version.
+\begin_inset Newline newline
+\end_inset
+
 The full version of this paper will follow up on the remaining technical
  issues outlined in 
 \begin_inset CommandInset ref
@@ -77,10 +99,7 @@ Infrastructures in the scope of SLP and show how both can be utilized to
  Afterwards it will describe the technical implementation of confidentiality
  based on TLS/DTLS in full detail and show how security groups are advertised
  and established.
-\begin_inset Newline newline
-\end_inset
-
-The final version of this paper will also cover an updated threat analysis
+ The final version of this paper will also cover an updated threat analysis
  for Secure SLP.
 \end_layout
 
