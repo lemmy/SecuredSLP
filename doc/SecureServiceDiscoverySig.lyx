@@ -57,6 +57,19 @@ theorems-sec
 
 \begin_body
 
+\begin_layout Standard
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+http://wiki.lyx.org/Examples/AcmSigplan
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout CopyrightYear
 2009
 \end_layout
@@ -155,7 +168,7 @@ trust, multicast
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
-filename "/home/markus/eclipse/ecf/SecuredSLP/doc/Introduction.lyx"
+filename "Introduction.lyx"
 
 \end_inset
 
