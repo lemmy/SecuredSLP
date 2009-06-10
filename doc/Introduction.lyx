@@ -1,5 +1,5 @@
-#LyX file created by tex2lyx 1.6.3
-\lyxformat 249
+#LyX 1.6.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
 \begin_document
 \begin_header
 \textclass scrartcl
@@ -11,10 +11,9 @@
 
 \makeatletter
 \makeatother
-
-
 \end_preamble
 \options DIN15
+\use_default_options false
 \language english
 \inputencoding latin9
 \font_roman default
@@ -25,12 +24,15 @@
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
+
 \graphics default
 \paperfontsize default
 \spacing single
+\use_hyperref false
 \papersize a4paper
 \use_geometry false
 \use_amsmath 0
+\use_esint 0
 \cite_engine basic
 \use_bibtopic false
 \paperorientation portrait
@@ -44,72 +46,72 @@
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
+\author "" 
 \end_header
 
 \begin_body
 
 \begin_layout Section
-
-Grundlagen von Service Discovery
+Service discovery basics
 \end_layout
 
 \begin_layout Standard
-
-Der aktuelle Fortschritt und die Entwicklung in der Informatik ermöglichen immer kleinere und mobile Geräte, die bereits jetzt über viele Eigenschaften und Fähigkeiten verfügen. Die aktuellen mobilen Geräte haben immer längere Akkulauftzeiten, bieten immer mehr Rechenleistung und können dadurch auch viele verschiedene Anwendungen ausführen. Mit mobilen Geräten sind hier nicht nur Notebooks, sondern unter anderem auch PDAs, Handys, iPhones, MP3 Player etc., gemeint. Durch diese Entwicklung ergeben sich auch Möglichkeiten die mobilen Geräte ebenfalls sinnvoll zu vernetzen. Ein Ziel dieser Vernetzung ist es, die Kommunikation zwischen den einzelnen mobilen Geräten zu ermöglichen um verschiedene Dienste und Services, die die einzelnen Geräte anbieten, untereinander 
-\begin_inset Quotes eld
-\end_inset
-
-auszutauschen
-\begin_inset Quotes erd
-\end_inset
-
- bzw. zu nutzen. Ein mögliches Szenario wäre z.B. eine Bestellung per Handy aufzunehmen. Damit dies funktionieren kann, müssen einige Voraussetzungen erfüllt werden: 
+The current process in computer science makes possible to build small mobile
+ devices that already have many features.
+ The latest mobile devices got long battery lifetime, a powerful processor
+ unit and can handle more and more advanced applications.
+ Mobile devices are here not just Notebooks but also PDAs, mobile phones,
+ iPhones, MP3 Players and so on.
+ Due to the growing abilities of mobile devices it became reasonable to
+ connect them.
+ The idea is to connect several mobile devices to a network to allow them
+ to communicate with each other and to share their services.
+ A possible scenario is for example a buy order via a mobile phone.
+ To make it work there are some requirements to full fit: 
 \end_layout
 
 \begin_layout Itemize
-
-Server und Client müssen in einem Netzwerk sein 
+server and client have to be in same network 
 \end_layout
 
 \begin_layout Itemize
+both should understand each other (use same protocols for example) 
+\end_layout
 
-Beide Kommunikationspartner müssen sich 
-\begin_inset Quotes eld
-\end_inset
-
-verstehen
-\begin_inset Quotes erd
-\end_inset
-
+\begin_layout Itemize
+and to use or provide such sensitive services they need some kind of security
  
 \end_layout
 
-\begin_layout Itemize
-
-Und bei solch 
-\begin_inset Quotes eld
-\end_inset
-
-sensiblen
-\begin_inset Quotes erd
-\end_inset
-
- Diensten, muss die Sicherheit zwischen dem Dienstanbieter und dem Client möglichst groß sein 
-\end_layout
-
 \begin_layout Standard
-
-Wie schon oben beschrieben, liegen die Schwerpunkte dieser Ausarbeitung bei Service Discovery im Hinblick auf die Sicherheitsaspekte. Um auf die Sicherheitskonzepte oder Sicherheitslücken bei Service Discovery besser eingehen zu können werden im Folgenden zuerst die Grundlagen von Anbieten und Auffinden der Dienste in einem Netzwerk erläutert.
+The main subject of this paper is service discovery and their security issues
+ that arise in hostile environment like mesh or mobile ad hoc networks.
+ However, to understand the service discovery security and their weaknesses
+ we first need to understand the basics of service providing and service
+ discovery.
 \end_layout
 
 \begin_layout Subsection
-
 MANET
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
 
-In dieser Ausarbeitung wird ein Netzwerk immer als ein MANET angesehen. MANET steht für 
+\begin_layout Plain Layout
+
+%Definition?: http://www.techterms.com/definition/manet
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+In this paper we are talking of networks as MANETs.
+ MANET is a short form for 
 \series bold
 M
 \series default
@@ -119,73 +121,168 @@ A
 \series default
 d-Hoc 
 \series bold
-Net
+NET
 \series default
-work. MANET ist ein dynamisches Netzwerk und ist ein extra Konzept für mobile Geräte. Dieses Netzwerk ermöglicht ein dynamisches und dezentralisiertes Verhalten. Es wird vorausgesetzt, dass es in diesem Netzwerk keine festen Geräte vorhanden sind, die ständig zur Verfügung stehen sollen (z.B. Server). Und die wichtigste Voraussetzung ist die Mobilität von Endgeräten, d.h. die Knoten des Netzwerks sind beweglich und können ihre Position ändern, wodurch auch das Netzwerk beeinflusst wird. MANET stellt somit also sicher, dass die einzelnen Netzwerkknoten das Netzwerk einfach betreten bzw. verlassen können. (Wie dies genau geschieht ist nicht das Thema dieser Ausarbeitung)
+work.
+ MANET is a dynamic network architecture specially designed for mobile devices
+ in a wireless environment.
+ A MANET makes a dynamic and decentralized behavior for network peers possible.
+ There are no fixed devices in a MANET like a server that are always online.
+ All peers can connect or disconnect to the network anytime and without
+ any problems.
+ An important requirement to MANET is the mobility of all devices in the
+ network.
+ That is every peer is moveable and can change its position in the real
+ world what impacts on the network.
+ So the MANET manages the connections and makes sure devices can easily
+ join or leave the network.
+ How the MANET works is not a part of this paper.
+ Father we don't treat security issues in MANET itself and assume that it
+ is secure.
 \end_layout
 
 \begin_layout Subsection
-
-Service Discovery Architekturen
+Service discovery architecture
 \end_layout
 
 \begin_layout Standard
-
-
 \begin_inset ERT
 status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 %Quelle: 2008-SD-SURVEY-COMST.pdf
 \end_layout
 
-\begin_layout Standard
-
+\begin_layout Plain Layout
 
 \end_layout
 
 \end_inset
 
-Es gibt drei wichtige Architekturansätze, die für Service Discovery benutzt werden.
+There are three important architecture approach used for service discovery.
 \end_layout
 
 \begin_layout Subsubsection
-
-Directory basierte Architektur
+Directory based architecture
 \end_layout
 
 \begin_layout Standard
-
-Bei der Directory basierten Architektur können die Netzwerkteilnehmer drei verschiedene Rollen übernehmen. Ein Netzwerkknoten kann dabei als Server seine Dienste anderen anbieten (SA = Service Agent), er kann als Client die Dienste von anderen Knoten nutzen (UA = User Agent) und er kann Service Directory die Services von anderen Verwalten und diese an die Clients vermitteln (DA = Directory Agent). Da MANET ein dynamisches Netzwerk ist, kann hier nicht vorausgesetzt werden, dass ein DA immer erreichbar ist, somit können auch mehrere DAs im Netzwerk vorhanden sein. Bei dieser Architektur spielt der Directory Agent eine zentrale Rolle und ist für das Netzwerk 
-\begin_inset Quotes eld
-\end_inset
-
-Lebenswichtig
-\begin_inset Quotes erd
-\end_inset
-
-. Die Idee bei dieser Architektur ist, dass die Endgeräte, die ihre Dienste anbieten möchte, die Informationen (z.B. Name, Server-IP, Dienstbeschreibung, etc.) über diese an die Directory Agents weiterleiten. Sobald ein Client bzw. UA einen Dienst nutzen möchte, fragt er bei einem DA nach einem bestimmten Dienst an, oder lässt sich die ganze Liste mit den verfügbaren Diensten ausgeben. Sobald der User Agent die Information über den gewünschten Service erhalten kann, verbindet er sich mit Hilfe dieser zum Server. Durch diese Architektur wird die Gesamtlast der Kommunikationen reduziert und entlastet die einzelnen Endgeräte, die nun nicht mehr durch Multicastsanfragen ihre Rechenzeit und somit auch ihre Akkulaufzeit strapazieren. Jedoch ist der Vorteil dieser Architektur auch gleichzeitig ihr größtes Nachteil, denn durch die Zentralisierung kann das Netzwerk leichter gestört werden. Wenn ein DA das Netzwerk verlassen hat, sind die Server, die dieser DA verwaltet hat, eventuell längere Zeit nicht mehr erreichbar und im schlimmsten Fall können diese aus dem Netzwerk ausgeschlossen werden, falls kein neuer DA gefunden wird. Dazu gibt es ebenfalls verschiedene Ansätze, die solche Extremfälle verhindern sollen. Diese sind jedoch nicht Teil dieser Ausarbeitung und werden daher nicht weiter vertieft behandelt.
+In directory based architecture network peers have three possibilities how
+ they can act.
+ A network peer can offer its services as SA (Service Agent) to other peers,
+ it can use discovered services as UA (User Agent) and a network peer can
+ act as DA (Directory Agent) which manages services provided by other SAs
+ and forwarding them to user agents.
+ Because MANET is a dynamic network it can't be assume that there is always
+ a reachable directory agent but it is also possible that more than just
+ one DA is operating in a MANET.
+ A directory agent is an important instance in this architecture and is
+ essential to keep the network alive.
+ All devices (service agents) which want to provide their services have
+ to register them by a directory agent.
+ They register their services by sending service description (e.g.
+ service name, server ip, description what the service can do, etc.) to the
+ directory agent which stores all that information.
+ As soon as a user agent wants to use a service, it sends via unicast a
+ request for a searched service to the DA or it request all services which
+ the DA stores.
+ After receiving the information about the requested service the UA can
+ connect to the SA.
+ This architecture reduces the entire communication in the network.
+ The devices don't need to communicate via multicast anymore, hence they
+ don't force their resources which mean they also save battery lifetime.
+ But on the other hand the benefit of this architecture is their biggest
+ handicap at the same time.
+ The DA in some kind centralizes the network and makes it vulnerable.
+ If a DA leaves the network the network also loses all the services that
+ DA had stored.
+ The service providers have to find a new DA and for this time their services
+ aren't reachable.
+ In the worth case they don't find a new DA and get exclude from the network.
+ There are some approaches to avoid such cases but they aren't part of this
+ paper so we won't discuss them here.
 \end_layout
 
 \begin_layout Subsubsection
-
-Directory-less Architektur
+Directory-less architecture
 \end_layout
 
 \begin_layout Standard
-
-Die Directory-less Architektur ist das Gegenteil zu der Directory basierten Architektur. Hier können die einzelnen Netzwerkknoten nur zwei verschiedene Aufgaben übernehmen. Die Netzwerkknoten können ihre Dienste als SAs anbieten oder Dienste von anderen Knoten als UAs nutzen. Da diese Architektur keine Directory Agents vorsieht, müssen die angebotenen Dienste auf eine andere Weise gefunden werden. Auch hier gibt es verschiedene Ansätze. Die Server Agents können ihre Dienste in bestimmten Zeitintervallen an die anderen Knoten per Multicast senden und warten bis ein User Agent, der den Service nutzen möchte antwortet. Oder die User Agents können durch Suchanfragen selber nach gewünschten Diensten suchen. Dazu könnten sie ihre Dienstanfrage in bestimmten Zeitintervallen an die anderen Knoten per Multicast senden und warten bis ein Server antwortet oder sie können ihre Anfrage an die am nächstliegenden Knoten senden. Fall ein Knoten den gesuchten Dienst anbietet, wird die Kommunikation aufgebaut, andernfalls Leitet der Knoten die Anfrage einfach an seine nächst gelegenen Knoten weiter. Diese Architektur benötigt gar keine zentrale Stelle und ist somit robuster gegen Netzwerkausfälle. Allerdings werden durch die vielen Multicasts die einzelnen Geräte mehr belastet und die Suche nach dem gewünschten Dienst kann sehr viel Zeit in Anspruch nehmen verglichen mit der Directory basierten Architektur.
+The directory-less architecture is quite contrary to the directory based
+ architecture.
+ In this architecture the network peers can just act as service agents and
+ user agents.
+ There is no directory agent so the service discovery should perform in
+ other way.
+ There are several approaches how it can be done.
+ Service agents can distribute their services via multicast periodically
+ send to the network and wait till a user agent reply.
+ User agent can also discover services on their own by sending periodically
+ a defined service request via multicast to the network till it gets an
+ answer from a SA.
+ Or a user agent can send a request to some network peers in its range.
+ In case a peer offers such a service it replies to the user agent otherwise
+ the peer forwards the request to its neighbors and so on.
+ In this architecture there is no central instance and it provides a much
+ more stable network structure.
+ However the communications via multicast drain more computation and battery
+ lifetime from each network peer.
+ Also to discover a service can take much longer compare to the directory
+ based architecture.
 \end_layout
 
 \begin_layout Subsubsection
-
-Hybride Architektur
+Hybrid architecture
 \end_layout
 
 \begin_layout Standard
+Hybrid architecture is a compromise of directory based and directory-less
+ architecture.
+ Hybrid architecture combines the benefits of both other architectures.
+ Like in directory based architecture there are also three possibilities
+ how a network peer can act (SA, UA and DA).
+ To provide services a service agent first search for a directory agent.
+ In case a directory agent was found the service agent acts like in directory
+ based architecture and sends its service information to the DA and the
+ DA is used by user agents to discover the services.
+ In other case where no DA was located the SA acts like in directory-less
+ architecture and periodically broadcast its services to the whole network.
+ This architecture uses the benefits of the directory based architecture
+ to provide and discover services efficiently and to spare too many broad-
+ and multicast communications in the network to keep battery time from each
+ network peer longer alive.
+ In the same time the architecture offers a solution for the worth case
+ where no DAs are available in the network so the network won't die.
+\end_layout
 
-Bei der Hybriden Architektur handelt es sich um eine Mischung aus der Directory basierten und der Directory freien Architektur. Die Hybride Architektur versucht die Vorteile von beiden Architekturen zu vereinen. Somit können bei dieser Architektur die Einzelnen Netzwerkknoten bis zu drei verschiedene Aufgaben übernehmen (SA, UA und DA). Die Server Agents suchen zuerst nach Directory Agents in ihrer Umgebung. Fall ein Directory Agent gefunden wurde, werden wie bei der Directory basierten Architektur die angebotenen Dienste an den DA weitergeleitet und der DA vermittelt dann die Clients zu den Servern. Falls jedoch kein DA gefunden wurde, werden die angebotenen Dienste einfach per Broadcast im Netzwerk verteilt. Diese Architektur nimmt die Vorteile von der Directory basierten Architektur um Dienste effizienter zu verteilen und das Netzwerk durch die Broadcast- und Multicastanfragen zu entlasten und sorgt gleichzeitig zur besseren Ausfallsicherheit, durch die Möglichkeit Dienste weiterhin zu verbreiten auch wenn kein Directory Agent zur Verfügung steht. 
+\begin_layout Subsection
+Secure service discovery basics
+\end_layout
+
+\begin_layout Standard
+Section 1.2 introduced some solutions how services can be provided and discovered
+ in a MANET.
+ But there are also some security issues that prevent a secure usage of
+ such a network.
+ To safety use service discovery we have to full fit at least the traditional
+ security requirements: 
+\end_layout
+
+\begin_layout Itemize
+Authentication 
+\end_layout
+
+\begin_layout Itemize
+Authorization 
+\end_layout
+
+\begin_layout Itemize
+Integrity 
+\end_layout
+
+\begin_layout Itemize
+Confidentiality 
 \end_layout
 
 \end_body
