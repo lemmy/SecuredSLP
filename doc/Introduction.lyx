@@ -146,21 +146,8 @@ Service discovery architecture
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-%Quelle: 2008-SD-SURVEY-COMST.pdf
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-There are three important architecture approach used for service discovery.
+There are three important architecture approaches used for service discovery
+ [2008-SD-SURVEY-COMST.pdf].
 \end_layout
 
 \begin_layout Subsubsection
@@ -283,6 +270,37 @@ Integrity
 
 \begin_layout Itemize
 Confidentiality 
+\end_layout
+
+\begin_layout Standard
+[Security Requirements in Service Oriented Architectures.pdf] suggests securing
+ the registration and deregistration of the services.
+ If a service is to be registered/deregistered it is important that authenticati
+on, authorization, integrity and confidentiality are maintained.
+ In that way only authorized server agents can register or deregister their
+ services.
+ While registering a service the communication has to be secured (e.g.
+ encrypted) to prevent changes in the transferred information (integrity
+ and confidentiality).
+ With these common techniques many attacks can already be prevented or become
+ at least difficult.
+ But just to secure the registration and deregistration is not enough.
+ After the service discovery phase a user agent and service agent need an
+ authentication between each other to keep their trust.
+ Only authorized network peers should access the registered services.
+ Authentication is needed in first way for the service agent who gets the
+ information that the service was delivered to the right node if authentication
+ was successful.
+ And if a service agent authenticates itself by the user agent, user agent
+ can be sure to trust the delivered service.
+\begin_inset Newline newline
+\end_inset
+
+ Another important feature is the availability.
+ It's not a secure issue in a first way but a network should also be able
+ to detect broken service provider and delete them from the services list
+ to prevent possible exploitations.
+ 
 \end_layout
 
 \end_body
