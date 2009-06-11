@@ -77,7 +77,7 @@ name "sub:Protocols-basics"
 SLP is a discovery-only protocol which explicitly leaves the service invocation
  out.
  A service is represented by a service description that consists of a Uniform
- Resource Locator (URL)
+ Resource Locator (URL) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Berners-Lee1994"
@@ -89,8 +89,8 @@ key "Berners-Lee1994"
 \begin_inset Newline newline
 \end_inset
 
-An UA may query for services by optionally using a Lightweight Directory
- Access Protocol (LDAP)
+A UA may query for services by optionally using a Lightweight Directory
+ Access Protocol (LDAP) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Howes1997"
@@ -98,7 +98,7 @@ key "Howes1997"
 \end_inset
 
  style filter.
- A query is sent out via multicast
+ A query is sent out via multicast 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Armstrong1992"
@@ -326,7 +326,7 @@ reference "sub:Protocols-basics"
  This means that confidentiality cannot be enforced with SLP.
  An attacker might simply eavesdrop on the network traffic and learn about
  existing services over time.
- This does not even require an UA actively querying for services, because
+ This does not even require a UA actively querying for services, because
  SAs periodically re-register service at the end of the service lifetime.
  The same reason also renders any kind of UA authorization useless.
  Restricting UAs to certain service registrations without proper service

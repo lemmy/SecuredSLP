@@ -431,7 +431,7 @@ An agent has to be trusted by a member of the security group to join it.
  Optionally authorization can be enforced during group joining.
  SGs can be created by all agent types, though since advertising a SG has
  to be made with traditional SLP, an initiator of a SG always needs to assume
- the role of an SA anyway.
+ the role of a SA anyway.
 \begin_inset Note Note
 status collapsed
 

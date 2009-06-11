@@ -139,8 +139,7 @@ Mobile Ad-Hoc networks become increasingly common due to the wide availability
  by other peers or advertise own services.
  Service discovery protocols have been around to answer this requirement
  for years.
- A most prominent and widely adopted one being Service Location Protocol
- (SLP).
+ A most prominent and widely adopted one is Service Location Protocol (SLP).
  However, SLP has not been designed for MANETs, but for trustworhty and
  reliable networks.
  Thus the protocol has to undergo a renewal to make it fit for open networks.
