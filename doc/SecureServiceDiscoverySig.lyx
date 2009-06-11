@@ -22,7 +22,7 @@ theorems-sec
 \font_tt_scale 100
 
 \graphics default
-\paperfontsize 10
+\paperfontsize 11
 \spacing single
 \use_hyperref true
 \pdf_bookmarks false
@@ -83,7 +83,7 @@ Secure service discovery in open networks with SLP
 \begin_layout Author
 Markus Alexander Kuppe
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -133,23 +133,24 @@ status collapsed
 \end_layout
 
 \begin_layout Abstract
-Mobile Ad-Hoc networks are becoming increasingly common due to the wide
- availability of mobile device technology.
+Mobile Ad-Hoc networks become increasingly common due to the wide availability
+ of mobile device technology.
  When such devices enter a network, they want to learn about services offered
  by other peers or advertise own services.
  Service discovery protocols have been around to answer this requirement
  for years.
- A most prominent and widely adopted one being Service Location Protocol.
- However, SLP has not been designed for MANETs, but for thrustworhty and
+ A most prominent and widely adopted one being Service Location Protocol
+ (SLP).
+ However, SLP has not been designed for MANETs, but for trustworhty and
  reliable networks.
  Thus the protocol has to undergo a renewal to make it fit for open networks.
 \begin_inset Newline newline
 \end_inset
 
-In this paper, we focus on the security implications that arise from SLP's
- usage in open networks and give a detailed threat analysis.
- Afterwards we propose security extensions to address the identified shortcoming
-s.
+This paper focuses on the security implications that arise from SLP's usage
+ in open networks and gives a detailed threat analysis.
+ Afterwards security extensions are proposed to address the identified shortcomi
+ngs.
 \end_layout
 
 \begin_layout Keywords

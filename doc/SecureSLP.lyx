@@ -38,7 +38,6 @@
 \output_changes false
 \author "" 
 \author "" 
-\author "" 
 \end_header
 
 \begin_body
@@ -126,7 +125,7 @@ reference "sub:Authentication-and-Integrity"
 
 Since SLP already comes with support for X.509 certificates, it appears to
  be easiest to base trust on such keys and just eliminate the need to manually
- set them up keys and implement proper key distribution protocols instead.
+ set them up and implement proper key distribution protocols instead.
 \begin_inset Newline newline
 \end_inset
 
@@ -191,7 +190,7 @@ E.g.
  that marks trustworthiness, indifference or mistrust of the agent.
  The key-based model is used to bootstrap the reputation-based model by
  means of recommendation.
- A details definition of a reputation-based trust model can be found in
+ A detailed definition of a reputation-based trust model can be found in
  Secure Pervasive Discovery Protocol (SPDP) 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -268,8 +267,8 @@ Joining a SG is a two stage process, where a group members must authenticate
 \end_layout
 
 \begin_layout Standard
-Once a usable and reliable trust mechanism has been established we can use
- it to create security groups (SGs) among agents.
+Once a reliable and usable trust mechanism has been established we can use
+ it to create Security Groups (SGs) among agents.
  SGs have been proposed by 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -279,14 +278,14 @@ key "Hollick2001"
 
 .
  A SG is a group of agents which share a common secret (symmetric key).
- This key is used to encrypt all their communication between each other.
+ This key is used to encrypt all communication between each other.
  Due to the fact that the same two peers might be part of different SGs,
  the key association cannot be based on the sender address
 \begin_inset Foot
 status collapsed
 
 \begin_layout Plain Layout
-Unless each SG uses a unique multicast group and or port range
+Unless each SG uses a unique multicast group and or port
 \end_layout
 
 \end_inset
@@ -294,7 +293,7 @@ Unless each SG uses a unique multicast group and or port range
 .
  Therefore complete encryption of the SLP message payload would not only
  cause severe performance penalties for non SG members, but force group
- members to try all associated keys in worst case.
+ members to try all associated keys in worst case scenarios.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -302,17 +301,37 @@ key "Hollick2001"
 
 \end_inset
 
- suggests to revert to Internet layer encryption with Internet Protocol
- Security (IPSec)
+ therefore suggests to revert to Internet layer encryption by using Internet
+ Protocol Security (IPSec)
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Kent2005"
 
 \end_inset
 
- for peer communication and leaves securing multicast communication open.
- However, this paper takes a different approach and uses application layer
- encryption with Transport Layer Security (TLS)
+ for peer communication.
+ Group communication is left open though.
+ This paper takes a different approach and uses application layer encryption
+ on top of Internet layer multicast.
+ This alleviates the network requirements and handles security within SLP
+ entirely.
+ Additionally this allows to reuse multicast encryption for unicast channels
+ as well
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Unicast may reuse the group share secret in SLP
+\end_layout
+
+\end_inset
+
+.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+For the with Transport Layer Security (TLS)
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Dierks2008"
@@ -327,27 +346,203 @@ key "Phelan2008"
 \end_inset
 
  for UDP to support both unicast as well as multicast communication at once.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Huang2007"
+
+\end_inset
+
+ discuss various approaches to secure group communication with multicast.
+ All of these Group Key Agreement protocols (GKA) suffer from two basic
+ security implications that differ from point-to-point communication 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Prakash2008"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Description
+One
+\begin_inset space ~
+\end_inset
+
+affects
+\begin_inset space ~
+\end_inset
+
+all The compromise of a single group member affects the security of the
+ whole group
+\end_layout
+
+\begin_layout Description
+Re-keying
+\begin_inset space ~
+\end_inset
+
+on
+\begin_inset space ~
+\end_inset
+
+leave/join No past/future data is allowed to be decrypt-able by future/past
+ group members
+\end_layout
+
+\begin_layout Standard
+However, this paper argues that the second security implication can be relaxed
+ in the scope of SLP to simplify the encryption protocol significantly.
+ Unless a new SA joins a SG or an existing SA incrementally updates its
+ service description
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Subsequently incremental updates will be seen as SG re-joins
+\end_layout
+
+\end_inset
+
+, the SG's data is stale.
+ A former group member does not learn anything new.
+ Thus, only a change of a SA membership requires re-keying to exchange the
+ group key.
+\begin_inset Newline newline
+\end_inset
+
+MANETs pose two more constraints on the group encryption protocol.
+ The protocol must not require group members to know each other.
+ Nor is a centralized architecure acceptable as it would introduce a single
+ point of failure.
 \begin_inset Newline newline
 \end_inset
 
 An agent has to be trusted by a member of the security group to join it.
  Optionally authorization can be enforced during group joining.
- SGs can be created by all agent types
-\begin_inset Foot
+ SGs can be created by all agent types, though since advertising a SG has
+ to be made with traditional SLP, an initiator of a SG always needs to assume
+ the role of an SA anyway.
+\begin_inset Note Note
 status collapsed
 
-\begin_layout Plain Layout
-We will later show that DAs may optionally be part of security groups
-\end_layout
+\begin_layout Itemize
+Centralized group key architectures disqualify them selves (Kerberos) due
+ to the unreliability of the network/MANET
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Huang2007"
 
 \end_inset
 
-, though since advertising a SG has to be made with traditional SLP, an
- initiator of a SG always needs to assume the role of an SA anyway.
+
+\end_layout
+
+\begin_layout Itemize
+Group Diffie-Hellman (GDH) not usable as all members must know each other
+ to compute the group key
+\end_layout
+
+\begin_layout Itemize
+IOLUS framework with subgroups are problematic, as a mediator between group
+ A and B must exists that decrypts and encrypts messages between both groups
+ with the corresponding key of the other group
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Proxy encryption mediates between group A and B without decrypting the original
+ message to plain text.
+ Though a mediator is still needed
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Subgroups try to minimize the re-keying efforts that arise when a group
+ member leaves or joins a group
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+No past of future data is allowed to be encryptable by a former/new group
+ member
+\end_layout
+
+\begin_layout Itemize
+With the previous requirement, confidential group communication becomes
+ much more complex.
+ Does SecureSLP really has this requirement
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset CommandInset label
+LatexCommand label
+name "ite:Rekeying-does-not"
+
+\end_inset
+
+Rekeying does not change the location of the service.
+ The former group member thus may skip the discovery protocol entirely and
+ directly reconnects to the service
+\end_layout
+
+\begin_layout Itemize
+Still we suffer from the 
+\begin_inset Quotes eld
+\end_inset
+
+one affects all
+\begin_inset Quotes erd
+\end_inset
+
+ problem (if one peer is compromised, the whole group is)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Would a revocation protocol suffice? Is revocation just a subset of rekeying
+ on join/leave?
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Rekeying on SA join would suffice (incremental registration requires rejoin)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Group key only needs to change when a new SA join, otherwise the encrypted
+ knowledge has not really changed (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "ite:Rekeying-does-not"
+
+\end_inset
+
+).
+ A UA does not learn anything new from the SA group
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
-Security Groups and and Directory Agents
+Security Groups and Directory Agents
 \begin_inset Note Note
 status collapsed
 
@@ -384,7 +579,60 @@ This built-in fallback to infrastructure mode can be seen as a potential
 \end_layout
 
 \begin_layout Standard
-TBD
+As stated earlier in this paper, DAs cause security implications for the
+ security of SLP, which have to be accounted for.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hollick2001"
+
+\end_inset
+
+ does not address this topic and simply assumes the non-existence of DAs.
+ This assumption is untenable in SLP as the fallback to DA mode is built
+ into the protocol and UAs and SAs are required to use a DA if present (see
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Protocols-basics"
+
+\end_inset
+
+).
+ Even though a forged DA would not be able to tamper with service descriptions
+ due to integrity checks, it can prevent SGs from being established by silently
+ discarding SG advertisements.
+ Therefore SLP agents must revert to multicast convergence if a DA cannot
+ be authenticated to be legit.
+\begin_inset Newline newline
+\end_inset
+
+In case a DA is to be used together with SGs, it has to become a member
+ of each and every group in the network.
+ Otherwise it will not be able to decrypt the service description and answer
+ queries sent by UAs.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The previous requirement and the ones listed in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Confidentiality-via-Security"
+
+\end_inset
+
+ make the Group Diffie-Hellman (GDH) outlined in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bhaskar2007"
+
+\end_inset
+
+ a good candidate as a GKA for SecureSLP.
 \end_layout
 
 \end_body

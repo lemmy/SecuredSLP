@@ -57,10 +57,10 @@ Service discovery basics
 \end_layout
 
 \begin_layout Standard
-The current process in computer science makes possible to build small mobile
- devices that already have many features.
- The latest mobile devices got long battery lifetime, a powerful processor
- unit and can handle more and more advanced applications.
+Recent advances in computer science makes it possible to build small mobile
+ devices with many features.
+ They have a long battery lifetime, a powerful processor unit and can handle
+ more and more advanced applications.
  Mobile devices are here not just Notebooks but also PDAs, mobile phones,
  iPhones, MP3 Players and so on.
  Due to the growing abilities of mobile devices it became reasonable to
@@ -68,25 +68,25 @@ The current process in computer science makes possible to build small mobile
  The idea is to connect several mobile devices to a network to allow them
  to communicate with each other and to share their services.
  A possible scenario is for example a buy order via a mobile phone.
- To make it work there are some requirements to full fit: 
+ To make it work there are some requirements to full fill: 
 \end_layout
 
 \begin_layout Itemize
-server and client have to be in same network 
+server and client have to be on the same network 
 \end_layout
 
 \begin_layout Itemize
-both should understand each other (use same protocols for example) 
+both should speak the same lingo (use same protocols for example) 
 \end_layout
 
 \begin_layout Itemize
-and to use or provide such sensitive services they need some kind of security
- 
+to use or provide sensitive services they need some kind of security to
+ find services in the network
 \end_layout
 
 \begin_layout Standard
-The main subject of this paper is service discovery and their security issues
- that arise in hostile environment like mesh or mobile ad hoc networks.
+The main subject of this paper is service discovery and its security issues
+ that arise in hostile environment like mesh or mobile ad-hoc networks.
  However, to understand the service discovery security and their weaknesses
  we first need to understand the basics of service providing and service
  discovery.
@@ -98,7 +98,7 @@ MANET
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -112,7 +112,7 @@ status open
 \end_inset
 
 In this paper we are talking of networks as MANETs.
- MANET is a short form for 
+ MANET is an abbreviation for 
 \series bold
 M
 \series default
@@ -126,15 +126,16 @@ NET
 \series default
 work.
  MANET is a dynamic network architecture specially designed for mobile devices
- in a wireless environment.
+ in a wireless environment based on short range radio.
  A MANET makes a dynamic and decentralized behavior for network peers possible.
- There are no fixed devices in a MANET like servers that are always on-line.
+ There may not be fixed devices in a MANET like always-on servers or any
+ other infrastructure services.
  All peers can connect or disconnect to the network anytime and without
- any problems.
- An important requirement to MANET is the mobility of all devices in the
- network.
- That is every peer is movable and can change its position in the real world
- what impacts on the network.
+ any restrictions.
+ An important characteristic of MANET is the mobility of all devices in
+ the network.
+ That is every peer is movable and can change its position in the real world.
+ This impacts on the network.
  So the MANET manages the connections and makes sure devices can easily
  join or leave the network.
  How the MANET works is not a part of this paper.
@@ -167,11 +168,11 @@ In directory based architecture network peers have three possibilities how
  they can act.
  A network peer can offer its services as SA (Service Agent) to other peers,
  it can use discovered services as UA (User Agent) and a network peer can
- act as DA (Directory Agent) which manages services provided by other SAs
- and forwarding them to user agents.
- Because MANET is a dynamic network it can't be assume that there is always
- a reachable directory agent but it is also possible that more than just
- one DA is operating in a MANET.
+ act as DA (Directory Agent) which caches services provided by other SAs
+ and forwards them to user agents.
+ Because a MANET is a dynamic network it can't be assume that there is always
+ a reachable directory agent.
+ But it is also possible that more than just one DA is operating in a MANET.
  A directory agent is an important instance in this architecture and is
  essential to keep the network alive.
  All devices (service agents) which want to provide their services have
@@ -260,7 +261,7 @@ Section 1.2 introduced some solutions how services can be provided and discovere
  in a MANET.
  But there are also some security issues that prevent a secure usage of
  such a network.
- To safety use service discovery we have to full fit at least the traditional
+ To safety use service discovery we have to full fill at least the traditional
  security requirements: 
 \end_layout
 
@@ -290,11 +291,11 @@ key "Cotroneo2004"
  suggests securing the registration and deregistration of the services.
  If a service is to be registered/deregistered it is important that authenticati
 on, authorization, integrity and confidentiality are maintained.
- In that way only authorized server agents can register or deregister their
+ In that way only authorized service agents can register or deregister their
  services.
- While registering a service the communication has to be secured (e.g.
- encrypted) to prevent changes in the transferred information (integrity
- and confidentiality).
+ While registering a service the communication has to be secured (by encryption)
+ to prevent changes in the transferred information (integrity and confidentialit
+y).
  With these common techniques many attacks can already be prevented or become
  at least difficult.
  But just to secure the registration and deregistration is not enough.
@@ -310,8 +311,8 @@ on, authorization, integrity and confidentiality are maintained.
 \end_inset
 
  Another important feature is the availability.
- It's not a secure issue in a first way but a network should also be able
- to detect broken service provider and delete them from the services list
+ It is not a secure issue in a first way but a network should also be able
+ to detect broken service providers and delete them from the services list
  to prevent possible exploitations.
  
 \end_layout
