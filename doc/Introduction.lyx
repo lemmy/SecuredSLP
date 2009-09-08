@@ -57,7 +57,7 @@ Service discovery basics
 \end_layout
 
 \begin_layout Standard
-Recent advances in computer science makes it possible to build small mobile
+Recent advances in computer science make it possible to build small mobile
  devices with many features.
  They have a long battery lifetime, a powerful processor unit and can handle
  more and more advanced applications.
@@ -68,7 +68,7 @@ Recent advances in computer science makes it possible to build small mobile
  The idea is to connect several mobile devices to a network to allow them
  to communicate with each other and to share their services.
  A possible scenario is for example a buy order via a mobile phone.
- To make it work there are some requirements to full fill: 
+ To make it work there are some requirements to fulfill: 
 \end_layout
 
 \begin_layout Itemize
@@ -93,7 +93,7 @@ The main subject of this paper is service discovery and its security issues
 \end_layout
 
 \begin_layout Subsection
-MANET
+MANET 
 \end_layout
 
 \begin_layout Standard
@@ -141,6 +141,16 @@ work.
  How the MANET works is not a part of this paper.
  Furthermore we don't treat security issues in MANET itself and assume that
  it is secure.
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+Wir betrachten nur IP-basierte MANETs
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -195,7 +205,7 @@ In directory based architecture network peers have three possibilities how
  DA had stored.
  The service providers have to find a new DA and for this time their services
  aren't reachable.
- In the worth case they don't find a new DA and get exclude from the network.
+ In the worst case they don't find a new DA and get exclude from the network.
  There are some approaches to avoid such cases but they aren't part of this
  paper so we won't discuss them here.
 \end_layout
@@ -261,7 +271,7 @@ Section 1.2 introduced some solutions how services can be provided and discovere
  in a MANET.
  But there are also some security issues that prevent a secure usage of
  such a network.
- To safety use service discovery we have to full fill at least the traditional
+ To securely use service discovery we have to fulfill at least the traditional
  security requirements: 
 \end_layout
 
@@ -310,7 +320,7 @@ y).
 \begin_inset Newline newline
 \end_inset
 
- Another important feature is the availability.
+Another important feature is the availability.
  It is not a secure issue in a first way but a network should also be able
  to detect broken service providers and delete them from the services list
  to prevent possible exploitations.

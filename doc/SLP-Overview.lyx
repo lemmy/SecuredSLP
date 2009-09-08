@@ -112,6 +112,7 @@ key "Armstrong1992"
  directly, but via the DA employing unicast communication.
  Messages are sent via User Datagram Protocol (UDP) as long as they do not
  exceed the Maximum Transmission Unit (MTU).
+ In case of the latter Transmission Control Protocol (TCP) has to be used.
 \begin_inset Newline newline
 \end_inset
 
@@ -234,19 +235,19 @@ key "Wikipedia2009"
  The time stamp indicates when the signature expires.
  It is not part of the signed data and thus can be tampered with.
  Using a time stamp also does not fully prevent replay attacks as it leaves
- a door open to replay attack for duration of signature life-time.
+ a door open to replay attack for the duration of the signature life-time.
  Hence a nonce
 \begin_inset Foot
 status collapsed
 
 \begin_layout Plain Layout
-Random, non-guessable and externally uninfluencable data
+Random, non-guessable and externally non-influenceable data
 \end_layout
 
 \end_inset
 
-, that is to be included in the intial request (Service-/AttributeRequest)
- and signed by the responder undeniable associates the request with one
+, that is to be included in the initial request (Service-/AttributeRequest)
+ and signed by the responder undeniably associates the request with one
  response.
  However, we will show in later sections of this paper (see 
 \begin_inset CommandInset ref
@@ -284,8 +285,8 @@ key "Cotroneo2004"
  First it employs multicast messaging to make the communication more robust.
  Second multiple DAs can be deployed per network to further scalability
  and robustness of operation.
- Each DA can store service information for the same SAs, in case one of
- the DAs fails.
+ DAs may redundantly store service informations for all SAs, in case one
+ of the DAs fails.
  Database replication between DAs is not part of RFC 2608 itself, but of
  a mesh enhancement to SLP 
 \begin_inset CommandInset citation
@@ -327,10 +328,10 @@ reference "sub:Protocols-basics"
  An attacker might simply eavesdrop on the network traffic and learn about
  existing services over time.
  This does not even require a UA actively querying for services, because
- SAs periodically re-register service at the end of the service lifetime.
+ SAs periodically re-register a service when its lifetime expires.
  The same reason also renders any kind of UA authorization useless.
  Restricting UAs to certain service registrations without proper service
- announcement encryption is simply pointless.
+ announcement encryption is pointless.
 \begin_inset Newline newline
 \end_inset
 

@@ -129,7 +129,7 @@ Since SLP already comes with support for X.509 certificates, it appears to
 \begin_inset Newline newline
 \end_inset
 
-This problem has been solved by at least two well know solutions:
+This has been addressed by at least two well know solutions:
 \end_layout
 
 \begin_layout Description
@@ -267,8 +267,8 @@ Joining a SG is a two stage process, where a group members must authenticate
 \end_layout
 
 \begin_layout Standard
-Once a reliable and usable trust mechanism has been established we can use
- it to create Security Groups (SGs) among agents.
+Once a reliable and usable trust relationship has been established we can
+ use it to create Security Groups (SGs) among those agents.
  SGs have been proposed by 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -294,15 +294,15 @@ Unless each SG uses a unique multicast group and or port
  Therefore complete encryption of the SLP message payload would not only
  cause severe performance penalties for non SG members, but force group
  members to try all associated keys in worst case scenarios.
- 
+ Thus 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Hollick2001"
 
 \end_inset
 
- therefore suggests to revert to Internet layer encryption by using Internet
- Protocol Security (IPSec)
+ suggests to revert to Internet layer encryption by using Internet Protocol
+ Security (IPSec)
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Kent2005"
