@@ -1,4 +1,4 @@
-#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -61,7 +61,7 @@ reference "sub:Confidentiality-and-Authorization"
 
 \end_inset
 
-) as essential security features in MANETs 
+) as essential security features in open networks 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Cotroneo2004"
@@ -116,9 +116,9 @@ reference "sub:Authentication-and-Integrity"
 
 , SLP only supports pre-established asymmetric keys as means to trust.
  While this rather simplistic approach is acceptable in centrally managed
- networks like enterprise LANs, it is not for MANETs.
- A MANET qualifies itself as a network of nomadic devices without prior
- knowledge of each other.
+ networks like enterprise LANs, it is not for open networks.
+ An open network qualifies itself as a network of nomadic devices without
+ prior knowledge of each other.
  Thus mechanisms are needed that can establish trust between strangers.
 \begin_inset Newline newline
 \end_inset
@@ -154,6 +154,25 @@ status collapsed
 
 \end_layout
 
+\begin_layout Standard
+Web of Trust (WOT) is a concept to create trust between peers in a network
+ and is an alternative to a Public Key Infrastructure model.
+ WOT is based on a decentralized structure so there is no central authority
+ needed and it is operating with public-key cryptography.
+ Both are parts of an open network using service discovery with SLP.
+ In Web of Trust a user A establishes trust to user B while sign B’s public
+ key with his private key.
+ In that way other users can verify that A is trusting B.
+ Trust in WOT has also a transitive relation.
+ That means if user A trust user B then user A automatically trust everyone
+ trusted by user B.
+ Problem arises if a user revokes his trust.
+ In that case other network peers don’t get this information immediately
+ like in PKI.
+ So a potential vicious user can act at least a short time as a trustworthy
+ person.
+\end_layout
+
 \begin_layout Description
 Public
 \begin_inset space ~
@@ -167,8 +186,23 @@ Infrastructure
 \end_layout
 
 \begin_layout Standard
+Public Key Infrastructure is a concept to create trust between peers in
+ a network.
+ It is based on public-key cryptography and provides a centralized architecture.
+ PKI requires at least one server which has to be reachable all the time
+ and which has to provide several instances (registration, certificate and
+ validation authority) so other users can request new and/or verify other
+ certificates in real time.
+ In some cases it is possible but quite difficult to provide a PKI in an
+ open network so alternatives like Web of Trust are needed.
+ To manage a PKI in an open network a best possibility is to have internet
+ access, so the peers can use already available PKIs.
+ Otherwise PKIs are nonsensically in an open network.
+\end_layout
+
+\begin_layout Standard
 Both technologies solve the key distribution protocol successfully.
- However each has its own shortcoming in MANETs.
+ However each has its own shortcoming in open networks.
 \begin_inset Newline newline
 \end_inset
 
@@ -267,8 +301,8 @@ Joining a SG is a two stage process, where a group members must authenticate
 \end_layout
 
 \begin_layout Standard
-Once a reliable and usable trust relationship has been established we can
- use it to create Security Groups (SGs) among those agents.
+Once a reliable and usable trust relationship has been established we can use
+ it to create Security Groups (SGs) among those agents.
  SGs have been proposed by 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -294,15 +328,15 @@ Unless each SG uses a unique multicast group and or port
  Therefore complete encryption of the SLP message payload would not only
  cause severe performance penalties for non SG members, but force group
  members to try all associated keys in worst case scenarios.
- Thus 
+Thus
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Hollick2001"
 
 \end_inset
 
- suggests to revert to Internet layer encryption by using Internet Protocol
- Security (IPSec)
+ suggests to revert to Internet layer encryption by using Internet Protocol Security (IPSec)
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Kent2005"
@@ -315,7 +349,7 @@ key "Kent2005"
  on top of Internet layer multicast.
  This alleviates the network requirements and handles security within SLP
  entirely.
- Additionally this allows to reuse multicast encryption for unicast channels
+ Additionally this allows reusing multicast encryption for unicast channels
  as well
 \begin_inset Foot
 status collapsed
@@ -420,9 +454,9 @@ Subsequently incremental updates will be seen as SG re-joins
 \begin_inset Newline newline
 \end_inset
 
-MANETs pose two more constraints on the group encryption protocol.
+Open networks pose two more constraints on the group encryption protocol.
  The protocol must not require group members to know each other.
- Nor is a centralized architecure acceptable as it would introduce a single
+ Nor is a centralized architecture acceptable as it would introduce a single
  point of failure.
 \begin_inset Newline newline
 \end_inset
