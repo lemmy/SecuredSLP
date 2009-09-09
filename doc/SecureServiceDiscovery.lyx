@@ -16,7 +16,7 @@
 \font_tt_scale 100
 
 \graphics default
-\paperfontsize 12
+\paperfontsize 11
 \spacing single
 \use_hyperref true
 \pdf_bookmarks false
@@ -32,7 +32,7 @@
 \use_geometry false
 \use_amsmath 1
 \use_esint 1
-\cite_engine basic
+\cite_engine natbib_authoryear
 \use_bibtopic false
 \paperorientation portrait
 \secnumdepth 3
@@ -108,10 +108,14 @@ filename "FutureWork.lyx"
 
 \begin_layout Standard
 \start_of_appendix
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "bibtex"
-options "alphadin"
+options "plainnat"
 
 \end_inset
 

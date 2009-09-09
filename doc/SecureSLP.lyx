@@ -1,4 +1,4 @@
-#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -16,7 +16,7 @@
 \font_tt_scale 100
 
 \graphics default
-\paperfontsize default
+\paperfontsize 10
 \spacing single
 \use_hyperref false
 \papersize default
@@ -198,17 +198,14 @@ Public Key Infrastructure is a concept to create trust between peers in
  To manage a PKI in an open network a best possibility is to have internet
  access, so the peers can use already available PKIs.
  Otherwise PKIs are nonsensically in an open network.
-\end_layout
-
-\begin_layout Standard
-Both technologies solve the key distribution protocol successfully.
+ Both technologies solve the key distribution protocol successfully.
  However each has its own shortcoming in open networks.
 \begin_inset Newline newline
 \end_inset
 
 To balance off said shortcomings a reputation-based trust model may be used
  on top of static key-based trust models.
- Reputation-based trust takes the behavior of an agent
+ Reputation-based trust takes the agent behavior
 \begin_inset Foot
 status collapsed
 
@@ -233,6 +230,17 @@ key "Almenarez2003"
 \end_inset
 
 .
+ 
+\begin_inset Newline newline
+\end_inset
+
+However in cases where devices are resource constrained by battery lifetime,
+ a reputation based trust model might not be feasible at all.
+ In order to measure peer behavior, a device needs to constantly monitor
+ the network.
+ This prevents the device from hibernating to save energy.
+ Moving this functionality off to infrastructure services is only possible
+ if the open network provides such services.
 \end_layout
 
 \begin_layout Subsection
@@ -301,8 +309,8 @@ Joining a SG is a two stage process, where a group members must authenticate
 \end_layout
 
 \begin_layout Standard
-Once a reliable and usable trust relationship has been established we can use
- it to create Security Groups (SGs) among those agents.
+Once a reliable and usable trust relationship has been established we can
+ use it to create Security Groups (SGs) among those agents.
  SGs have been proposed by 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -314,7 +322,7 @@ key "Hollick2001"
  A SG is a group of agents which share a common secret (symmetric key).
  This key is used to encrypt all communication between each other.
  Due to the fact that the same two peers might be part of different SGs,
- the key association cannot be based on the sender address
+ the key association cannot be based on the sender address alone
 \begin_inset Foot
 status collapsed
 
@@ -328,15 +336,15 @@ Unless each SG uses a unique multicast group and or port
  Therefore complete encryption of the SLP message payload would not only
  cause severe performance penalties for non SG members, but force group
  members to try all associated keys in worst case scenarios.
-Thus
- 
+ Thus 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Hollick2001"
 
 \end_inset
 
- suggests to revert to Internet layer encryption by using Internet Protocol Security (IPSec)
+ suggests to revert to Internet layer encryption by using Internet Protocol
+ Security (IPSec)
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Kent2005"
@@ -434,8 +442,14 @@ leave/join No past/future data is allowed to be decrypt-able by future/past
 \end_layout
 
 \begin_layout Standard
-However, this paper argues that the second security implication can be relaxed
- in the scope of SLP to simplify the encryption protocol significantly.
+In the scope of this paper the first problem can only be addressed by allowing
+ a group member to request a group key renewal once a compromise has been
+ detected.
+ On the other hand this might open the door to availability attacks if a
+ group member spams the SG with re-keying requests.
+ Regarding the second security implication, this paper argues that it can
+ be relaxed in the scope of SLP to simplify the encryption protocol overhead
+ significantly.
  Unless a new SA joins a SG or an existing SA incrementally updates its
  service description
 \begin_inset Foot
@@ -451,6 +465,8 @@ Subsequently incremental updates will be seen as SG re-joins
  A former group member does not learn anything new.
  Thus, only a change of a SA membership requires re-keying to exchange the
  group key.
+ This also limits the effects of a compromise of group member (in at least
+ very active) SGs where constant re-keying occurs regularly.
 \begin_inset Newline newline
 \end_inset
 
@@ -573,6 +589,117 @@ reference "ite:Rekeying-does-not"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Initiating a Security Group
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/security-group_scope.png
+	scale 60
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:SecurityGroup-Scope"
+
+\end_inset
+
+A dedicated scope denoting security groups.
+ Since SGs-advertisements are sent out using unencrypted SLPv2, attackers
+ (Carl) are capable to discover SGs.
+ However this does not pose a security threat.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Introducing SGs poses a chicken and egg problem on SecureSLP.
+ How does a peer learn of the existence of a SG? Fortunately the functionality
+ provided by traditional SLPv2 can be leveraged to advertise SGs via unencrypted
+ service advertisements.
+ However this allows an attacker to discover all available SGs.
+ While the attacker will not be able to join the SG, it is essential that
+ the advertisement does not leak confidential information as part of the
+ service description.
+ The only information which is essentially required, is an SG identification
+ that is best represented by public-key of the SG initiator.
+\begin_inset Newline newline
+\end_inset
+
+Using a special service type that denotes a SG is one possibility how to
+ make SGs discoverable by agents.
+ This paper however takes a different approach and assigns a new keyword
+ that marks a dedicated scope for SGs.
+ This is favorable to a special service type since it practically hides
+ SGs from legacy SLPv2 agents that would not be able to interact with a
+ SG anyway (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Protocols-basics"
+
+\end_inset
+
+).
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SecurityGroup-Scope"
+
+\end_inset
+
+ depicts SG advertisement.
+ The right side shows agents which are part of the same multicast group
+ with the UA1 that queries for SGs.
+ Agents marked with 
+\emph on
+v2
+\emph default
+ ignore the query as it is not send to the default scope and are both not
+ configured for the special scope explicitly.
 \end_layout
 
 \begin_layout Subsection
