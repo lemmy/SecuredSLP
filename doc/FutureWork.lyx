@@ -23,7 +23,7 @@
 \use_geometry false
 \use_amsmath 1
 \use_esint 1
-\cite_engine basic
+\cite_engine natbib_authoryear
 \use_bibtopic false
 \paperorientation portrait
 \secnumdepth 3
@@ -33,7 +33,7 @@
 \quotes_language english
 \papercolumns 1
 \papersides 1
-\paperpagestyle default
+\paperpagestyle headings
 \tracking_changes false
 \output_changes false
 \author "" 
@@ -66,7 +66,75 @@ This paper describes the fundamental security implications that arise from
  It then continues to extend the current version of SLP with security enhancemen
 t to strengthen the protocol for use in untrustworthy and hostile environments
  by staying backward compatibility with earlier protocol versions.
- Table 
+ The major protocol modifications can be summarized as:
+\end_layout
+
+\begin_layout Itemize
+SLPv2's pre-established trust model is replaced by a dynamic model that
+ can deal with the dynamics of an open network.
+ It is either implemented as a Public
+\begin_inset space ~
+\end_inset
+
+Key
+\begin_inset space ~
+\end_inset
+
+Infrastructure or a Web
+\begin_inset space ~
+\end_inset
+
+of
+\begin_inset space ~
+\end_inset
+
+Trust.
+ On top a reputation based trust may be used when devices are not resource
+ constrained by e.g.
+ battery lifetime.
+\end_layout
+
+\begin_layout Itemize
+Confidentiality is added to SLP by encrypted group and peer to peer communicatio
+n.
+ The symmetric group key is handled by using Group Diffie-Hellman, a known
+ protocol for distributed group key agreement.
+ This goes beyond the approach taken by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Hollick2001"
+
+\end_inset
+
+ who leaves confidentiality to the Internet layer.
+ Thus our SecureSLP stays independet of additional network facilities.
+\end_layout
+
+\begin_layout Itemize
+SecureSLP is aware of all three agent types in SLP namely User Agents, Service
+ Agents and Directory Agents.
+ Where 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Hollick2001"
+
+\end_inset
+
+ excludes Directory Agents in his solution entirely, SecureSLP incorporates
+ DAs into the protocol.
+ This enables better performance and scalability when used in combination
+ with the enhancements presented by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Zhao2003"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Table 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:SLP-and-SecureSLP"
@@ -81,14 +149,14 @@ reference "tab:SLP-and-SecureSLP"
 \begin_inset Float table
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 
 \lang american
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="3">
+<lyxtabular version="3" rows="8" columns="3">
 <features>
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
@@ -251,7 +319,7 @@ Replay prevention
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -260,7 +328,7 @@ Authorization
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -271,11 +339,69 @@ Authorization
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 o
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Availability
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Non-repudiation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
 \end_layout
 
 \end_inset
@@ -317,6 +443,29 @@ SLP and SecureSLP security comparision matrix
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+With confidentiality being addressed in SecureSLP, peer authorization becomes
+ feasible, to support different discovery results based on an UA authorization.
+ Different authorization levels may be represented by a dedicated Security
+ Group per level and Service Agent.
+ However, more research has to be undertaken in order to validate this approach
+ and add a concrete implementation to SecureSLP.
+\begin_inset Newline newline
+\end_inset
+
+Properties like non-repudiation and availability are regarded as unessential
+ for SecureSLP in the scope of this paper.
+ Whether this assumption holds true and e.g.
+ message loss and agent unavailability is indeed tolerated by the protocol,
+ has to be confirmed in future work.
+ Even more important is concise performance and scalability measurements
+ to prove that the protocol extensions maintain SLP's performance characteristic
+s even in large open networks with many peers and strong fluctuations.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status collapsed
 

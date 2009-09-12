@@ -1,4 +1,4 @@
-#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -36,7 +36,7 @@
 \use_geometry false
 \use_amsmath 1
 \use_esint 1
-\cite_engine basic
+\cite_engine natbib_authoryear
 \use_bibtopic false
 \paperorientation portrait
 \secnumdepth 3
@@ -49,6 +49,7 @@
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
+\author "" 
 \author "" 
 \end_header
 
@@ -192,7 +193,7 @@ Service discovery architecture
 There are three important architecture approaches used for service discovery
  
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Ververidis2008"
 
 \end_inset
@@ -419,7 +420,7 @@ Confidentiality
 
 \begin_layout Standard
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citet
 key "Cotroneo2004"
 
 \end_inset
@@ -453,9 +454,9 @@ Web of Trust” and
 \end_inset
 
 Public Key Infrastructure” will be discussed in section 3.1.
-\end_layout
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Standard
 Another important feature is the availability.
  It is not a secure issue in a first way but a network should also be able
  to detect broken service providers and delete them from the services list

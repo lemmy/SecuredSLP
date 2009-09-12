@@ -1,4 +1,4 @@
-#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -23,7 +23,7 @@
 \use_geometry false
 \use_amsmath 1
 \use_esint 1
-\cite_engine basic
+\cite_engine natbib_authoryear
 \use_bibtopic false
 \paperorientation portrait
 \secnumdepth 3
@@ -79,7 +79,7 @@ SLP is a discovery-only protocol which explicitly leaves the service invocation
  A service is represented by a service description that consists of a Uniform
  Resource Locator (URL) 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Berners-Lee1994"
 
 \end_inset
@@ -92,7 +92,7 @@ key "Berners-Lee1994"
 A UA may query for services by optionally using a Lightweight Directory
  Access Protocol (LDAP) 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Howes1997"
 
 \end_inset
@@ -100,7 +100,7 @@ key "Howes1997"
  style filter.
  A query is sent out via multicast 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Armstrong1992"
 
 \end_inset
@@ -187,14 +187,14 @@ Authentication is used during service registration and registration cancellation
 
 The built-in algorithm is Digital Signature Algorithm (DSA) 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Kravitz1993"
 
 \end_inset
 
  with Secure Hash Algorithm 1 (SHA1) 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Eastlake3rd2001"
 
 \end_inset
@@ -224,7 +224,7 @@ A replay attack is a form of network attack in which a valid data transmission
 
  
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Wikipedia2009"
 
 \end_inset
@@ -275,7 +275,7 @@ Availability can be defined as the property of a system which always honors
 
  
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Cotroneo2004"
 
 \end_inset
@@ -290,7 +290,7 @@ key "Cotroneo2004"
   Database replication between DAs is not part of RFC 2608 itself, but of
  a mesh enhancement to SLP 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Zhao2003"
 
 \end_inset

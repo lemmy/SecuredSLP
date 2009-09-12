@@ -16,8 +16,8 @@
 \font_tt_scale 100
 
 \graphics default
-\paperfontsize 11
-\spacing single
+\paperfontsize 12
+\spacing onehalf
 \use_hyperref true
 \pdf_bookmarks false
 \pdf_bookmarksnumbered false
@@ -42,7 +42,7 @@
 \quotes_language polish
 \papercolumns 1
 \papersides 1
-\paperpagestyle default
+\paperpagestyle fancy
 \tracking_changes false
 \output_changes false
 \author "" 

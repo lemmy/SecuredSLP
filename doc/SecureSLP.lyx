@@ -16,14 +16,14 @@
 \font_tt_scale 100
 
 \graphics default
-\paperfontsize 10
+\paperfontsize 11
 \spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
 \use_amsmath 1
 \use_esint 1
-\cite_engine basic
+\cite_engine natbib_authoryear
 \use_bibtopic false
 \paperorientation portrait
 \secnumdepth 3
@@ -63,15 +63,8 @@ reference "sub:Confidentiality-and-Authorization"
 
 ) as essential security features in open networks 
 \begin_inset CommandInset citation
-LatexCommand cite
-key "Cotroneo2004"
-
-\end_inset
-
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Hollick2001"
+LatexCommand citep
+key "Cotroneo2004,Hollick2001"
 
 \end_inset
 
@@ -224,7 +217,7 @@ E.g.
  A detailed definition of a reputation-based trust model can be found in
  Secure Pervasive Discovery Protocol (SPDP) 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Almenarez2003"
 
 \end_inset
@@ -237,7 +230,8 @@ key "Almenarez2003"
 However in cases where devices are resource constrained by battery lifetime,
  a reputation based trust model might not be feasible at all.
  In order to measure peer behavior, a device needs to constantly monitor
- the network.
+ the network or listen for reputation related trust notifcations by other
+ peers.
  This prevents the device from hibernating to save energy.
  Moving this functionality off to infrastructure services is only possible
  if the open network provides such services.
@@ -313,7 +307,7 @@ Once a reliable and usable trust relationship has been established we can
  use it to create Security Groups (SGs) among those agents.
  SGs have been proposed by 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citet
 key "Hollick2001"
 
 \end_inset
@@ -338,15 +332,15 @@ Unless each SG uses a unique multicast group and or port
  members to try all associated keys in worst case scenarios.
  Thus 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citet
 key "Hollick2001"
 
 \end_inset
 
  suggests to revert to Internet layer encryption by using Internet Protocol
- Security (IPSec)
+ Security (IPSec) 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Kent2005"
 
 \end_inset
@@ -398,7 +392,7 @@ key "Phelan2008"
 
 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citet
 key "Huang2007"
 
 \end_inset
@@ -407,7 +401,7 @@ key "Huang2007"
  All of these Group Key Agreement protocols (GKA) suffer from two basic
  security implications that differ from point-to-point communication 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Prakash2008"
 
 \end_inset
@@ -447,7 +441,12 @@ In the scope of this paper the first problem can only be addressed by allowing
  detected.
  On the other hand this might open the door to availability attacks if a
  group member spams the SG with re-keying requests.
- Regarding the second security implication, this paper argues that it can
+ A viable countermeasure to would be a burst rate that limits a peers capability
+ of request key renewal.
+\begin_inset Newline newline
+\end_inset
+
+Regarding the second security implication, this paper argues that it can
  be relaxed in the scope of SLP to simplify the encryption protocol overhead
  significantly.
  Unless a new SA joins a SG or an existing SA incrementally updates its
@@ -645,7 +644,7 @@ name "fig:SecurityGroup-Scope"
 \end_inset
 
 A dedicated scope denoting security groups.
- Since SGs-advertisements are sent out using unencrypted SLPv2, attackers
+ Since SG-advertisements are sent out using unencrypted SLPv2, attackers
  (Carl) are capable to discover SGs.
  However this does not pose a security threat.
 \end_layout
@@ -744,7 +743,7 @@ As stated earlier in this paper, DAs cause security implications for the
  security of SLP, which have to be accounted for.
  
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citet
 key "Hollick2001"
 
 \end_inset
@@ -788,7 +787,7 @@ reference "sub:Confidentiality-via-Security"
 
  make the Group Diffie-Hellman (GDH) outlined in 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citet
 key "Bhaskar2007"
 
 \end_inset
