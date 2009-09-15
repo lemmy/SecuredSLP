@@ -1,4 +1,4 @@
-#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -164,6 +164,8 @@ Web of Trust (WOT) is a concept to create trust between peers in a network
  like in PKI.
  So a potential vicious user can act at least a short time as a trustworthy
  person.
+ This kind of trust would work well while SLP is in directory-less mode.
+ 
 \end_layout
 
 \begin_layout Description
@@ -189,8 +191,11 @@ Public Key Infrastructure is a concept to create trust between peers in
  In some cases it is possible but quite difficult to provide a PKI in an
  open network so alternatives like Web of Trust are needed.
  To manage a PKI in an open network a best possibility is to have internet
- access, so the peers can use already available PKIs.
+ access, so the peers can use already available PKIs or to have at least
+ one fixed and foremost trustworthy peer who could act as a server.
  Otherwise PKIs are nonsensically in an open network.
+ This kind of trust requires a centralized structure, so it would just work
+ while SLP is in directory-based mode.
  Both technologies solve the key distribution protocol successfully.
  However each has its own shortcoming in open networks.
 \begin_inset Newline newline
@@ -230,7 +235,7 @@ key "Almenarez2003"
 However in cases where devices are resource constrained by battery lifetime,
  a reputation based trust model might not be feasible at all.
  In order to measure peer behavior, a device needs to constantly monitor
- the network or listen for reputation related trust notifcations by other
+ the network or listen for reputation related trust notifications by other
  peers.
  This prevents the device from hibernating to save energy.
  Moving this functionality off to infrastructure services is only possible
@@ -664,7 +669,7 @@ A dedicated scope denoting security groups.
  While the attacker will not be able to join the SG, it is essential that
  the advertisement does not leak confidential information as part of the
  service description.
- The only information which is essentially required, is an SG identification
+ The only information which is essentially required is an SG identification
  that is best represented by public-key of the SG initiator.
 \begin_inset Newline newline
 \end_inset

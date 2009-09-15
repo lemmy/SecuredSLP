@@ -1,4 +1,4 @@
-#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -107,7 +107,7 @@ key "Hollick2001"
 \end_inset
 
  who leaves confidentiality to the Internet layer.
- Thus our SecureSLP stays independet of additional network facilities.
+ Thus our SecureSLP stays independent of additional network facilities.
 \end_layout
 
 \begin_layout Itemize

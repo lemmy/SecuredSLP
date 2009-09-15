@@ -1,4 +1,4 @@
-#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -95,15 +95,15 @@ t map”, “weather”, “great attractions” and so on.
  Those problems should be prevented early.
  The guests shouldn’t even be able to see the services for hotel employees
  and neither should they be able to use them.
- To hide and encrypted communication is already a way to prevent attacks
- on those services (more details will be discuss in section 3).
+ To hide and encrypt communication is already a way to prevent attacks on
+ those services (more details will be discuss in section 3).
  Other possible scenario is for example a person with a mobile phone who
  offers phone calls over an open network (we assume such a person has a
  flat rate).
  Another person with a notebook could use such a service to call someone.
  Possible attackers could track the user and get the phone number he is
- calling or they can betray the service provider with an international phone
- call.
+ calling or an attacker could betray the service provider with an international
+ phone call.
  In this case it’s reasonable to encrypt the communication between service
  provider and user and there should be a kind of trust that the service
  user doesn’t use the service in a wrong way.
@@ -165,7 +165,7 @@ In this paper we are talking about networks as free or open networks.
  is a part of this network.
  Also the idea of an open network is to create a network everywhere without
  complicated operations.
- The open network is very dynamical.
+ So the open network is very dynamical.
  The network can be created centralized with servers or it can be created
  decentralized with peer to peer communication.
  All peers can connect or disconnect to the network anytime and without
@@ -227,20 +227,21 @@ In directory based architecture network peers have three possibilities how
  request for a searched service to the DA or it request all services which
  the DA stores.
  After receiving the information about the requested service the UA can
- connect to the SA (see also figure X.X).
+ connect to the SA (also see figure 1).
  This architecture reduces the entire communication in the network.
  The devices don't need to communicate via multicast anymore, hence they
  don't force their resources which mean they also save battery lifetime.
  But on the other hand the benefit of this architecture is their biggest
  handicap at the same time.
  The DA in some kind centralizes the network and makes it vulnerable.
- If a DA leaves the network the network also loses all the services that
+ If a DA leaves the network, the network also loses all the services that
  DA had stored.
  First problem arises for the SAs and UAs that they need a technique to
  notice a missing DA.
  And the other problem is that service providers and users have to find
  a new DA and for this time their services aren't reachable.
- In the worst-case they don't find a new DA and get exclude from the network.
+ In the worst-case they don't find a new DA and indirectly get excluded
+ from the network.
  There are some approaches to avoid such cases but they aren't part of this
  paper so we won't discuss them here.
 \end_layout
@@ -303,7 +304,7 @@ The directory-less architecture is quite contrary to the directory-based
  Service agents can distribute their services via multicast periodically
  send to the network.
  If a UA is interested in an offered service it requires the service information
- from the SA (see also figure X.X).
+ from the SA (also see figure 2).
  User agent can also discover services on their own by sending periodically
  a defined service request via multicast to the network till it gets an
  answer from a SA.
@@ -385,8 +386,8 @@ sed architecture and sends its service information to the DA and the DA
  each network peer longer alive.
  At the same time the architecture offers a solution for the worst-case
  where no DAs are available in the network so the network won't die.
- The service location protocol we will discuss below is also based on the
- hybrid architecture.
+ The service location protocol, we will discuss below, is also based on
+ the hybrid architecture.
 \end_layout
 
 \begin_layout Subsection
