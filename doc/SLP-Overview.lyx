@@ -50,7 +50,7 @@ Service Location Protocol
 The Service Location Protocol (SLP) is an IETF standard published in 1997.
  It has been superseded by version 2 
 \begin_inset CommandInset citation
-LatexCommand cite
+LatexCommand citep
 key "Guttman1999"
 
 \end_inset

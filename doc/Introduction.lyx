@@ -1,4 +1,4 @@
-#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -143,21 +143,13 @@ Open network
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%Definition?: http://p2pfoundation.net/Free_and_Open_Network_Definition
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Foundation2009"
 
 \end_inset
 
-In this paper we are talking about networks as free or open networks.
+ In this paper we are talking about networks as free or open networks.
  An open network is a network for everyone even for bad guys.
  It provides the possibility that everyone who wants to join this network
  will join it.
@@ -248,7 +240,7 @@ In directory based architecture network peers have three possibilities how
 
 \begin_layout Standard
 \begin_inset Float figure
-wide false
+wide true
 sideways false
 status collapsed
 
@@ -322,7 +314,7 @@ The directory-less architecture is quite contrary to the directory-based
 
 \begin_layout Standard
 \begin_inset Float figure
-wide false
+wide true
 sideways false
 status collapsed
 

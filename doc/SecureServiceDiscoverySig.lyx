@@ -23,7 +23,7 @@ theorems-sec
 
 \graphics default
 \paperfontsize 11
-\spacing single
+\spacing onehalf
 \use_hyperref true
 \pdf_bookmarks false
 \pdf_bookmarksnumbered false
