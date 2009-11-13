@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tree Group Diffie-Hellman
+Bundle-SymbolicName: de.rub.hgi.nds.tgdh
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Lijun Liao
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Require-Bundle: com.springsource.org.bouncycastle.jce;bundle-version="1.39.0",
+ com.springsource.org.jgroups;bundle-version="2.5.1",
+ org.junit;bundle-version="3.8.2";resolution:=optional
+Export-Package: tgdh,
+ tgdh.comm,
+ tgdh.crypto,
+ tgdh.tree
