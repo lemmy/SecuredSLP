@@ -1,0 +1,103 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass scrartcl
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Abstract
+\end_layout
+
+\begin_layout Standard
+
+\lang american
+This paper focuses on security issues that arise from mobile devices
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\lang american
+Smartphones, PDAs or notebooks
+\end_layout
+
+\end_inset
+
+ using well known service discovery mechanisms
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\lang american
+Service Locator Protocol (SLP) or Zeroconf
+\end_layout
+
+\end_inset
+
+ (SD) designed for secured and managed networks in a potentially hostile
+ environment like mesh or ad hoc networks (MANET).
+ A MANET is hereby defined by nomadic devices forming (peer)groups among
+ each other or with infrastructure reachable by short-range wireless communicati
+on.
+ A service discovery protocol is seen as means to look-up services in any
+ decentralized network 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Edwards2006"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Therefore this paper will summarize requirements for service discovery which
+ come out of its usage in an unsecured and untrusted environment.
+ Afterwards a list of shortcomings is compiled out of the current capabilites
+ of the given SD in the scope of the requirements.
+ Finally we will show how these shortcoming can be solved by either using
+ additional technologies on top of the SD or by extensions to the given
+ SD protocol itself.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,400 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass scrartcl
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine natbib_authoryear
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Service Location Protocol
+\end_layout
+
+\begin_layout Standard
+The Service Location Protocol (SLP) is an IETF standard published in 1997.
+ It has been superseded by version 2 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Guttman1999"
+
+\end_inset
+
+ in 1999.
+ Since its publication, it has seen wide adoption ranging from embedded
+ devices up to enterprise scale applications.
+ This paper will be based on SLPv2, though most of it possibly also applies
+ to SLPv1.
+\end_layout
+
+\begin_layout Subsection
+Protocols basics
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Protocols-basics"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+SLP is a discovery-only protocol which explicitly leaves the service invocation
+ out.
+ A service is represented by a service description that consists of a Uniform
+ Resource Locator (URL) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Berners-Lee1994"
+
+\end_inset
+
+ which uniquely locates the service in a network.
+ Additionally a service description may contain attribute-value pairs.
+\begin_inset Newline newline
+\end_inset
+
+A UA may query for services by optionally using a Lightweight Directory
+ Access Protocol (LDAP) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Howes1997"
+
+\end_inset
+
+ style filter.
+ A query is sent out via multicast 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Armstrong1992"
+
+\end_inset
+
+ and answered by all matching SAs.
+ This mode is called multicast convergence.
+ If present, a DA acts as a service cache.
+ In this mode, UAs as well as SAs are required to not communicate over multicast
+ directly, but via the DA employing unicast communication.
+ Messages are sent via User Datagram Protocol (UDP) as long as they do not
+ exceed the Maximum Transmission Unit (MTU).
+ In case of the latter Transmission Control Protocol (TCP) has to be used.
+\begin_inset Newline newline
+\end_inset
+
+SLP requires SAs to register with it when a DA enters the network.
+ Making SAs aware of newly available DAs is done by sending out multicast
+ beacons by the DA.
+ These messages are called DAAdvertisements.
+\begin_inset Newline newline
+\end_inset
+
+SLP allows grouping services in scopes.
+ A scope is a string that is part of all messages
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Except service Request of type "service:directory-agent" and "service:service-ag
+ent"
+\end_layout
+
+\end_inset
+
+.
+ SAs and DAs may only answer to queries if configured for the given scope.
+ If no scope is provided, the default scope is automatically applied.
+ SLP specifies no means to learn of all existing scopes, which might lead
+ to regard scoping as a security feature.
+ However, since communication is unencrypted, a simple traffic sniffer allows
+ an attacker to learn of all existing scopes.
+\end_layout
+
+\begin_layout Subsection
+Authentication and Integrity
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Authentication-and-Integrity"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Regarding security, SLP provides only pre-established trust relationships
+ based on digital signatures using asymmetric keying.
+ This allows DAs, SAs and UAs to authenticate each other.
+\begin_inset Newline newline
+\end_inset
+
+On top of this, asymmetric keying allows to verify message integrity by
+ all parties.
+ Though selected parts of the message only are included in the signature.
+\begin_inset Newline newline
+\end_inset
+
+The trust relationship between SLP agents is established by the network
+ administrator who supplies the agents with the correct public and private
+ keys.
+ A key distribution protocol is not part of SLP.
+\begin_inset Newline newline
+\end_inset
+
+Authentication is used during service registration and registration cancellation.
+ The same signature is needed to cancel a service registration, which has
+ been used to register the service description initially.
+ Incremental service registrations are an optional feature in SLP that allows
+ an SA to incrementally update a service description.
+ RFC 2608 leaves out if incremental service registrations are required to
+ come from the same signature.
+\begin_inset Newline newline
+\end_inset
+
+The built-in algorithm is Digital Signature Algorithm (DSA) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Kravitz1993"
+
+\end_inset
+
+ with Secure Hash Algorithm 1 (SHA1) 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Eastlake3rd2001"
+
+\end_inset
+
+ used for hashing, though other algorithms are possible as vendor extensions.
+\end_layout
+
+\begin_layout Subsection
+Replay Prevention
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Replay-Prevention"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+A replay attack is a form of network attack in which a valid data transmission
+ is maliciously or fraudulently repeated or delayed
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Wikipedia2009"
+
+\end_inset
+
+.
+ To prevent such replay attacks, SLP timestamps each signed message with
+ a 32-bit unsigned fixed-point number UNIX time.
+ The time stamp indicates when the signature expires.
+ It is not part of the signed data and thus can be tampered with.
+ Using a time stamp also does not fully prevent replay attacks as it leaves
+ a door open to replay attack for the duration of the signature life-time.
+ Hence a nonce
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Random, non-guessable and externally non-influenceable data
+\end_layout
+
+\end_inset
+
+ that is to be included in the initial request (Service-/AttributeRequest)
+ and signed by the responder undeniably associates the request with one
+ response.
+ However, we will show in later sections of this paper (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Confidentiality-via-Security"
+
+\end_inset
+
+) that replay attacks will be taken care of by the newly introduced encryption
+ methods.
+\end_layout
+
+\begin_layout Subsection
+Availability
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+Availability can be defined as the property of a system which always honors
+ any legitimate requests by authorized entities.
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Cotroneo2004"
+
+\end_inset
+
+.
+ SLP only has weak countermeasures to answer to availability attacks.
+ First it employs multicast messaging to make the communication more robust.
+ Second, multiple DAs can be deployed per network to further scalability
+ and robustness of operation.
+ DAs may redundantly store service information for all SAs, in case one
+ of the DAs fails.
+  Database replication between DAs is not part of RFC 2608 itself, but of
+ a mesh enhancement to SLP 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zhao2003"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Neither message rate-limiting nor throttling is defined in SLP.
+ Thus flooding attacks are possible where an attacker spams the network
+ with maliciously messages like queries or service replies.
+\end_layout
+
+\begin_layout Subsection
+Confidentiality and Authorization
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Confidentiality-and-Authorization"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Protocols-basics"
+
+\end_inset
+
+, SLP does not allow messages to be encrypted.
+ This means that confidentiality cannot be enforced with SLP.
+ An attacker might simply eavesdrop on the network traffic and learn about
+ existing services over time.
+ This does not even require a UA actively querying for services, because
+ SAs periodically re-register a service when its lifetime expires.
+ The same reason also renders any kind of UA authorization useless.
+ Restricting UAs to certain service registrations without proper service
+ announcement encryption is pointless.
+\begin_inset Newline newline
+\end_inset
+
+A poor mans version to authorization can be achieved with scoping.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Subsection
+Man-in-the-Middle attacks - Taken care of by digital signatures
+\end_layout
+
+\begin_layout Itemize
+Schutz vor MITM-Angriffen bietet auch die sogenannte Integrity Protection
+\end_layout
+
+\begin_layout Itemize
+Nachricht erhalten Identitätsstempel/Message Authentication Code (MAC)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+symmetrisches Authentifizierungsverfahren und braucht daher 
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Subsection
+Non-Repudiation
+\end_layout
+
+\begin_layout Subsection
+Anonymity
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Anonymity can also be required with regards to service delivery, and again
+ with reference to location and identity.
+ However, anonymity is not always a requirement as some services cannot
+ be accessed anonymously, i.e.
+ they require some form of identity, even if just a pseudo identity.
+ The same applies to anonymous discovery.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Anonymity is not mentioned in SLP.
+ Each agent is identifiable via its IP address.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
