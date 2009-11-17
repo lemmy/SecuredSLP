@@ -1,7 +1,5 @@
 package ch.ethz.iks.slp.test;
 
-import java.util.Enumeration;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,7 +7,6 @@ import java.util.Enumeration;
 import java.util.Iterator;
 
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import junit.framework.TestFailure;
 import junit.framework.TestResult;
 import junit.framework.TestSuite;
