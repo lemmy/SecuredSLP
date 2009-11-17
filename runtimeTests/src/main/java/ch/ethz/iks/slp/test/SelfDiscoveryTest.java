@@ -10,26 +10,16 @@
  ******************************************************************************/
 package ch.ethz.iks.slp.test;
 
-import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 import ch.ethz.iks.slp.ServiceLocationEnumeration;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
 import ch.ethz.iks.slp.ServiceURL;
 
-public class SelfDiscoveryTest extends TestCase {
-
-	private final String HOST_AND_PORT = System.getProperty("net.slp.tests.hostAndPort", "gantenbein:123");
-	private ServiceURL service;
-	private Dictionary properties;
-	
-	public SelfDiscoveryTest() {
-		super("runTests");
-	}
+public class SelfDiscoveryTest extends SLPTestCase {
 
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()

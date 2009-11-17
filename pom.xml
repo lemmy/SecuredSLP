@@ -232,6 +232,12 @@
   
   <dependencies>
 		<dependency>
+			<groupId>de.rub.hgi.nds</groupId>
+			<artifactId>tgdh</artifactId>
+			<version>0.0.1.SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi</artifactId>
 			<version>3.0.0</version>
@@ -297,6 +303,11 @@
       <id>Maven eclipse</id>
       <name>Eclipse Maven</name>
       <url>http://repo2.maven.org/eclipse/</url>
+    </repository>
+    <repository>
+      <id>ECF OSU</id>
+      <name>ECF OSU</name>
+      <url>http://ecf2.osuosl.org/maven2/</url>
     </repository>
   </repositories> 
   <pluginRepositories>

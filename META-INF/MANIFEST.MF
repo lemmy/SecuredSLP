@@ -8,6 +8,8 @@ Bundle-Vendor: Eclipse.org
 Import-Package: junit.framework;optional=true;specification-version="3.8.0",
  junit.textui;optional=true;specification-version="3.8.0",
  org.osgi.framework,
- org.osgi.service.log
+ org.osgi.service.log,
+ tgdh,
+ tgdh.tree
 Bundle-Description: jSLP, the pure Java Service Location Protocol implementation
 Bundle-ActivationPolicy: lazy

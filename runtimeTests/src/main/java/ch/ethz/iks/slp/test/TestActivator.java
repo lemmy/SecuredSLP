@@ -4,6 +4,7 @@ import java.util.Enumeration;
 
 import junit.framework.TestFailure;
 import junit.framework.TestResult;
+import junit.framework.TestSuite;
 import junit.textui.TestRunner;
 
 import org.osgi.framework.BundleActivator;
@@ -44,7 +45,8 @@ public class TestActivator implements BundleActivator {
 	}
 
 	private void startTests() {
-		TestResult result = TestRunner.run(new SelfDiscoveryTest());
+		TestSuite suite = new TestSuite(new Class[]{SelfDiscoveryTest.class, SecuredSelfDiscoveryTest.class});
+		TestResult result = TestRunner.run(suite);
 		if (result.wasSuccessful()) {
 			System.exit(0);
 		} else {
