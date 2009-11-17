@@ -2,6 +2,14 @@ package ch.ethz.iks.slp.test;
 
 import java.util.Enumeration;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Iterator;
+
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 import junit.framework.TestFailure;
 import junit.framework.TestResult;
 import junit.framework.TestSuite;
@@ -44,8 +52,25 @@ public class TestActivator implements BundleActivator {
 		startTests();
 	}
 
-	private void startTests() {
-		TestSuite suite = new TestSuite(new Class[]{SelfDiscoveryTest.class, SecuredSelfDiscoveryTest.class});
+	private void startTests() throws Exception {
+		TestSuite suite = new TestSuite();
+		Collection collection = new ArrayList();
+		
+		collection.add(SelfDiscoveryTest.class);
+		collection.add(SecuredSelfDiscoveryTest.class);
+		
+		for (Iterator iterator = collection.iterator(); iterator.hasNext();) {
+			Class clazz = (Class) iterator.next();
+			// run all methods starting with "test*"
+			Method[] methods = clazz.getMethods();
+			for (int i = 0; i < methods.length; i++) {
+				if (methods[i].getName().startsWith("test")) {
+					TestCase testCase = (TestCase) clazz.newInstance();
+					testCase.setName(methods[i].getName());
+					suite.addTest(testCase);
+				}
+			}
+		}
 		TestResult result = TestRunner.run(suite);
 		if (result.wasSuccessful()) {
 			System.exit(0);

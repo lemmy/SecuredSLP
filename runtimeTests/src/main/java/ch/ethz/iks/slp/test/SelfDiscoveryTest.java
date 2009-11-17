@@ -52,14 +52,6 @@ public class SelfDiscoveryTest extends SLPTestCase {
 			e.printStackTrace();
 		}
 	}
-
-	public void runTests() throws Exception {
-		testService();
-		testAttributes();
-		testFilter();
-		testFilterWithWildcard();
-		testFilterWithBrokenParenthesis();
-	}
 	
 	/**
 	 * Test method for
