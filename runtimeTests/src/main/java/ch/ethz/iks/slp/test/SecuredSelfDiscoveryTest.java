@@ -10,25 +10,53 @@
  ******************************************************************************/
 package ch.ethz.iks.slp.test;
 
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.util.Hashtable;
 
 import junit.framework.Assert;
+import ch.ethz.iks.slp.ServiceLocationEnumeration;
 import ch.ethz.iks.slp.ServiceLocationException;
+import ch.ethz.iks.slp.ServiceType;
 import ch.ethz.iks.slp.ServiceURL;
 
 public class SecuredSelfDiscoveryTest extends SLPTestCase {
 
-	/* (non-Javadoc)
+	private KeyPair keyPair;
+
+	/*
+	 * (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
 	 */
-	public void setUp() throws InterruptedException {
+	public void setUp() throws Exception {
 		try {
+			KeyPairGenerator generator = KeyPairGenerator.getInstance("DSA");
+			generator.initialize(1024);
+			keyPair = generator.generateKeyPair();
+			
 			service = new ServiceURL("service:osgi://" + HOST_AND_PORT, 10800);
 			properties = new Hashtable();
-			TestActivator.advertiser.register(service, properties);
+			TestActivator.advertiser.register(service, properties, keyPair);
 		} catch (ServiceLocationException e) {
 			Assert.fail(e.getMessage());
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * Test method for
+	 * {@link ch.ethz.iks.slp.Locator}.
+	 */
+	public void testService() throws Exception {
+		int count = 0;
+		for (ServiceLocationEnumeration services = TestActivator.locator
+				.findServices(new ServiceType("service:tgdh"), null, null, keyPair); services
+				.hasMoreElements();) {
+			assertEquals(services.next().toString(),
+					"service:tgdh://"  + HOST_AND_PORT);
+			count++;
+		}
+		assertEquals(1, count);
+	}
+
 }

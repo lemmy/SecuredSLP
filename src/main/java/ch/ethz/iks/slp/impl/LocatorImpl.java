@@ -29,12 +29,16 @@
 package ch.ethz.iks.slp.impl;
 
 import java.net.InetAddress;
+import java.security.KeyPair;
+import java.security.interfaces.DSAKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
+import tgdh.TgdhCallback;
+import tgdh.TreeGroupDiffieHellman;
 import ch.ethz.iks.slp.Advertiser;
 import ch.ethz.iks.slp.Locator;
 import ch.ethz.iks.slp.ServiceLocationEnumeration;
@@ -144,7 +148,39 @@ public final class LocatorImpl implements Locator {
 							+ ": " + searchFilter);
 		}
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see ch.ethz.iks.slp.Locator#findServices(ch.ethz.iks.slp.ServiceType, java.util.List, java.lang.String, java.security.KeyPair)
+	 */
+	public ServiceLocationEnumeration findServices(final ServiceType type,
+			final List scopes, final String searchFilter, final KeyPair keyPair)
+			throws ServiceLocationException, IllegalArgumentException {
+		
+		// DSA keys
+		DSAKey privateKey = (DSAKey) keyPair.getPrivate();
+		
+		// find existing security groups in the network
+		List sgIdentifiers = new ArrayList(); 
+		List sgScopes = new ArrayList();
+		sgScopes.add("securitygroup");
+		
+		ServiceType sgServiceType = new ServiceType("service:tgdh");
+		ServiceLocationEnumeration sgs = findServices(sgServiceType, sgScopes, null);
+		while(sgs.hasMoreElements()) {
+			ServiceURL sgServiceURL = (ServiceURL) sgs.nextElement();
+			String sgName = sgServiceURL.getServiceType().getConcreteTypeName();
+			TgdhCallback sgCallBack = new TgdhCallback();
+			try {
+				sgIdentifiers.add(TreeGroupDiffieHellman.joinGroup(privateKey, sgServiceURL.getHost(), sgServiceURL.getPort(), sgName, sgCallBack));
+			} catch(Exception e) {
+				//TODO real error code
+				throw new ServiceLocationException((short) -1, e.getMessage());
+			}
+		}
+		
+		return null;
+	}
+	
 	/**
 	 * find attributes by service URL.
 	 * 
@@ -311,5 +347,4 @@ public final class LocatorImpl implements Locator {
 				ServiceLocationException.INTERNAL_SYSTEM_ERROR,
 				"No DA reachable");
 	}
-
 }

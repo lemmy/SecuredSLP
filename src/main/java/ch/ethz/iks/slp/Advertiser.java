@@ -29,6 +29,7 @@
 package ch.ethz.iks.slp;
 
 import java.net.InetAddress;
+import java.security.KeyPair;
 import java.util.Dictionary;
 import java.util.List;
 import java.util.Locale;
@@ -68,8 +69,8 @@ public interface Advertiser {
 	 * @param attributes
 	 *            a <code>Dictionary</code> of attributes for the service. RFC
 	 *            2614 proposes a <code>Vector</code> of attribute-value-pairs
-	 *            here but the <code>Dictionary</code> makes this
-	 *            implementation more close to <code>OSGi</code>.
+	 *            here but the <code>Dictionary</code> makes this implementation
+	 *            more close to <code>OSGi</code>.
 	 * @throws ServiceLocationException
 	 *             in case that the registration failed for any reason.
 	 */
@@ -88,13 +89,57 @@ public interface Advertiser {
 	 * @param attributes
 	 *            a <code>Dictionary</code> of attributes for the service. RFC
 	 *            2614 proposes a <code>Vector</code> of attribute-value-pairs
-	 *            here but the <code>Dictionary</code> makes this
-	 *            implementation more close to <code>OSGi</code>
+	 *            here but the <code>Dictionary</code> makes this implementation
+	 *            more close to <code>OSGi</code>
 	 * @throws ServiceLocationException
 	 *             in case that the registration failed for any reason.
 	 */
 	void register(ServiceURL url, List scopes, Dictionary attributes)
 			throws ServiceLocationException;
+
+	/**
+	 * Register a service with the SLP framework. The service will be registered
+	 * with all known DAs that support the default scope and with the local SA
+	 * registry for multicast discovery.
+	 * 
+	 * @param url
+	 *            the <code>ServiceURL</code> of the service.
+	 * @param attributes
+	 *            a <code>Dictionary</code> of attributes for the service. RFC
+	 *            2614 proposes a <code>Vector</code> of attribute-value-pairs
+	 *            here but the <code>Dictionary</code> makes this implementation
+	 *            more close to <code>OSGi</code>.
+	 * @param keyPair
+	 *            a <code>KeyPair</code> which gets used to encrypt and sign the
+	 *            service advertisements. This is not part of SLPv2!
+	 * @throws ServiceLocationException
+	 *             in case that the registration failed for any reason.
+	 */
+	void register(ServiceURL url, Dictionary attributes, KeyPair keyPair)
+			throws ServiceLocationException;
+
+	/**
+	 * Register a service with the SLP framework. The service will be registered
+	 * with all known DAs that support at least one of the given scopes and with
+	 * the local SA registry for multicast discovery.
+	 * 
+	 * @param url
+	 *            the ServiceURL of the service.
+	 * @param scopes
+	 *            a <code>List</code> of scope names as <code>Strings</code>.
+	 * @param attributes
+	 *            a <code>Dictionary</code> of attributes for the service. RFC
+	 *            2614 proposes a <code>Vector</code> of attribute-value-pairs
+	 *            here but the <code>Dictionary</code> makes this implementation
+	 *            more close to <code>OSGi</code>
+	 * @param keyPair
+	 *            a <code>KeyPair</code> which gets used to encrypt and sign the
+	 *            service advertisements. This is not part of SLPv2!
+	 * @throws ServiceLocationException
+	 *             in case that the registration failed for any reason.
+	 */
+	void register(ServiceURL url, List scopes, Dictionary attributes,
+			KeyPair keyPair) throws ServiceLocationException;
 
 	/**
 	 * Unregister a service with the SLP framework. The service will be
