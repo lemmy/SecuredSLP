@@ -83,16 +83,27 @@
 					-init
 					-istart file:target/jslp-osgi-${pom.version}.jar
 					-istart file:runtimeTests/target/jslp-test-${pom.version}.jar
+					-istart file:${maven.dependency.org.apache.commons.com.springsource.org.apache.commons.logging.jar.path}
+					-istart file:${maven.dependency.org.bouncycastle.com.springsource.org.bouncycastle.jce.jar.path}
+					-istart file:${maven.dependency.org.jgroups.com.springsource.org.jgroups.jar.path}
+					-istart file:${maven.dependency.de.rub.hgi.nds.tgdh.jar.path}
 				</echo>
 				<java fork="true" classname="ch.ethz.iks.concierge.framework.Framework" failonerror="true" resultproperty="testresult">
 					<classpath>
 						<pathelement location="${maven.dependency.ch.ethz.iks.concierge.concierge.jar.path}"/>
-						<pathelement location="${maven.dependency.junit.junit.jar.path}"/> 
+						<pathelement location="${maven.dependency.junit.junit.jar.path}"/>
+						<pathelement location="${maven.dependency.org.bouncycastle.com.springsource.org.bouncycastle.jce.jar.path}"/>
+						<pathelement location="${maven.dependency.org.jgroups.com.springsource.org.jgroups.jar.path}"/>
+						<pathelement location="${maven.dependency.org.apache.commons.com.springsource.org.apache.commons.logging.jar.path}"/>
+						<pathelement location="${maven.dependency.de.rub.hgi.nds.tgdh.jar.path}"/>
 					</classpath>
 					<jvmarg value="-Dxargs=target/init.xargs"/>
 					<jvmarg value="-Dnet.slp.port=${jslp.port}"/>
 					<jvmarg value="-Dch.ethz.iks.concierge.log.level=4"/> <!-- LOG_DEBUG -->
 					<jvmarg value="-Dch.ethz.iks.concierge.log.enabled=true"/>
+					<jvmarg value="-Dorg.osgi.framework.system.packages=javax.crypto,javax.servlet"/>
+					<jvmarg value="-Dch.ethz.iks.concierge.debug.classloading=true"/>
+					<jvmarg value="-Dch.ethz.iks.concierge.strictStartup=true"/>
 					<jvmarg value="-Dch.ethz.iks.slp.debug=true" />
 					<jvmarg value="-Dnet.slp.traceDATraffic=true" />
 					<jvmarg value="-Dnet.slp.traceMsg=true" />
