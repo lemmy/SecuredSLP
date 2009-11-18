@@ -30,9 +30,17 @@ package ch.ethz.iks.slp.impl;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.security.KeyPair;
+import java.security.interfaces.DSAKey;
+import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Locale;
+
+import tgdh.TgdhCallback;
+import tgdh.TgdhGroupIdentifier;
+import tgdh.TreeGroupDiffieHellman;
 import ch.ethz.iks.slp.Advertiser;
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceURL;
@@ -44,6 +52,7 @@ import ch.ethz.iks.slp.ServiceURL;
  * 
  * @see ch.ethz.iks.slp.Advertiser
  * @author Jan S. Rellermeyer, Systems Group, ETH Zurich
+ * @author Markus Alexander Kuppe
  * @since 0.1
  */
 public final class AdvertiserImpl implements Advertiser {
@@ -60,7 +69,7 @@ public final class AdvertiserImpl implements Advertiser {
 	public AdvertiserImpl() {
 		locale = SLPCore.DEFAULT_LOCALE;
 	}
-	
+
 	/**
 	 * Constructor for AdvertiserImpl.
 	 * 
@@ -69,7 +78,7 @@ public final class AdvertiserImpl implements Advertiser {
 	 */
 	public AdvertiserImpl(final Locale locale) {
 		this.locale = locale;
-	}	
+	}
 
 	/**
 	 * Get the locale of this instance.
@@ -80,7 +89,7 @@ public final class AdvertiserImpl implements Advertiser {
 	public Locale getLocale() {
 		return locale;
 	}
-	
+
 	/**
 	 * Set the locale of this instance.
 	 * 
@@ -134,6 +143,84 @@ public final class AdvertiserImpl implements Advertiser {
 		reg.port = SLPCore.SLP_PORT;
 		ServiceAcknowledgement ack = (ServiceAcknowledgement) SLPCore
 				.sendMessage(reg, true);
+		if (ack.errorCode != 0) {
+			throw new ServiceLocationException((short) ack.errorCode,
+					"Registration failed");
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see ch.ethz.iks.slp.Advertiser#register(ch.ethz.iks.slp.ServiceURL,
+	 * java.util.Dictionary, java.security.KeyPair)
+	 */
+	public void register(final ServiceURL url, final Dictionary attributes,
+			final KeyPair keyPair) throws ServiceLocationException {
+		register(url, null, attributes, keyPair);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see ch.ethz.iks.slp.Advertiser#register(ch.ethz.iks.slp.ServiceURL,
+	 * java.util.List, java.util.Dictionary, java.security.KeyPair)
+	 */
+	public void register(final ServiceURL url, final List scopes,
+			final Dictionary attributes, final KeyPair keyPair)
+			throws ServiceLocationException {
+		// obtains local ip address
+		InetAddress localhost = null;
+		try {
+			localhost = InetAddress.getLocalHost();
+		} catch (UnknownHostException e) {
+			localhost = SLPCore.getMyIP();
+		}
+		
+		// Setup Security Group (SG) in TGDH
+		TgdhCallback sgCallBack = new TgdhCallback();
+		TgdhGroupIdentifier sgIdentifier = null;
+		try {
+			DSAKey privateKey = (DSAKey) keyPair.getPrivate();
+			sgIdentifier = TreeGroupDiffieHellman.newGroup(privateKey, sgCallBack, localhost);
+		} catch (Exception e) {
+			// TODO real error code
+			throw new ServiceLocationException((short) -1, 
+					"Registration failed");
+		}
+
+		// Announce Security Group via traditional SLPv2
+		List sgScopes = new ArrayList();
+		sgScopes.add("securitygroup");
+		
+		Dictionary sgAttributes = new Hashtable();
+		
+		String sgHost = sgIdentifier.getMulticastAddress();
+		int sgPort = sgIdentifier.getMulticastPort();
+		String sgName = sgIdentifier.getGroupName();
+		ServiceURL sgURL = new ServiceURL("service:tgdh://"
+				+ sgHost + ":" + sgPort + "/" + sgName, 10800);
+
+		ServiceRegistration sgReg = new ServiceRegistration(sgURL,
+				sgURL.getServiceType(), sgScopes,
+				SLPUtils.dictToAttrList(sgAttributes), locale);
+		sgReg.port = SLPCore.SLP_PORT;
+		sgReg.address = localhost;
+		ServiceAcknowledgement ack = (ServiceAcknowledgement) SLPCore
+				.sendMessage(sgReg, true);
+		if (ack.errorCode != 0) {
+			throw new ServiceLocationException((short) ack.errorCode,
+					"Registration failed");
+		}
+		
+		// Announce real service in Security Group
+		ServiceRegistration reg = new ServiceRegistration(url,
+				url.getServiceType(), scopes,
+				SLPUtils.dictToAttrList(attributes), locale);
+		reg.port = SLPCore.SLP_PORT;
+		reg.address = localhost;
+		ack = (ServiceAcknowledgement) SLPCore
+				.sendMessage(sgReg, true);
 		if (ack.errorCode != 0) {
 			throw new ServiceLocationException((short) ack.errorCode,
 					"Registration failed");

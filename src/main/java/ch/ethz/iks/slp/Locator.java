@@ -28,6 +28,7 @@
  */
 package ch.ethz.iks.slp;
 
+import java.security.KeyPair;
 import java.util.List;
 import java.util.Locale;
 
@@ -96,6 +97,31 @@ public interface Locator {
 	ServiceLocationEnumeration findServices(ServiceType type, List scopes,
 			String searchFilter) throws ServiceLocationException, IllegalArgumentException;
 
+	/**
+	 * Find all services that match a certain service type.
+	 * 
+	 * @param type
+	 *            the ServiceType.
+	 * @param scopes
+	 *            A <code>List</code> of scope <code>Strings</code>, RFC
+	 *            2614 uses <code>Vector</code> here but jSLP prefers the
+	 *            Collection Framework.
+	 * @param searchFilter
+	 *            an RFC 1960 compliant <code>String</code> of a LDAP filter.
+	 *            RFC 2614 proposes the newer RFC 2254 style filters that adds
+	 *            support for extensible matches.
+	 * @return a ServiceLocationEnumeration over the <code>ServiceURLs</code>
+	 *         of the found services.
+	 * @throws ServiceLocationException
+	 *             in case of an exception in the underlying framework.
+	 * @param keyPair
+	 *            a <code>KeyPair</code> which gets used to find encrypted 
+	 *            service advertisements. This is not part of SLPv2!
+	 * @throws InvalidSyntaxException 
+	 */
+	ServiceLocationEnumeration findServices(ServiceType type, List scopes,
+			String searchFilter, KeyPair keyPair) throws ServiceLocationException, IllegalArgumentException;
+	
 	/**
 	 * Find all services that match a ServiceURL.
 	 * 

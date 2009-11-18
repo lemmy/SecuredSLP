@@ -53,8 +53,8 @@ public class TestActivator implements BundleActivator {
 		TestSuite suite = new TestSuite();
 		Collection collection = new ArrayList();
 		
-		collection.add(SelfDiscoveryTest.class);
 		collection.add(SecuredSelfDiscoveryTest.class);
+		collection.add(SelfDiscoveryTest.class);
 		
 		for (Iterator iterator = collection.iterator(); iterator.hasNext();) {
 			Class clazz = (Class) iterator.next();
