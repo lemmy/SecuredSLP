@@ -178,7 +178,7 @@ public final class LocatorImpl implements Locator {
 			}
 		}
 		
-		return null;
+		return new ServiceLocationEnumerationImpl(new ArrayList());
 	}
 	
 	/**
