@@ -37,7 +37,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-import tgdh.TgdhCallback;
+import tgdh.TgdhKeyListener;
 import tgdh.TreeGroupDiffieHellman;
 import ch.ethz.iks.slp.Advertiser;
 import ch.ethz.iks.slp.Locator;
@@ -169,7 +169,7 @@ public final class LocatorImpl implements Locator {
 		while(sgs.hasMoreElements()) {
 			ServiceURL sgServiceURL = (ServiceURL) sgs.nextElement();
 			String sgName = sgServiceURL.getServiceType().getConcreteTypeName();
-			TgdhCallback sgCallBack = new TgdhCallback();
+			TgdhKeyListener sgCallBack = new SLPTgdhKeyListener();
 			try {
 				sgIdentifiers.add(TreeGroupDiffieHellman.joinGroup(privateKey, sgServiceURL.getHost(), sgServiceURL.getPort(), sgName, sgCallBack));
 			} catch(Exception e) {

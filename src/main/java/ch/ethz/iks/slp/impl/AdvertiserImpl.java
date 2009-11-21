@@ -38,8 +38,8 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Locale;
 
-import tgdh.TgdhCallback;
 import tgdh.TgdhGroupIdentifier;
+import tgdh.TgdhKeyListener;
 import tgdh.TreeGroupDiffieHellman;
 import ch.ethz.iks.slp.Advertiser;
 import ch.ethz.iks.slp.ServiceLocationException;
@@ -178,7 +178,7 @@ public final class AdvertiserImpl implements Advertiser {
 		}
 		
 		// Setup Security Group (SG) in TGDH
-		TgdhCallback sgCallBack = new TgdhCallback();
+		TgdhKeyListener sgCallBack = new SLPTgdhKeyListener();
 		TgdhGroupIdentifier sgIdentifier = null;
 		try {
 			DSAKey privateKey = (DSAKey) keyPair.getPrivate();
