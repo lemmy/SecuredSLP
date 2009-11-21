@@ -80,11 +80,20 @@ public class ServiceLocationException extends Exception
     public static final short AUTHENTICATION_ABSENT = 6;
 
     /**
-     * Unsupported version number in message header. INTERNAL_ERROR = 10: The DA
-     * (or SA) is too sick to respond.
+     * The DA detected an authentication error in an Authentication block.
      */
     public static final short AUTHENTICATION_FAILED = 7;
+    
+    /**
+     * Unsupported version number in message header.
+     */
+    public static final short  VER_NOT_SUPPORTED = 9;
 
+    /**
+     * The DA (or SA) is too sick to respond.
+     */
+    public static final short INTERNAL_ERROR = 10;
+    
     /**
      * The DA received a SrvReg without FRESH set, for an unregistered service
      * or with inconsistent Service Types.

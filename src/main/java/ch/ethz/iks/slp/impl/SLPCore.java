@@ -45,12 +45,18 @@ import java.net.ProtocolException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
@@ -171,7 +177,7 @@ public abstract class SLPCore {
 	 * String scope -> list of Strings of DA URLs.
 	 */
 	static Map dAs = new HashMap();
-
+	
 	/**
 	 * Map of DA SPIs:
 	 * 
@@ -181,6 +187,14 @@ public abstract class SLPCore {
 
 	static InetAddress LOCALHOST;
 
+	/**
+	 * Map of Security Group keys
+	 * 
+	 * String security group -> symmetric key
+	 */
+	static Map sgKeys = new HashMap();
+	static Cipher cipher;
+	
 	/**
 	 * initialize the core class.
 	 */
@@ -270,6 +284,15 @@ public abstract class SLPCore {
 		}
 
 		MCAST_ADDRESS = mcast;
+		
+		// initialize the cipher
+		try {
+			cipher = Cipher.getInstance("DES");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (NoSuchPaddingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	protected static void init() {
