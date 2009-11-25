@@ -33,11 +33,27 @@ import java.util.List;
 /**
  * Abstract base class for all request messages.
  *
- * @author Jan S. Rellermeyer, ETH Zürich
+ * @author Jan S. Rellermeyer, ETH Zï¿½rich
  * @since 0.1
  */
 abstract class RequestMessage extends SLPMessage {
-    /**
+	
+	/**
+	 * 
+	 */
+	public RequestMessage() {
+		super();
+	}
+
+	/**
+	 * @param input
+	 * @param aSecurityGroup
+	 */
+	public RequestMessage(String aSecurityGroup) {
+		super(aSecurityGroup);
+	}
+
+	/**
      * the list of previous responders. If a peer receives a request message and
      * is already in the previous responder list, it will silently drop the
      * message.

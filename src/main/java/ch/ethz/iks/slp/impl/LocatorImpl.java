@@ -155,26 +155,55 @@ public final class LocatorImpl implements Locator {
 	public ServiceLocationEnumeration findServices(final ServiceType type,
 			final List scopes, final String searchFilter, final KeyPair keyPair)
 			throws ServiceLocationException, IllegalArgumentException {
-		
-		// DSA keys
-		DSAKey privateKey = (DSAKey) keyPair.getPrivate();
-		
-		// find existing security groups in the network
-		List sgIdentifiers = new ArrayList(); 
-		List sgScopes = new ArrayList();
-		sgScopes.add("securitygroup");
-		
-		ServiceType sgServiceType = new ServiceType("service:tgdh");
-		ServiceLocationEnumeration sgs = findServices(sgServiceType, sgScopes, null);
-		while(sgs.hasMoreElements()) {
-			ServiceURL sgServiceURL = (ServiceURL) sgs.nextElement();
-			String sgName = sgServiceURL.getServiceType().getConcreteTypeName();
-			TgdhKeyListener sgCallBack = new SLPTgdhKeyListener();
+
+		if (!SLPCore.TESTING) {
+
+			// DSA keys
+			DSAKey privateKey = (DSAKey) keyPair.getPrivate();
+
+			// find existing security groups in the network
+			List sgIdentifiers = new ArrayList();
+			List sgScopes = new ArrayList();
+			sgScopes.add("securitygroup");
+
+			ServiceType sgServiceType = new ServiceType("service:tgdh");
+			ServiceLocationEnumeration sgs = findServices(sgServiceType,
+					sgScopes, null);
+			while (sgs.hasMoreElements()) {
+				ServiceURL sgServiceURL = (ServiceURL) sgs.nextElement();
+				String sgName = sgServiceURL.getServiceType()
+						.getConcreteTypeName();
+				TgdhKeyListener sgCallBack = new SLPTgdhKeyListener();
+				try {
+					sgIdentifiers.add(TreeGroupDiffieHellman.joinGroup(
+							privateKey, sgServiceURL.getHost(), sgServiceURL
+									.getPort(), sgName, sgCallBack));
+					try {
+						RequestMessage srvReq = new ServiceRequest(type,
+								scopes, searchFilter, locale, sgName);
+						return new ServiceLocationEnumerationImpl(sendRequest(
+								srvReq, scopes));
+					} catch (IllegalArgumentException ise) {
+						throw new ServiceLocationException(
+								ServiceLocationException.INTERNAL_SYSTEM_ERROR,
+								ise.getMessage() + ": " + searchFilter);
+					}
+				} catch (Exception e) {
+					// TODO real error code
+					throw new ServiceLocationException((short) -1, e
+							.getMessage());
+				}
+			}
+		} else {
 			try {
-				sgIdentifiers.add(TreeGroupDiffieHellman.joinGroup(privateKey, sgServiceURL.getHost(), sgServiceURL.getPort(), sgName, sgCallBack));
-			} catch(Exception e) {
-				//TODO real error code
-				throw new ServiceLocationException((short) -1, e.getMessage());
+				RequestMessage srvReq = new ServiceRequest(type,
+						scopes, searchFilter, locale, SLPCore.SECURITY_GROUP_NAME);
+				return new ServiceLocationEnumerationImpl(sendRequest(
+						srvReq, scopes));
+			} catch (IllegalArgumentException ise) {
+				throw new ServiceLocationException(
+						ServiceLocationException.INTERNAL_SYSTEM_ERROR,
+						ise.getMessage() + ": " + searchFilter);
 			}
 		}
 		

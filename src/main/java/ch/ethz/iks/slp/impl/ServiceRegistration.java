@@ -115,6 +115,12 @@ class ServiceRegistration extends SLPMessage {
 		}
 		authBlocks = new AuthenticationBlock[0];
 	}
+	
+	ServiceRegistration(final ServiceURL serviceURL, final ServiceType type,
+			final List scopes, final List attributes, final Locale theLocale, String aSecurityGroup) {
+		this(serviceURL, type, scopes, attributes, theLocale);
+		securityGroup = aSecurityGroup;
+	}
 
 	/**
 	 * create a new ServiceRegistration from a DataInput streaming the bytes of

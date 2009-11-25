@@ -28,16 +28,23 @@
  */
 package ch.ethz.iks.slp.impl;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ProtocolException;
+import java.security.InvalidKeyException;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.impl.attr.AttributeListVisitor;
@@ -87,12 +94,24 @@ public abstract class SLPMessage {
 	 * true if the message came in or will go out by multicast.
 	 */
 	boolean multicast;
+	
+	/**
+	 * The Security Group this messages is part of
+	 * <code>null</code> if plain SLP is used
+	 */
+	protected String securityGroup = "";
 
+	private int payloadSize;
+	
+	/**
+	 * Header length as defined by RFC
+	 */
+	public static final int HEADER_LENGTH = 14;
 
 	/**
 	 * the message version according to RFC 2608, Version = 2.
 	 */
-	public static final byte VERSION = 2;
+	public static final byte VERSION = 3;
 	
 	/**
 	 * the message funcID values according to RFC 2608, Service Request = 1.
@@ -161,6 +180,19 @@ public abstract class SLPMessage {
 			"SRVTYPERQST", "SRVTYPERPLY", "SAADVERT" };
 
 	/**
+	 * 
+	 */
+	public SLPMessage() {
+	}
+
+	/**
+	 * @param aSecurityGroup
+	 */
+	public SLPMessage(String aSecurityGroup) {
+		securityGroup = aSecurityGroup;
+	}
+
+	/**
 	 * get the bytes from a SLPMessage. Processes the header and then calls the
 	 * getBody() method of the implementing subclass.
 	 * 
@@ -178,9 +210,12 @@ public abstract class SLPMessage {
 		if (multicast) {
 			flags |= 0x20;
 		}
-		int msgSize = getSize();
+		int msgSize = getHeaderSize() + payloadSize;
 		if (!tcp && msgSize > SLPCore.CONFIG.getMTU()) {
-			flags |= 0x80;
+				flags |= 0x80;
+		}
+		if(!"".equals(securityGroup)) {
+			flags |= 0x10;
 		}
 		out.write(VERSION);
 		out.write(funcID);
@@ -194,6 +229,7 @@ public abstract class SLPMessage {
 		out.write(0);
 		out.writeShort(xid);
 		out.writeUTF(locale.getLanguage());
+		out.writeUTF(securityGroup);
 	}
 
 	/**
@@ -205,15 +241,40 @@ public abstract class SLPMessage {
 	 * 
 	 */
 	byte[] getBytes() throws IOException {
+		// get payload
+		final ByteArrayOutputStream payloadBytes = new ByteArrayOutputStream();
+		final DataOutputStream payloadOut = new DataOutputStream(payloadBytes);
+		writeTo(payloadOut);
+		byte[] payload = payloadBytes.toByteArray();
+		payloadSize = getSize();
+		
+		// encrypt payload
+		if(!"".equals(securityGroup)) {
+			try {
+				Key key = (Key) SLPCore.sgKeys.get(securityGroup);
+				SLPCore.cipher.init(Cipher.ENCRYPT_MODE, key);
+				payload = SLPCore.cipher.doFinal(payload);
+			} catch (InvalidKeyException e) {
+				throw new IOException(e);
+			} catch (IllegalBlockSizeException e) {
+				throw new IOException(e);
+			} catch (BadPaddingException e) {
+				throw new IOException(e);
+			}
+			payloadSize = payload.length;
+		}
+		
+		// merge header and encrypted payload
 		final ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 		final DataOutputStream out = new DataOutputStream(bytes);
 		writeHeader(out);
-		writeTo(out);
+		out.write(payload);
+		
 		return bytes.toByteArray();
 	}
 
 	/**
-	 * The RFC 2608 SLP message header:
+	 * The SLPv3 message header:
 	 * 
 	 * <pre>
 	 *                   0                   1                   2                   3
@@ -221,12 +282,19 @@ public abstract class SLPMessage {
 	 *                  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 	 *                  |    Version    |  Function-ID  |            Length             |
 	 *                  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-	 *                  | Length, contd.|O|F|R|       reserved          |Next Ext Offset|
+	 *                  | Length, contd.|O|F|R|S|     reserved          |Next Ext Offset|
 	 *                  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 	 *                  |  Next Extension Offset, contd.|              XID              |
 	 *                  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-	 *                  |      Language Tag Length      |         Language Tag          \
+	 *                  |      Language Tag Length      |         Language Tag          |
 	 *                  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 *                  |      Security Group Length    | 		Security Group Name		|
+	 *                  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	 *                  
+	 *  New flag is:  SECURITY (0x10) is set when a security group is used
+	 * 
+	 *  Security Group Length is the length in bytes of the Security Group Name field.
+     *  Security Group Name conforms to [7]. This field must be encoded 1*8ALPHA *("-" 1*8ALPHA).
 	 * </pre>
 	 * 
 	 * This method parses the header and then delegates the creation of the
@@ -247,7 +315,7 @@ public abstract class SLPMessage {
 	 *             in case of any parsing errors.
 	 */
 	static SLPMessage parse(final InetAddress senderAddr, final int senderPort,
-			final DataInputStream in, final boolean tcp)
+			DataInputStream in, final boolean tcp)
 			throws ServiceLocationException, ProtocolException {
 		try {
 			final int version = in.readByte(); // version
@@ -274,8 +342,21 @@ public abstract class SLPMessage {
 			final short xid = in.readShort(); // XID
 			final Locale locale = new Locale(in.readUTF(), ""); // Locale
 
-			final SLPMessage msg;
+			// read Security Group
+			String securityGroup = in.readUTF();
+			if ((flags & 0x10) != 0) {
+				byte[] encryptedBytes = new byte[length - (HEADER_LENGTH
+						+ locale.getLanguage().length()
+						+ securityGroup.length())];
+				in.read(encryptedBytes);
+				Key key = (Key) SLPCore.sgKeys.get(securityGroup);
+				SLPCore.cipher.init(Cipher.DECRYPT_MODE, key);
+				byte[] recoveredBytes = SLPCore.cipher.doFinal(encryptedBytes);
+				in = new DataInputStream(new ByteArrayInputStream(
+						recoveredBytes));
+			}
 
+			final SLPMessage msg;
 			// decide on the type of the message
 			switch (funcID) {
 			case DAADVERT:
@@ -322,6 +403,7 @@ public abstract class SLPMessage {
 			msg.xid = xid;
 			msg.funcID = funcID;
 			msg.locale = locale;
+			msg.securityGroup = securityGroup;
 			if (msg.getSize() != length) {
 				SLPCore.platform.logError("Length of " + msg + " should be " + length + ", read "
 								+ msg.getSize());
@@ -337,6 +419,18 @@ public abstract class SLPMessage {
 			SLPCore.platform.logError("Network Error", ioe);
 			throw new ServiceLocationException(
 					ServiceLocationException.NETWORK_ERROR, ioe.getMessage());
+		} catch (InvalidKeyException ie) {
+			SLPCore.platform.logError("Network Error", ie);
+			throw new ServiceLocationException(
+					ServiceLocationException.PARSE_ERROR, ie.getMessage());
+		} catch (IllegalBlockSizeException ibse) {
+			SLPCore.platform.logError("Network Error", ibse);
+			throw new ServiceLocationException(
+					ServiceLocationException.PARSE_ERROR, ibse.getMessage());
+		} catch (BadPaddingException bpe) {
+			SLPCore.platform.logError("Network Error", bpe);
+			throw new ServiceLocationException(
+					ServiceLocationException.PARSE_ERROR, bpe.getMessage());
 		}
 	}
 
@@ -345,7 +439,11 @@ public abstract class SLPMessage {
 	 * @return
 	 */
 	protected int getHeaderSize() {
-		return 14 + locale.getLanguage().length();
+		int length = HEADER_LENGTH + locale.getLanguage().length();
+		if(!"".equals(securityGroup)) {
+			length += securityGroup.length();
+		}
+		return length;
 	}
 
 	/**

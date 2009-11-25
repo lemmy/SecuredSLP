@@ -195,6 +195,10 @@ public abstract class SLPCore {
 	static Map sgKeys = new HashMap();
 	static Cipher cipher;
 	
+	//TODO remove after testing
+	static String SECURITY_GROUP_NAME = "securityGroupName";
+	static boolean TESTING = true;
+	
 	/**
 	 * initialize the core class.
 	 */
@@ -287,7 +291,15 @@ public abstract class SLPCore {
 		
 		// initialize the cipher
 		try {
-			cipher = Cipher.getInstance("DES");
+			cipher = Cipher.getInstance("AES");
+			
+			//TODO remove after testing
+			KeyGenerator kgen = KeyGenerator.getInstance("AES");
+			kgen.init(128); // 192 and 256 bits may not be available
+
+			// Generate the secret key specs.
+			SecretKey key = kgen.generateKey();
+			sgKeys.put(SECURITY_GROUP_NAME, key);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (NoSuchPaddingException e) {

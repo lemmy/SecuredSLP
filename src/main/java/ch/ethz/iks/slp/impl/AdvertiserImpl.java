@@ -177,50 +177,58 @@ public final class AdvertiserImpl implements Advertiser {
 			localhost = SLPCore.getMyIP();
 		}
 		
-		// Setup Security Group (SG) in TGDH
-		TgdhKeyListener sgCallBack = new SLPTgdhKeyListener();
-		TgdhGroupIdentifier sgIdentifier = null;
-		try {
-			DSAKey privateKey = (DSAKey) keyPair.getPrivate();
-			sgIdentifier = TreeGroupDiffieHellman.newGroup(privateKey, sgCallBack, localhost);
-		} catch (Exception e) {
-			// TODO real error code
-			throw new ServiceLocationException((short) -1, 
-					"Registration failed");
-		}
+		ServiceRegistration sgReg = null;
+		ServiceAcknowledgement ack = null;
+		String sgName = null;
+		if(!SLPCore.TESTING) {
+			
+			// Setup Security Group (SG) in TGDH
+			TgdhKeyListener sgCallBack = new SLPTgdhKeyListener();
+			TgdhGroupIdentifier sgIdentifier = null;
+			try {
+				DSAKey privateKey = (DSAKey) keyPair.getPrivate();
+				sgIdentifier = TreeGroupDiffieHellman.newGroup(privateKey, sgCallBack, localhost);
+			} catch (Exception e) {
+				// TODO real error code
+				throw new ServiceLocationException((short) -1, 
+						"Registration failed");
+			}
 
-		// Announce Security Group via traditional SLPv2
-		List sgScopes = new ArrayList();
-		sgScopes.add("securitygroup");
-		
-		Dictionary sgAttributes = new Hashtable();
-		
-		String sgHost = sgIdentifier.getMulticastAddress();
-		int sgPort = sgIdentifier.getMulticastPort();
-		String sgName = sgIdentifier.getGroupName();
-		ServiceURL sgURL = new ServiceURL("service:tgdh://"
-				+ sgHost + ":" + sgPort + "/" + sgName, 10800);
+			// Announce Security Group via traditional SLPv2
+			List sgScopes = new ArrayList();
+			sgScopes.add("securitygroup");
+			
+			Dictionary sgAttributes = new Hashtable();
+			
+			String sgHost = sgIdentifier.getMulticastAddress();
+			int sgPort = sgIdentifier.getMulticastPort();
+			sgName = sgIdentifier.getGroupName();
+			ServiceURL sgURL = new ServiceURL("service:tgdh://"
+					+ sgHost + ":" + sgPort + "/" + sgName, 10800);
 
-		ServiceRegistration sgReg = new ServiceRegistration(sgURL,
-				sgURL.getServiceType(), sgScopes,
-				SLPUtils.dictToAttrList(sgAttributes), locale);
-		sgReg.port = SLPCore.SLP_PORT;
-		sgReg.address = localhost;
-		ServiceAcknowledgement ack = (ServiceAcknowledgement) SLPCore
-				.sendMessage(sgReg, true);
-		if (ack.errorCode != 0) {
-			throw new ServiceLocationException((short) ack.errorCode,
-					"Registration failed");
+			sgReg = new ServiceRegistration(sgURL,
+					sgURL.getServiceType(), sgScopes,
+					SLPUtils.dictToAttrList(sgAttributes), locale);
+			sgReg.port = SLPCore.SLP_PORT;
+			sgReg.address = localhost;
+			ack = (ServiceAcknowledgement) SLPCore
+					.sendMessage(sgReg, true);
+			if (ack.errorCode != 0) {
+				throw new ServiceLocationException((short) ack.errorCode,
+						"Registration failed");
+			}
+		} else {
+			sgName = SLPCore.SECURITY_GROUP_NAME;
 		}
 		
 		// Announce real service in Security Group
 		ServiceRegistration reg = new ServiceRegistration(url,
 				url.getServiceType(), scopes,
-				SLPUtils.dictToAttrList(attributes), locale);
+				SLPUtils.dictToAttrList(attributes), locale, sgName);
 		reg.port = SLPCore.SLP_PORT;
 		reg.address = localhost;
 		ack = (ServiceAcknowledgement) SLPCore
-				.sendMessage(sgReg, true);
+				.sendMessage(reg, true);
 		if (ack.errorCode != 0) {
 			throw new ServiceLocationException((short) ack.errorCode,
 					"Registration failed");

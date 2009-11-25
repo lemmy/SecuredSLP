@@ -94,6 +94,31 @@ class ServiceRequest extends RequestMessage {
 				: "";
 	}
 
+
+	/**
+	 * creates a new ServiceRequest for a ServiceType.
+	 * 
+	 * @param type
+	 *            the ServiceType.
+	 * @param scopes
+	 *            a list of scopes to be included.
+	 * @param filterStr
+	 *            a filter String, RFC 1960 compliant.
+	 * @param theLocale
+	 *            the Locale of the message.
+	 * @param theLocale
+	 *            the Locale of the message.
+	 * @param securityGroup
+	 *            the security group name.
+	 * @throws InvalidSyntaxException
+	 *             if the filter is not well-formed.
+	 */
+	ServiceRequest(ServiceType type, List scopes, String searchFilter,
+			Locale locale, String aSecurityGroup) {
+		this(type, scopes, searchFilter, locale);
+		securityGroup = aSecurityGroup;
+	}
+	
 	/**
 	 * create a new ServiceRequest from a DataInput streaming the bytes of a
 	 * ServiceRequest message body.
