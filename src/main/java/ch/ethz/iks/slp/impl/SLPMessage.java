@@ -99,8 +99,13 @@ public abstract class SLPMessage {
 	 * The Security Group this messages is part of
 	 * <code>null</code> if plain SLP is used
 	 */
-	protected String securityGroup = "";
+	protected String securityGroup;
 
+	/**
+	 * Size of payload. Might differ from what subclasses calculate
+	 * depending on whether the messages is encryption and with
+	 * what algorithm 
+	 */
 	private int payloadSize;
 	
 	/**
@@ -183,6 +188,7 @@ public abstract class SLPMessage {
 	 * 
 	 */
 	public SLPMessage() {
+		securityGroup = "";
 	}
 
 	/**
@@ -214,7 +220,7 @@ public abstract class SLPMessage {
 		if (!tcp && msgSize > SLPCore.CONFIG.getMTU()) {
 				flags |= 0x80;
 		}
-		if(!"".equals(securityGroup)) {
+		if(isEncrypted()) {
 			flags |= 0x10;
 		}
 		out.write(VERSION);
@@ -249,7 +255,7 @@ public abstract class SLPMessage {
 		payloadSize = getSize();
 		
 		// encrypt payload
-		if(!"".equals(securityGroup)) {
+		if(isEncrypted()) {
 			try {
 				Key key = (Key) SLPCore.sgKeys.get(securityGroup);
 				SLPCore.cipher.init(Cipher.ENCRYPT_MODE, key);
@@ -404,7 +410,7 @@ public abstract class SLPMessage {
 			msg.funcID = funcID;
 			msg.locale = locale;
 			msg.securityGroup = securityGroup;
-			if (msg.getSize() != length) {
+			if ((flags & 0x10) == 0 && msg.getSize() != length) {
 				SLPCore.platform.logError("Length of " + msg + " should be " + length + ", read "
 								+ msg.getSize());
 //				throw new ServiceLocationException(
@@ -440,10 +446,14 @@ public abstract class SLPMessage {
 	 */
 	protected int getHeaderSize() {
 		int length = HEADER_LENGTH + locale.getLanguage().length();
-		if(!"".equals(securityGroup)) {
+		if(isEncrypted()) {
 			length += securityGroup.length();
 		}
 		return length;
+	}
+	
+	private boolean isEncrypted() {
+		return !"".equals(securityGroup);
 	}
 
 	/**
