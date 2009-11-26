@@ -167,6 +167,35 @@ public interface Advertiser {
 	void deregister(final ServiceURL url, final List scopes)
 			throws ServiceLocationException;
 
+
+	/**
+	 * deregister a service in some scopes.
+	 * 
+	 * @param url
+	 *            the ServiceURL of the service.
+	 * @param keyPair
+	 *            the keypair used for encryption.
+	 * @throws ServiceLocationException
+	 *             if the deregistration has failed for any reason.
+	 * @see Advertiser#deregister(ServiceURL, List, KeyPair)
+	 */
+	void deregister(ServiceURL service, KeyPair keyPair)
+			throws ServiceLocationException;
+	/**
+	 * deregister a service in some scopes.
+	 * 
+	 * @param url
+	 *            the ServiceURL of the service.
+	 * @param scopes
+	 *            the scopes.
+	 * @param keyPair
+	 *            the keypair used for encryption.
+	 * @throws ServiceLocationException
+	 *             if the deregistration has failed for any reason.
+	 */
+	void deregister(final ServiceURL url, final List scopes, KeyPair keyPair)
+			throws ServiceLocationException;
+	
 	/**
 	 * <b>Not yet implemented.</b> Add attributes to an already registered
 	 * service. Allows incremental registration.

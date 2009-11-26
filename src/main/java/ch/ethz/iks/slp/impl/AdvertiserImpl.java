@@ -233,6 +233,7 @@ public final class AdvertiserImpl implements Advertiser {
 			throw new ServiceLocationException((short) ack.errorCode,
 					"Registration failed");
 		}
+		SLPCore.sgKeys.put(keyPair, sgName);
 	}
 
 	/**
@@ -246,7 +247,7 @@ public final class AdvertiserImpl implements Advertiser {
 	 */
 	public void deregister(final ServiceURL url)
 			throws ServiceLocationException {
-		deregister(url, null);
+		deregister(url, (List) null);
 	}
 
 	/**
@@ -266,6 +267,30 @@ public final class AdvertiserImpl implements Advertiser {
 			throws ServiceLocationException {
 		ServiceDeregistration dereg = new ServiceDeregistration(url, scopes,
 				null, locale);
+		deregister(dereg);
+	}
+
+	/* (non-Javadoc)
+	 * @see ch.ethz.iks.slp.Advertiser#deregister(ch.ethz.iks.slp.ServiceURL, java.security.KeyPair)
+	 */
+	public void deregister(ServiceURL service, KeyPair keyPair)
+			throws ServiceLocationException {
+		deregister(service, null, keyPair);
+	}
+
+	/* (non-Javadoc)
+	 * @see ch.ethz.iks.slp.Advertiser#deregister(ch.ethz.iks.slp.ServiceURL, java.util.List, java.security.KeyPair)
+	 */
+	public void deregister(ServiceURL url, List scopes, KeyPair keyPair)
+			throws ServiceLocationException {
+		String securityGroupName = (String) SLPCore.sgKeys.get(keyPair);
+		ServiceDeregistration dereg = new ServiceDeregistration(url, scopes,
+				null, locale, securityGroupName);
+		deregister(dereg);
+	}
+
+	private void deregister(ServiceDeregistration dereg)
+			throws ServiceLocationException {
 		try {
 			dereg.address = InetAddress.getLocalHost();
 		} catch (UnknownHostException e) {

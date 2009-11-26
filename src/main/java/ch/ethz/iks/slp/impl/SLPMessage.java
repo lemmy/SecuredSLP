@@ -111,7 +111,7 @@ public abstract class SLPMessage {
 	/**
 	 * Header length as defined by RFC
 	 */
-	public static final int HEADER_LENGTH = 14;
+	public static final int HEADER_PREFIX_LENGTH = 14;
 
 	/**
 	 * the message version according to RFC 2608, Version = 2.
@@ -257,7 +257,7 @@ public abstract class SLPMessage {
 		// encrypt payload
 		if(isEncrypted()) {
 			try {
-				Key key = (Key) SLPCore.sgKeys.get(securityGroup);
+				Key key = (Key) SLPCore.sgSessionKeys.get(securityGroup);
 				SLPCore.cipher.init(Cipher.ENCRYPT_MODE, key);
 				payload = SLPCore.cipher.doFinal(payload);
 			} catch (InvalidKeyException e) {
@@ -350,12 +350,14 @@ public abstract class SLPMessage {
 
 			// read Security Group
 			String securityGroup = in.readUTF();
+			
+			final int headerLength = HEADER_PREFIX_LENGTH
+				+ locale.getLanguage().length()
+				+ securityGroup.length();
 			if ((flags & 0x10) != 0) {
-				byte[] encryptedBytes = new byte[length - (HEADER_LENGTH
-						+ locale.getLanguage().length()
-						+ securityGroup.length())];
+				byte[] encryptedBytes = new byte[length - headerLength];
 				in.read(encryptedBytes);
-				Key key = (Key) SLPCore.sgKeys.get(securityGroup);
+				Key key = (Key) SLPCore.sgSessionKeys.get(securityGroup);
 				SLPCore.cipher.init(Cipher.DECRYPT_MODE, key);
 				byte[] recoveredBytes = SLPCore.cipher.doFinal(encryptedBytes);
 				in = new DataInputStream(new ByteArrayInputStream(
@@ -410,13 +412,10 @@ public abstract class SLPMessage {
 			msg.funcID = funcID;
 			msg.locale = locale;
 			msg.securityGroup = securityGroup;
-			if ((flags & 0x10) == 0 && msg.getSize() != length) {
+			//for encrypted messages the decrypted lengths don't match
+			if ((flags & 0x10) == 0 && msg.getSize() != (length - headerLength)) {
 				SLPCore.platform.logError("Length of " + msg + " should be " + length + ", read "
-								+ msg.getSize());
-//				throw new ServiceLocationException(
-//						ServiceLocationException.INTERNAL_SYSTEM_ERROR,
-//						"Length of " + msg + " should be " + length + ", read "
-//								+ msg.getSize());
+								+ msg.getSize() + headerLength);
 			}
 			return msg;
 		} catch (ProtocolException pe) {
@@ -445,7 +444,7 @@ public abstract class SLPMessage {
 	 * @return
 	 */
 	protected int getHeaderSize() {
-		int length = HEADER_LENGTH + locale.getLanguage().length();
+		int length = HEADER_PREFIX_LENGTH + locale.getLanguage().length();
 		if(isEncrypted()) {
 			length += securityGroup.length();
 		}
@@ -471,8 +470,13 @@ public abstract class SLPMessage {
 	public String toString() {
 		final StringBuffer buffer = new StringBuffer();
 		buffer.append(getType(funcID) + " - ");
-		buffer.append("xid=" + xid);
+		buffer.append("tcp=" + tcp);
+		buffer.append(", multicast=" + multicast);
+		buffer.append(", xid=" + xid);
 		buffer.append(", locale=" + locale);
+		if(isEncrypted()) {
+			buffer.append(", securityGroup=" + securityGroup);
+		}
 		return buffer.toString();
 	}
 

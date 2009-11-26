@@ -192,11 +192,19 @@ public abstract class SLPCore {
 	 * 
 	 * String security group -> symmetric key
 	 */
+	static Map sgSessionKeys = new HashMap();
+	
+	/**
+	 * Map of Security Group keys
+	 * 
+	 * asymmetric key -> security group
+	 */
 	static Map sgKeys = new HashMap();
+	
 	static Cipher cipher;
 	
 	//TODO remove after testing
-	static String SECURITY_GROUP_NAME = "securityGroupName";
+	static String SECURITY_GROUP_NAME = "SECURITY_GROUP";
 	static boolean TESTING = true;
 	
 	/**
@@ -299,7 +307,7 @@ public abstract class SLPCore {
 
 			// Generate the secret key specs.
 			SecretKey key = kgen.generateKey();
-			sgKeys.put(SECURITY_GROUP_NAME, key);
+			sgSessionKeys.put(SECURITY_GROUP_NAME, key);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (NoSuchPaddingException e) {

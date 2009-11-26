@@ -118,7 +118,15 @@ public final class LocatorImpl implements Locator {
 		return new ServiceLocationEnumerationImpl(sendRequest(srvTypeReq,
 				scopes));
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see ch.ethz.iks.slp.Locator#findServiceTypes(java.lang.String, java.util.List, java.security.KeyPair)
+	 */
+	public ServiceLocationEnumeration findServiceTypes(String namingAuthority,
+			List scopes, KeyPair keyPair) throws ServiceLocationException {
+		throw new UnsupportedOperationException("Not yet implemented");
+	}
+	
 	/**
 	 * find services.
 	 * 
@@ -232,6 +240,15 @@ public final class LocatorImpl implements Locator {
 				locale));
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.ethz.iks.slp.Locator#findAttributes(ch.ethz.iks.slp.ServiceURL, java.util.List, java.util.List, java.security.KeyPair)
+	 */
+	public ServiceLocationEnumeration findAttributes(ServiceURL url,
+			List scopes, List attributeIds, KeyPair keyPair)
+			throws ServiceLocationException {
+		throw new UnsupportedOperationException("Not yet implemented");
+	}
+
 	/**
 	 * find attributes by service type.
 	 * 
@@ -252,6 +269,15 @@ public final class LocatorImpl implements Locator {
 			throws ServiceLocationException {
 		return findAttributes(new AttributeRequest(type, scopes, attributeIds,
 				locale));
+	}
+
+	/* (non-Javadoc)
+	 * @see ch.ethz.iks.slp.Locator#findAttributes(ch.ethz.iks.slp.ServiceType, java.util.List, java.util.List, java.security.KeyPair)
+	 */
+	public ServiceLocationEnumeration findAttributes(ServiceType type,
+			List scopes, List attributeIds, KeyPair keyPair)
+			throws ServiceLocationException {
+		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
 	/**

@@ -77,6 +77,12 @@ class ServiceTypeRequest extends RequestMessage {
 		locale = theLocale == null ? SLPCore.DEFAULT_LOCALE : theLocale;
 	}
 
+	ServiceTypeRequest(final String authority, final List scopes,
+			final Locale theLocale, String aSecurityGroup) {
+		this(authority, scopes, theLocale);
+		securityGroup = aSecurityGroup;
+	}
+	
 	/**
 	 * create a new ServiceTypeRequest from a DataInput streaming the bytes of a
 	 * ServiceTypeRequest message body.

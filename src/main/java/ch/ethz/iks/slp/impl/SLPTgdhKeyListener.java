@@ -25,6 +25,6 @@ public class SLPTgdhKeyListener extends TgdhKeyListener {
 	 */
 	public void keyChanged(DSAKey dsaKey) {
 		String groupName = this.getGroupIdentifer().getGroupName();
-		SLPCore.sgKeys.put(groupName, dsaKey);
+		SLPCore.sgSessionKeys.put(groupName, dsaKey);
 	}
 }

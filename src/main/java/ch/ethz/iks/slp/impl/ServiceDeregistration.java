@@ -90,6 +90,11 @@ class ServiceDeregistration extends SLPMessage {
 			attList = new ArrayList();
 		}
 	}
+	ServiceDeregistration(final ServiceURL serviceURL, final List scopes,
+			final List attributes, final Locale theLocale, final String aSecurityGroup) {
+		this(serviceURL, scopes, attributes, theLocale);
+		securityGroup = aSecurityGroup;
+	}
 
 	/**
 	 * parse a ServiceDeregistration from an input stream.

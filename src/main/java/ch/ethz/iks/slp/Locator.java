@@ -74,6 +74,27 @@ public interface Locator {
 	 */
 	ServiceLocationEnumeration findServiceTypes(String namingAuthority,
 			List scopes) throws ServiceLocationException;
+	
+	/**
+	 * Find all services types that are currently
+	 * registered in the network.
+	 * 
+	 * @param namingAuthority
+	 *            the naming authority for the service type. If omitted,
+	 *            ALL Service Types are returned, regardless of Naming Authority.
+	 *            With the empty <code>String</code> (""), <code>IANA</code> will be assumed.
+	 * @param scopes
+	 *            a <code>List</code> of scopes in that service types are to
+	 *            be discovered.
+	 * @param keyPair
+	 *            a <code>KeyPair</code> which gets used to find encrypted 
+	 *            service advertisements. This is not part of SLPv2!
+	 * @return a ServiceLocationEnumeration over the discovered ServiceTypes.
+	 * @throws ServiceLocationException
+	 *             whenever called.
+	 */
+	ServiceLocationEnumeration findServiceTypes(String namingAuthority,
+			List scopes, KeyPair keyPair) throws ServiceLocationException;
 
 	/**
 	 * Find all services that match a certain service type.
@@ -146,6 +167,34 @@ public interface Locator {
 	 */
 	ServiceLocationEnumeration findAttributes(ServiceURL url, List scopes,
 			List attributeIds) throws ServiceLocationException;
+	
+	/**
+	 * Find all services that match a ServiceURL.
+	 * 
+	 * @param url
+	 *            the ServiceURL.
+	 * @param scopes
+	 *            A <code>List</code> of scopes <code>Strings</code>, RFC
+	 *            2614 uses <code>Vector</code> here but jSLP prefers the
+	 *            Collection Framework.
+	 * @param attributeIds
+	 *            A List of attribute-value-pairs like
+	 * @param keyPair
+	 *            a <code>KeyPair</code> which gets used to find encrypted 
+	 *            service advertisements. This is not part of SLPv2!
+	 * 
+	 * <pre>
+	 * (key = value)
+	 * </pre>
+	 * 
+	 * that must match. If null, no attribute constraints are applied.
+	 * @return a ServiceLocationEnumeration over the <code>ServiceURLs</code>
+	 *         of the found services.
+	 * @throws ServiceLocationException
+	 *             in case of an exception in the underlying framework.
+	 */
+	ServiceLocationEnumeration findAttributes(ServiceURL url, List scopes,
+			List attributeIds, KeyPair keyPair) throws ServiceLocationException;
 
 	/**
 	 * Find all services that match a ServiceType.
@@ -171,4 +220,32 @@ public interface Locator {
 	 */
 	ServiceLocationEnumeration findAttributes(ServiceType type, List scopes,
 			List attributeIds) throws ServiceLocationException;
+	
+	/**
+	 * Find all services that match a ServiceType.
+	 * 
+	 * @param type
+	 *            the ServiceType.
+	 * @param scopes
+	 *            A <code>List</code> of scope <code>Strings</code>, RFC
+	 *            2614 uses <code>Vector</code> here but jSLP prefers the
+	 *            Collection Framework.
+	 * @param attributeIds
+	 *            A List of attribute-value-pairs like
+	 * @param keyPair
+	 *            a <code>KeyPair</code> which gets used to find encrypted 
+	 *            service advertisements. This is not part of SLPv2!
+	 * 
+	 * <pre>
+	 * (key = value)
+	 * </pre>
+	 * 
+	 * that must match. If null, no attribute constraints are applied.
+	 * @return a ServiceLocationEnumeration over the ServiceURLs of the found
+	 *         services.
+	 * @throws ServiceLocationException
+	 *             in case of an exception in the underlying framework.
+	 */
+	ServiceLocationEnumeration findAttributes(ServiceType type, List scopes,
+			List attributeIds, KeyPair keyPair) throws ServiceLocationException;
 }

@@ -34,9 +34,23 @@ public class SecuredSelfDiscoveryTest extends SLPTestCase {
 			generator.initialize(1024);
 			keyPair = generator.generateKeyPair();
 			
-			service = new ServiceURL("service:osgi://" + HOST_AND_PORT, 10800);
+			service = new ServiceURL("service:securitygrouptestservice://" + HOST_AND_PORT, 10800);
 			properties = new Hashtable();
 			TestActivator.advertiser.register(service, properties, keyPair);
+		} catch (ServiceLocationException e) {
+			Assert.fail(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see ch.ethz.iks.slp.test.SLPTestCase#tearDown()
+	 */
+	public void tearDown() throws InterruptedException {
+		try {
+			if(service != null) {
+				TestActivator.advertiser.deregister(service, keyPair);
+			}
 		} catch (ServiceLocationException e) {
 			Assert.fail(e.getMessage());
 			e.printStackTrace();
@@ -50,13 +64,12 @@ public class SecuredSelfDiscoveryTest extends SLPTestCase {
 	public void testService() throws Exception {
 		int count = 0;
 		for (ServiceLocationEnumeration services = TestActivator.locator
-				.findServices(new ServiceType("service:tgdh"), null, null, keyPair); services
+				.findServices(new ServiceType("service:securitygrouptestservice"), null, null, keyPair); services
 				.hasMoreElements();) {
 			assertEquals(services.next().toString(),
-					"service:tgdh://"  + HOST_AND_PORT);
+					"service:securitygrouptestservice://"  + HOST_AND_PORT);
 			count++;
 		}
 		assertEquals(1, count);
 	}
-
 }
