@@ -493,6 +493,11 @@ class SLPConfiguration {
 		return key;
 	}
 
+	String getEncryptionAlgorithm() {
+		//TODO make configurable
+		return "AES";
+	}
+	
 	/**
 	 * get the default wait time.
 	 * 

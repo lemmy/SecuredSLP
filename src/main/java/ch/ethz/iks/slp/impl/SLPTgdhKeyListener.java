@@ -11,7 +11,14 @@
 
 package ch.ethz.iks.slp.impl;
 
-import java.security.interfaces.DSAKey;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
+
+import ch.ethz.iks.slp.impl.sec.SecurityGroupSessionKey;
+
 
 import tgdh.TgdhKeyListener;
 
@@ -19,12 +26,41 @@ import tgdh.TgdhKeyListener;
  * @author Markus Alexander Kuppe
  */
 public class SLPTgdhKeyListener extends TgdhKeyListener {
+	
+	private MessageDigest md = null;
 
-	/* (non-Javadoc)
-	 * @see tgdh.TgdhKeyListener#keyChanged(java.security.interfaces.DSAKey)
-	 */
-	public void keyChanged(DSAKey dsaKey) {
-		String groupName = this.getGroupIdentifer().getGroupName();
-		SLPCore.sgSessionKeys.put(groupName, dsaKey);
+	public SLPTgdhKeyListener() {
+		try {
+			//TODO make hash algorithm configurable
+			md = MessageDigest.getInstance("SHA-512");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see tgdh.TgdhKeyListener#keyChanged()
+	 */
+	public void keyChanged(byte[] sessionKey) {
+		// AES keys are max 128, thus keyspec is 16 byte and not 64 provided by tgdh
+		final byte[] keyBits = new byte[16];
+		System.arraycopy(sessionKey, 0, keyBits, 0, 16);
+		
+		// base64 encoded version of sha-512 key hash is used for key id
+		byte[] digest = md.digest(keyBits);
+		//TODO use Apache commons instead of javax.xml.* once we move to whiteboard pattern
+		String keyName = DatatypeConverter.printBase64Binary(digest);
+		
+		SecretKeySpec secretKeySpec = new SecretKeySpec(keyBits, SLPCore.CONFIG.getEncryptionAlgorithm());
+		String groupName = groupIdentifer.getGroupName();
+
+		SecurityGroupSessionKey sgSessionKey = new SecurityGroupSessionKey(secretKeySpec, keyName, groupName);
+
+		// make the new GSK available to the receiver fully qualified
+		SLPCore.sgSessionKeys.put(sgSessionKey.getFQN(), sgSessionKey);
+		
+		// the sender always just uses "$SG name" 
+		SLPCore.sgSessionKeys.put(sgSessionKey.getSecurityGroupIdentifer(), sgSessionKey);
+	}
+	
 }

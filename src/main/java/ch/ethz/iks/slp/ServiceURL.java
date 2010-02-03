@@ -329,6 +329,10 @@ public final class ServiceURL extends ch.ethz.iks.slp.impl.AuthenticatedURL
 	 * @return the URL path.
 	 */
 	public String getURLPath() {
+		//remove trailing "/"
+		if(path.length() > 0) {
+			return path.substring(1);
+		}
 		return path;
 	}
 

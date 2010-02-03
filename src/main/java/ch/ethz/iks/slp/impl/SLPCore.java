@@ -54,9 +54,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
 
 import ch.ethz.iks.slp.ServiceLocationException;
 import ch.ethz.iks.slp.ServiceType;
@@ -188,24 +186,21 @@ public abstract class SLPCore {
 	static InetAddress LOCALHOST;
 
 	/**
-	 * Map of Security Group keys
+	 * Map of symmetric Security Group keys
 	 * 
-	 * String security group -> symmetric key
+	 * String "security group identifier":"key identifier" -> symmetric key
 	 */
 	static Map sgSessionKeys = new HashMap();
 	
 	/**
 	 * Map of Security Group keys
 	 * 
-	 * asymmetric key -> security group
+	 * asymmetric key -> "security group identifier"
 	 */
+	//TODO move to SLPConfigure and merge with pub/priv keys
 	static Map sgKeys = new HashMap();
 	
 	static Cipher cipher;
-	
-	//TODO remove after testing
-	static String SECURITY_GROUP_NAME = "SECURITY_GROUP";
-	static boolean TESTING = true;
 	
 	/**
 	 * initialize the core class.
@@ -299,15 +294,7 @@ public abstract class SLPCore {
 		
 		// initialize the cipher
 		try {
-			cipher = Cipher.getInstance("AES");
-			
-			//TODO remove after testing
-			KeyGenerator kgen = KeyGenerator.getInstance("AES");
-			kgen.init(128); // 192 and 256 bits may not be available
-
-			// Generate the secret key specs.
-			SecretKey key = kgen.generateKey();
-			sgSessionKeys.put(SECURITY_GROUP_NAME, key);
+			cipher = Cipher.getInstance(CONFIG.getEncryptionAlgorithm());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (NoSuchPaddingException e) {

@@ -164,8 +164,6 @@ public final class LocatorImpl implements Locator {
 			final List scopes, final String searchFilter, final KeyPair keyPair)
 			throws ServiceLocationException, IllegalArgumentException {
 
-		if (!SLPCore.TESTING) {
-
 			// DSA keys
 			DSAKey privateKey = (DSAKey) keyPair.getPrivate();
 
@@ -179,8 +177,7 @@ public final class LocatorImpl implements Locator {
 					sgScopes, null);
 			while (sgs.hasMoreElements()) {
 				ServiceURL sgServiceURL = (ServiceURL) sgs.nextElement();
-				String sgName = sgServiceURL.getServiceType()
-						.getConcreteTypeName();
+				String sgName = sgServiceURL.getURLPath();
 				TgdhKeyListener sgCallBack = new SLPTgdhKeyListener();
 				try {
 					sgIdentifiers.add(TreeGroupDiffieHellman.joinGroup(
@@ -202,18 +199,6 @@ public final class LocatorImpl implements Locator {
 							.getMessage());
 				}
 			}
-		} else {
-			try {
-				RequestMessage srvReq = new ServiceRequest(type,
-						scopes, searchFilter, locale, SLPCore.SECURITY_GROUP_NAME);
-				return new ServiceLocationEnumerationImpl(sendRequest(
-						srvReq, scopes));
-			} catch (IllegalArgumentException ise) {
-				throw new ServiceLocationException(
-						ServiceLocationException.INTERNAL_SYSTEM_ERROR,
-						ise.getMessage() + ": " + searchFilter);
-			}
-		}
 		
 		return new ServiceLocationEnumerationImpl(new ArrayList());
 	}

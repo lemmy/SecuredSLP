@@ -51,6 +51,7 @@ import ch.ethz.iks.slp.impl.attr.AttributeListVisitor;
 import ch.ethz.iks.slp.impl.attr.gen.Parser;
 import ch.ethz.iks.slp.impl.attr.gen.ParserException;
 import ch.ethz.iks.slp.impl.attr.gen.Rule;
+import ch.ethz.iks.slp.impl.sec.SecurityGroupSessionKey;
 
 /**
  * base class for all messages that the SLP framework uses.
@@ -257,7 +258,8 @@ public abstract class SLPMessage {
 		// encrypt payload
 		if(isEncrypted()) {
 			try {
-				Key key = (Key) SLPCore.sgSessionKeys.get(securityGroup);
+				SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityGroup);
+				Key key = sgSessionKey.getSecKeySpec();
 				SLPCore.cipher.init(Cipher.ENCRYPT_MODE, key);
 				payload = SLPCore.cipher.doFinal(payload);
 			} catch (InvalidKeyException e) {
@@ -357,7 +359,8 @@ public abstract class SLPMessage {
 			if ((flags & 0x10) != 0) {
 				byte[] encryptedBytes = new byte[length - headerLength];
 				in.read(encryptedBytes);
-				Key key = (Key) SLPCore.sgSessionKeys.get(securityGroup);
+				SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityGroup);
+				Key key = sgSessionKey.getSecKeySpec();
 				SLPCore.cipher.init(Cipher.DECRYPT_MODE, key);
 				byte[] recoveredBytes = SLPCore.cipher.doFinal(encryptedBytes);
 				in = new DataInputStream(new ByteArrayInputStream(
