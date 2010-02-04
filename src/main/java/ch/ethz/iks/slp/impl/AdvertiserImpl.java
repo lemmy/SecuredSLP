@@ -190,7 +190,7 @@ public final class AdvertiserImpl implements Advertiser {
 		} catch (Exception e) {
 			// TODO real error code
 			throw new ServiceLocationException((short) -1, 
-					"Registration failed");
+					e.getMessage());
 		}
 
 		// Announce Security Group via traditional SLPv2
