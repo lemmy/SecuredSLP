@@ -32,7 +32,8 @@ public class SLPTgdhKeyListener extends TgdhKeyListener {
 	public SLPTgdhKeyListener() {
 		try {
 			//TODO make hash algorithm configurable
-			md = MessageDigest.getInstance("SHA-512");
+			SLPConfiguration configuration = SLPCore.getConfiguration();
+			md = MessageDigest.getInstance(configuration.getHashAlgorithm());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
@@ -43,15 +44,17 @@ public class SLPTgdhKeyListener extends TgdhKeyListener {
 	 */
 	public void keyChanged(byte[] sessionKey) {
 		// AES keys are max 128, thus keyspec is 16 byte and not 64 provided by tgdh
-		final byte[] keyBits = new byte[16];
-		System.arraycopy(sessionKey, 0, keyBits, 0, 16);
+		SLPConfiguration configuration = SLPCore.getConfiguration();
+		int keySize = configuration.getSessionKeySize();
+		final byte[] keyBits = new byte[keySize];
+		System.arraycopy(sessionKey, 0, keyBits, 0, keySize);
 		
 		// base64 encoded version of sha-512 key hash is used for key id
 		byte[] digest = md.digest(keyBits);
 		//TODO use Apache commons instead of javax.xml.* once we move to whiteboard pattern
 		String keyName = DatatypeConverter.printBase64Binary(digest);
 		
-		SecretKeySpec secretKeySpec = new SecretKeySpec(keyBits, SLPCore.CONFIG.getEncryptionAlgorithm());
+		SecretKeySpec secretKeySpec = new SecretKeySpec(keyBits, SLPCore.CONFIG.getSessionKeyAlgorithm());
 		String groupName = groupIdentifer.getGroupName();
 
 		SecurityGroupSessionKey sgSessionKey = new SecurityGroupSessionKey(secretKeySpec, keyName, groupName);

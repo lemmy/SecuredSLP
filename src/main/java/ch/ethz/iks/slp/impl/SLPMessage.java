@@ -236,7 +236,12 @@ public abstract class SLPMessage {
 		out.write(0);
 		out.writeShort(xid);
 		out.writeUTF(locale.getLanguage());
-		out.writeUTF(securityGroup);
+		SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityGroup);
+		if(sgSessionKey != null) {
+			out.writeUTF(sgSessionKey.getFQN());
+		} else {
+			out.writeUTF("");
+		}
 	}
 
 	/**
@@ -296,13 +301,13 @@ public abstract class SLPMessage {
 	 *                  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 	 *                  |      Language Tag Length      |         Language Tag          |
 	 *                  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-	 *                  |      Security Group Length    | 		Security Group Name		|
+	 *                  |Security Parameter Index Length|   Security Parameter Index	|
 	 *                  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 	 *                  
 	 *  New flag is:  SECURITY (0x10) is set when a security group is used
 	 * 
-	 *  Security Group Length is the length in bytes of the Security Group Name field.
-     *  Security Group Name conforms to [7]. This field must be encoded 1*8ALPHA *("-" 1*8ALPHA).
+	 *  Security Parameter Index Length is the length in bytes of the Security Parameter Index field.
+     *  Security Parameter Index conforms to [7]. This field must be encoded 1*8ALPHA *("-" 1*8ALPHA).
 	 * </pre>
 	 * 
 	 * This method parses the header and then delegates the creation of the
@@ -351,15 +356,15 @@ public abstract class SLPMessage {
 			final Locale locale = new Locale(in.readUTF(), ""); // Locale
 
 			// read Security Group
-			String securityGroup = in.readUTF();
+			String securityParameterIndex = in.readUTF();
 			
 			final int headerLength = HEADER_PREFIX_LENGTH
 				+ locale.getLanguage().length()
-				+ securityGroup.length();
+				+ securityParameterIndex.length();
 			if ((flags & 0x10) != 0) {
 				byte[] encryptedBytes = new byte[length - headerLength];
 				in.read(encryptedBytes);
-				SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityGroup);
+				SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityParameterIndex);
 				Key key = sgSessionKey.getSecKeySpec();
 				SLPCore.cipher.init(Cipher.DECRYPT_MODE, key);
 				byte[] recoveredBytes = SLPCore.cipher.doFinal(encryptedBytes);
@@ -387,7 +392,7 @@ public abstract class SLPMessage {
 				break;
 			case SRVREG:
 				msg = new ServiceRegistration(in);
-				break;
+ 				break;
 			case SRVDEREG:
 				msg = new ServiceDeregistration(in);
 				break;
@@ -414,7 +419,7 @@ public abstract class SLPMessage {
 			msg.xid = xid;
 			msg.funcID = funcID;
 			msg.locale = locale;
-			msg.securityGroup = securityGroup;
+			msg.securityGroup = securityParameterIndex;
 			//for encrypted messages the decrypted lengths don't match
 			if ((flags & 0x10) == 0 && msg.getSize() != (length - headerLength)) {
 				SLPCore.platform.logError("Length of " + msg + " should be " + length + ", read "
@@ -449,7 +454,8 @@ public abstract class SLPMessage {
 	protected int getHeaderSize() {
 		int length = HEADER_PREFIX_LENGTH + locale.getLanguage().length();
 		if(isEncrypted()) {
-			length += securityGroup.length();
+			SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityGroup);
+			length += sgSessionKey.getFQN().length();
 		}
 		return length;
 	}

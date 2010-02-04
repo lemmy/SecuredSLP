@@ -495,7 +495,28 @@ class SLPConfiguration {
 
 	String getEncryptionAlgorithm() {
 		//TODO make configurable
+//		return "DES/CBC/PKCS5Padding";
+//		return "AES/CBC/PKCS5Padding"; // IVs are required for decryption
+		return "AES/ECB/PKCS5Padding";
+//		return "AES/ECB/PKCS7Padding"; //PKCS7Padding not part of Sun's JCE
+//		return "AES/CBC/PKCS7Padding"; //PKCS7Padding not part of Sun's JCE
+	}
+	
+	String getSessionKeyAlgorithm() {
 		return "AES";
+	}
+	
+	String getHashAlgorithm() {
+		//TODO make configurable
+		return "SHA-512";
+	}
+	
+	/**
+	 * @return The key size to be used in _bytes_
+	 */
+	int getSessionKeySize() {
+		//TODO make configurable
+		return 128 / 8;
 	}
 	
 	/**

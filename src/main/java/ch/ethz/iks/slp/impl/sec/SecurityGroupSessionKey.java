@@ -52,7 +52,7 @@ public class SecurityGroupSessionKey {
 		return securityGroupIdentifer;
 	}
 
-	public Object getFQN() {
+	public String getFQN() {
 		return getFQN(getSecurityGroupIdentifer(), getSecurityGroupSessionKeyIdentifier());
 	}
 }

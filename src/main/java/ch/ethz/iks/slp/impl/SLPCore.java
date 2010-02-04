@@ -460,6 +460,13 @@ public abstract class SLPCore {
 	public static List findScopes() throws ServiceLocationException {
 		return new ArrayList(dAs.keySet());
 	}
+	
+	/**
+	 * @return The SLP Configuration used with this core
+	 */
+	public static SLPConfiguration getConfiguration() {
+		return CONFIG;
+	}
 
 	/**
 	 * handle incoming UDP messages.
