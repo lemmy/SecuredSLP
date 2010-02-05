@@ -29,6 +29,7 @@
 
 package ch.ethz.iks.slp.impl;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -54,6 +55,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.crypto.Cipher;
+import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
 
 import ch.ethz.iks.slp.ServiceLocationException;
@@ -201,6 +203,7 @@ public abstract class SLPCore {
 	static Map sgKeys = new HashMap();
 	
 	static Cipher cipher;
+	static Mac mac;
 	
 	/**
 	 * initialize the core class.
@@ -295,6 +298,7 @@ public abstract class SLPCore {
 		// initialize the cipher
 		try {
 			cipher = Cipher.getInstance(CONFIG.getEncryptionAlgorithm());
+			 mac = Mac.getInstance("HmacSHA1");
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (NoSuchPaddingException e) {
@@ -708,7 +712,7 @@ public abstract class SLPCore {
 			socket.setSoTimeout(CONFIG.getTCPTimeout());
 			DataOutputStream out = new DataOutputStream(socket
 					.getOutputStream());
-			DataInputStream in = new DataInputStream(socket.getInputStream());
+			DataInputStream in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 			out.write(msg.getBytes());
 			final ReplyMessage reply = (ReplyMessage) SLPMessage.parse(
 					msg.address, msg.port, in, true);

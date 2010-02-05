@@ -38,6 +38,7 @@ import java.net.ProtocolException;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
@@ -101,6 +102,11 @@ public abstract class SLPMessage {
 	 * <code>null</code> if plain SLP is used
 	 */
 	protected String securityGroup;
+	
+	/**
+	 * The Session Key used during message encryption
+	 */
+	private SecurityGroupSessionKey sessionKey;
 
 	/**
 	 * Size of payload. Might differ from what subclasses calculate
@@ -112,7 +118,15 @@ public abstract class SLPMessage {
 	/**
 	 * Header length as defined by RFC
 	 */
-	public static final int HEADER_PREFIX_LENGTH = 14;
+	public static final int HEADER_PREFIX_LENGTH = 
+		1 /* version*/
+		+ 1 /* function id */
+		+ 3 /* length */
+		+ 5 /* flags */
+		+ 2 /* xid */
+		+ 2 /* Lang length */
+		+ 2 /* SPI length */;
+	// ===== 16
 
 	/**
 	 * the message version according to RFC 2608, Version = 2.
@@ -253,7 +267,7 @@ public abstract class SLPMessage {
 	 * 
 	 */
 	byte[] getBytes() throws IOException {
-		// get payload
+		// write payload into temp buffer to calc size for header
 		final ByteArrayOutputStream payloadBytes = new ByteArrayOutputStream();
 		final DataOutputStream payloadOut = new DataOutputStream(payloadBytes);
 		writeTo(payloadOut);
@@ -262,9 +276,10 @@ public abstract class SLPMessage {
 		
 		// encrypt payload
 		if(isEncrypted()) {
+			// the current session key
+			SecurityGroupSessionKey sgSessionKey = getSessionKey();
+			Key key = sgSessionKey.getSecKeySpec();
 			try {
-				SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityGroup);
-				Key key = sgSessionKey.getSecKeySpec();
 				SLPCore.cipher.init(Cipher.ENCRYPT_MODE, key);
 				payload = SLPCore.cipher.doFinal(payload);
 			} catch (InvalidKeyException e) {
@@ -277,12 +292,32 @@ public abstract class SLPMessage {
 			payloadSize = payload.length;
 		}
 		
-		// merge header and encrypted payload
+		// write header
 		final ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 		final DataOutputStream out = new DataOutputStream(bytes);
 		writeHeader(out);
+		
+		// prepend payload after header
 		out.write(payload);
 		
+		// calculate (H)MAC of header _and_ payload
+		// MAC includes header _and_ payload much like IPSec ESP does
+		if(isEncrypted()) { //TODO message integrity optional -> move into slpconfiguration?
+			SecurityGroupSessionKey sgSessionKey = getSessionKey();
+			Key key = sgSessionKey.getSecKeySpec();
+			try {
+				SLPCore.mac.init(key);
+				byte[] msg = bytes.toByteArray();
+				byte[] mac = SLPCore.mac.doFinal(msg);
+
+				// prepend mac after payload (header -> payload -> mac -> next header -> next header 2 -> ...)
+				out.write(mac);
+			} catch (InvalidKeyException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// finally convert to byte[]
 		return bytes.toByteArray();
 	}
 
@@ -328,82 +363,86 @@ public abstract class SLPMessage {
 	 *             in case of any parsing errors.
 	 */
 	static SLPMessage parse(final InetAddress senderAddr, final int senderPort,
-			DataInputStream in, final boolean tcp)
+			DataInputStream inputStream, final boolean tcp)
 			throws ServiceLocationException, ProtocolException {
 		try {
-			final int version = in.readByte(); // version
+			assert inputStream.markSupported();
+			inputStream.mark(Integer.MAX_VALUE); // remember all bytes
+			
+			final int version = inputStream.readByte(); // version
 			if (version != VERSION) {
-				in.readByte(); // funcID
-				final int length = in.readShort();
+				inputStream.readByte(); // funcID
+				final int length = inputStream.readShort();
 				byte[] drop = new byte[length - 4];
-				in.readFully(drop);
+				inputStream.readFully(drop);
 				SLPCore.platform.logWarning("Dropped SLPv" + version + " message from "
 							+ senderAddr + ":" + senderPort);
 			}
-			final byte funcID = in.readByte(); // funcID
-			final int length = readInt(in, 3);
+			final byte funcID = inputStream.readByte(); // funcID
+			final int length = readInt(inputStream, 3);
 
 			// slpFlags
-			final byte flags = (byte) (in.readShort() >> 8);
+			final byte flags = (byte) (inputStream.readShort() >> 8);
 
 			if (!tcp && (flags & 0x80) != 0) {
 				throw new ProtocolException();
 			}
 
 			// we don't process extensions, we simply ignore them
-			readInt(in, 3); // extOffset
-			final short xid = in.readShort(); // XID
-			final Locale locale = new Locale(in.readUTF(), ""); // Locale
+			readInt(inputStream, 3); // extOffset
+			final short xid = inputStream.readShort(); // XID
+			final Locale locale = new Locale(inputStream.readUTF(), ""); // Locale
 
-			// read Security Group
-			String securityParameterIndex = in.readUTF();
+			// read security parameter index
+			String securityParameterIndex = inputStream.readUTF();
 			
 			final int headerLength = HEADER_PREFIX_LENGTH
 				+ locale.getLanguage().length()
 				+ securityParameterIndex.length();
-			if ((flags & 0x10) != 0) {
+			DataInputStream decryptedInputStream = inputStream;
+			if (isEncrypted(flags)) {
 				byte[] encryptedBytes = new byte[length - headerLength];
-				in.read(encryptedBytes);
-				SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityParameterIndex);
-				Key key = sgSessionKey.getSecKeySpec();
+				inputStream.read(encryptedBytes);
+				SecurityGroupSessionKey sessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityParameterIndex);
+				Key key = sessionKey.getSecKeySpec();
 				SLPCore.cipher.init(Cipher.DECRYPT_MODE, key);
-				byte[] recoveredBytes = SLPCore.cipher.doFinal(encryptedBytes);
-				in = new DataInputStream(new ByteArrayInputStream(
-						recoveredBytes));
+				byte[] decryptedBytes = SLPCore.cipher.doFinal(encryptedBytes);
+				decryptedInputStream = new DataInputStream(new ByteArrayInputStream(
+						decryptedBytes));
 			}
 
 			final SLPMessage msg;
 			// decide on the type of the message
 			switch (funcID) {
 			case DAADVERT:
-				msg = new DAAdvertisement(in);
+				msg = new DAAdvertisement(decryptedInputStream);
 				break;
 			case SRVRQST:
-				msg = new ServiceRequest(in);
+				msg = new ServiceRequest(decryptedInputStream);
 				break;
 			case SRVRPLY:
-				msg = new ServiceReply(in);
+				msg = new ServiceReply(decryptedInputStream);
 				break;
 			case ATTRRQST:
-				msg = new AttributeRequest(in);
+				msg = new AttributeRequest(decryptedInputStream);
 				break;
 			case ATTRRPLY:
-				msg = new AttributeReply(in);
+				msg = new AttributeReply(decryptedInputStream);
 				break;
 			case SRVREG:
-				msg = new ServiceRegistration(in);
+				msg = new ServiceRegistration(decryptedInputStream);
  				break;
 			case SRVDEREG:
-				msg = new ServiceDeregistration(in);
+				msg = new ServiceDeregistration(decryptedInputStream);
 				break;
 			case SRVACK:
-				msg = new ServiceAcknowledgement(in);
+				msg = new ServiceAcknowledgement(decryptedInputStream);
 				break;
 			case SRVTYPERQST:
-				msg = new ServiceTypeRequest(in);
+				msg = new ServiceTypeRequest(decryptedInputStream);
 				break;
 			case SRVTYPERPLY:
-				msg = new ServiceTypeReply(in);
+				msg = new ServiceTypeReply(decryptedInputStream);
 				break;
 			default:
 				throw new ServiceLocationException(
@@ -421,10 +460,33 @@ public abstract class SLPMessage {
 			msg.locale = locale;
 			msg.securityGroup = securityParameterIndex;
 			//for encrypted messages the decrypted lengths don't match
-			if ((flags & 0x10) == 0 && msg.getSize() != (length - headerLength)) {
+			if (!isEncrypted(flags) && msg.getSize() != (length - headerLength)) {
 				SLPCore.platform.logError("Length of " + msg + " should be " + length + ", read "
 								+ msg.getSize() + headerLength);
 			}
+			
+			// read MAC and validate msg integrity
+			if(isEncrypted(flags)) {
+				byte[] mac = new byte[20]; // TODO currently MAC hardcoded to 20 bytes -> 160 bits
+				inputStream.read(mac);
+
+				// reset the input stream to 0 to reread the whole (header and payload) msg
+				inputStream.reset();
+				byte[] headerAndPayload = new byte[length];
+				inputStream.read(headerAndPayload);
+				
+				// validate mac
+				SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityParameterIndex);
+				Key key = sgSessionKey.getSecKeySpec();
+				SLPCore.mac.init(key);
+				byte[] macCacl = SLPCore.mac.doFinal(headerAndPayload);
+				if(!Arrays.equals(mac, macCacl)) {
+					SLPCore.platform.logError("Network Error: HMAC don't match!");
+					throw new ServiceLocationException(
+							ServiceLocationException.PARSE_ERROR, "HMAC mismatch");
+				}
+			}
+			
 			return msg;
 		} catch (ProtocolException pe) {
 			throw pe;
@@ -454,14 +516,24 @@ public abstract class SLPMessage {
 	protected int getHeaderSize() {
 		int length = HEADER_PREFIX_LENGTH + locale.getLanguage().length();
 		if(isEncrypted()) {
-			SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityGroup);
-			length += sgSessionKey.getFQN().length();
+			length += getSessionKey().getFQN().length();
 		}
 		return length;
 	}
 	
+	private static boolean isEncrypted(byte flags) {
+		return (flags & 0x10) != 0;
+	}
+	
 	private boolean isEncrypted() {
 		return !"".equals(securityGroup);
+	}
+	
+	private SecurityGroupSessionKey getSessionKey() {
+		if (sessionKey == null) {
+			sessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityGroup);
+		}
+		return sessionKey;
 	}
 
 	/**
