@@ -366,7 +366,6 @@ public abstract class SLPMessage {
 			DataInputStream inputStream, final boolean tcp)
 			throws ServiceLocationException, ProtocolException {
 		try {
-			assert inputStream.markSupported();
 			inputStream.mark(Integer.MAX_VALUE); // remember all bytes
 			
 			final int version = inputStream.readByte(); // version
