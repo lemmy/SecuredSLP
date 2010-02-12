@@ -391,13 +391,18 @@ public abstract class SLPMessage {
 
 			// read security parameter index
 			final String securityParameterIndex = inputStream.readUTF();
-			final SecurityGroupSessionKey sessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityParameterIndex);
+			SecurityGroupSessionKey sessionKey = null;
 			
 			final int headerLength = HEADER_PREFIX_LENGTH
 				+ locale.getLanguage().length()
 				+ securityParameterIndex.length();
 			DataInputStream decryptedInputStream = inputStream;
 			if (isEncrypted(flags)) {
+				sessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityParameterIndex);
+				if(sessionKey == null) {
+					throw new ServiceLocationException(
+							ServiceLocationException.PARSE_ERROR, "No Group Shared Key found for securityGroupSPI " + securityParameterIndex);
+				}
 				byte[] encryptedBytes = new byte[length - headerLength];
 				inputStream.read(encryptedBytes);
 				Key key = sessionKey.getSecKeySpec();
@@ -472,8 +477,7 @@ public abstract class SLPMessage {
 				inputStream.read(headerAndPayload);
 				
 				// validate mac
-				SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityParameterIndex);
-				Key key = sgSessionKey.getSecKeySpec();
+				Key key = sessionKey.getSecKeySpec();
 				SLPCore.mac.init(key);
 				byte[] macCacl = SLPCore.mac.doFinal(headerAndPayload);
 				if(!Arrays.equals(mac, macCacl)) {
