@@ -93,7 +93,7 @@ class ServiceDeregistration extends SLPMessage {
 	ServiceDeregistration(final ServiceURL serviceURL, final List scopes,
 			final List attributes, final Locale theLocale, final String aSecurityGroup) {
 		this(serviceURL, scopes, attributes, theLocale);
-		securityGroup = aSecurityGroup;
+		setSecurityGroup(aSecurityGroup);
 	}
 
 	/**

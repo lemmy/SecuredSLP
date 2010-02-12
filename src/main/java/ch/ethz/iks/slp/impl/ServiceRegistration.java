@@ -119,7 +119,7 @@ class ServiceRegistration extends SLPMessage {
 	ServiceRegistration(final ServiceURL serviceURL, final ServiceType type,
 			final List scopes, final List attributes, final Locale theLocale, String aSecurityGroup) {
 		this(serviceURL, type, scopes, attributes, theLocale);
-		securityGroup = aSecurityGroup;
+		setSecurityGroup(aSecurityGroup);
 	}
 
 	/**

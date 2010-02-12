@@ -98,15 +98,9 @@ public abstract class SLPMessage {
 	boolean multicast;
 	
 	/**
-	 * The Security Group this messages is part of
-	 * <code>null</code> if plain SLP is used
-	 */
-	protected String securityGroup;
-	
-	/**
 	 * The Session Key used during message encryption
 	 */
-	private SecurityGroupSessionKey sessionKey;
+	SecurityGroupSessionKey sessionKey;
 
 	/**
 	 * Size of payload. Might differ from what subclasses calculate
@@ -203,14 +197,20 @@ public abstract class SLPMessage {
 	 * 
 	 */
 	public SLPMessage() {
-		securityGroup = "";
 	}
 
 	/**
 	 * @param aSecurityGroup
 	 */
 	public SLPMessage(String aSecurityGroup) {
-		securityGroup = aSecurityGroup;
+		setSecurityGroup(aSecurityGroup);
+	}
+
+	/**
+	 * Sets the security group identifier of this msg to the given string
+	 */
+	void setSecurityGroup(String aSecurityGroup) {
+		sessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(aSecurityGroup);
 	}
 
 	/**
@@ -250,9 +250,8 @@ public abstract class SLPMessage {
 		out.write(0);
 		out.writeShort(xid);
 		out.writeUTF(locale.getLanguage());
-		SecurityGroupSessionKey sgSessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityGroup);
-		if(sgSessionKey != null) {
-			out.writeUTF(sgSessionKey.getFQN());
+		if(isEncrypted()) {
+			out.writeUTF(sessionKey.getFQN());
 		} else {
 			out.writeUTF("");
 		}
@@ -277,8 +276,7 @@ public abstract class SLPMessage {
 		// encrypt payload
 		if(isEncrypted()) {
 			// the current session key
-			SecurityGroupSessionKey sgSessionKey = getSessionKey();
-			Key key = sgSessionKey.getSecKeySpec();
+			Key key = sessionKey.getSecKeySpec();
 			try {
 				SLPCore.cipher.init(Cipher.ENCRYPT_MODE, key);
 				payload = SLPCore.cipher.doFinal(payload);
@@ -303,8 +301,7 @@ public abstract class SLPMessage {
 		// calculate (H)MAC of header _and_ payload
 		// MAC includes header _and_ payload much like IPSec ESP does
 		if(isEncrypted()) { //TODO message integrity optional -> move into slpconfiguration?
-			SecurityGroupSessionKey sgSessionKey = getSessionKey();
-			Key key = sgSessionKey.getSecKeySpec();
+			Key key = sessionKey.getSecKeySpec();
 			try {
 				SLPCore.mac.init(key);
 				byte[] msg = bytes.toByteArray();
@@ -393,7 +390,8 @@ public abstract class SLPMessage {
 			final Locale locale = new Locale(inputStream.readUTF(), ""); // Locale
 
 			// read security parameter index
-			String securityParameterIndex = inputStream.readUTF();
+			final String securityParameterIndex = inputStream.readUTF();
+			final SecurityGroupSessionKey sessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityParameterIndex);
 			
 			final int headerLength = HEADER_PREFIX_LENGTH
 				+ locale.getLanguage().length()
@@ -402,7 +400,6 @@ public abstract class SLPMessage {
 			if (isEncrypted(flags)) {
 				byte[] encryptedBytes = new byte[length - headerLength];
 				inputStream.read(encryptedBytes);
-				SecurityGroupSessionKey sessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityParameterIndex);
 				Key key = sessionKey.getSecKeySpec();
 				SLPCore.cipher.init(Cipher.DECRYPT_MODE, key);
 				byte[] decryptedBytes = SLPCore.cipher.doFinal(encryptedBytes);
@@ -457,7 +454,7 @@ public abstract class SLPMessage {
 			msg.xid = xid;
 			msg.funcID = funcID;
 			msg.locale = locale;
-			msg.securityGroup = securityParameterIndex;
+			msg.sessionKey = sessionKey;
 			//for encrypted messages the decrypted lengths don't match
 			if (!isEncrypted(flags) && msg.getSize() != (length - headerLength)) {
 				SLPCore.platform.logError("Length of " + msg + " should be " + length + ", read "
@@ -515,7 +512,7 @@ public abstract class SLPMessage {
 	protected int getHeaderSize() {
 		int length = HEADER_PREFIX_LENGTH + locale.getLanguage().length();
 		if(isEncrypted()) {
-			length += getSessionKey().getFQN().length();
+			length += sessionKey.getFQN().length();
 		}
 		return length;
 	}
@@ -525,16 +522,9 @@ public abstract class SLPMessage {
 	}
 	
 	private boolean isEncrypted() {
-		return !"".equals(securityGroup);
+		return sessionKey != null;
 	}
 	
-	private SecurityGroupSessionKey getSessionKey() {
-		if (sessionKey == null) {
-			sessionKey = (SecurityGroupSessionKey) SLPCore.sgSessionKeys.get(securityGroup);
-		}
-		return sessionKey;
-	}
-
 	/**
 	 * 
 	 * @return
@@ -555,7 +545,7 @@ public abstract class SLPMessage {
 		buffer.append(", xid=" + xid);
 		buffer.append(", locale=" + locale);
 		if(isEncrypted()) {
-			buffer.append(", securityGroup=" + securityGroup);
+			buffer.append(", securityGroupSpi=" + sessionKey.getFQN());
 		}
 		return buffer.toString();
 	}
