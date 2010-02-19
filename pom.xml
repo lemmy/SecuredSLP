@@ -229,11 +229,6 @@
       <name>Eclipse Maven</name>
       <url>http://repo2.maven.org/eclipse/</url>
     </repository>
-    <repository>
-      <id>ECF OSU</id>
-      <name>ECF OSU</name>
-      <url>http://ecf2.osuosl.org/maven2/</url>
-    </repository>
 	<repository>
 		<id>com.springsource.repository.bundles.release</id>
 		<name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
