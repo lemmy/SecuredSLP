@@ -12,7 +12,10 @@ package ch.ethz.iks.slp.test;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.List;
 
 import junit.framework.Assert;
 import ch.ethz.iks.slp.ServiceLocationEnumeration;
@@ -22,6 +25,10 @@ import ch.ethz.iks.slp.ServiceURL;
 
 public class SecuredSelfDiscoveryTest extends SLPTestCase {
 
+	/**
+	 * 
+	 */
+	private static final String SERVICE_TYPE = "service:securitygrouptestservice://";
 	private KeyPair keyPair;
 
 	/*
@@ -34,7 +41,7 @@ public class SecuredSelfDiscoveryTest extends SLPTestCase {
 			generator.initialize(1024);
 			keyPair = generator.generateKeyPair();
 			
-			service = new ServiceURL("service:securitygrouptestservice://" + HOST_AND_PORT, 10800);
+			service = new ServiceURL(SERVICE_TYPE + HOST_AND_PORT, 10800);
 			properties = new Hashtable();
 			TestActivator.advertiser.register(service, properties, keyPair);
 		} catch (ServiceLocationException e) {
@@ -62,14 +69,14 @@ public class SecuredSelfDiscoveryTest extends SLPTestCase {
 	 * {@link ch.ethz.iks.slp.Locator}.
 	 */
 	public void testService() throws Exception {
-		int count = 0;
+		List list = new ArrayList(1);
 		for (ServiceLocationEnumeration services = TestActivator.locator
 				.findServices(new ServiceType("service:securitygrouptestservice"), null, null, keyPair); services
 				.hasMoreElements();) {
-			assertEquals(services.next().toString(),
-					"service:securitygrouptestservice://"  + HOST_AND_PORT);
-			count++;
+			Object actual = services.next();
+			list.add(actual);
+			assertEquals(SERVICE_TYPE  + HOST_AND_PORT, actual.toString());
 		}
-		assertEquals(1, count);
+		assertEquals(Arrays.toString(list.toArray()), 1, list.size());
 	}
 }
