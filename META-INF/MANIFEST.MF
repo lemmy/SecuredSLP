@@ -12,3 +12,4 @@ Import-Package: junit.framework;optional=true;specification-version="3.8.0",
  tgdh
 Bundle-Description: jSLP, the pure Java Service Location Protocol implementation
 Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

@@ -80,7 +80,7 @@ class ServiceTypeRequest extends RequestMessage {
 	ServiceTypeRequest(final String authority, final List scopes,
 			final Locale theLocale, String aSecurityGroup) {
 		this(authority, scopes, theLocale);
-		setSecurityGroup(aSecurityGroup);
+		securityGroup = aSecurityGroup;
 	}
 	
 	/**

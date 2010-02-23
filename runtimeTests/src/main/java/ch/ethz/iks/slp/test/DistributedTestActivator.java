@@ -67,12 +67,14 @@ public class DistributedTestActivator extends TestActivator implements ServiceLi
 		}
 
 		if (advertiser != null && locator != null) {
-			// do not call the tests from inside the framework thread
 			new Thread(new Runnable() {
+				/* (non-Javadoc)
+				 * @see java.lang.Runnable#run()
+				 */
 				public void run() {
-					startTests();		
+					startTests();
 				}
-			}).start();
+			});
 		}
 	}
 

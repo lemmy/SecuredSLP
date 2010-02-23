@@ -1,5 +1,8 @@
 package ch.ethz.iks.slp.test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,8 +13,10 @@ import junit.framework.TestCase;
 import junit.framework.TestFailure;
 import junit.framework.TestResult;
 import junit.framework.TestSuite;
-import junit.textui.TestRunner;
 
+import org.apache.tools.ant.taskdefs.optional.junit.JUnitResultFormatter;
+import org.apache.tools.ant.taskdefs.optional.junit.JUnitTest;
+import org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -20,7 +25,8 @@ import ch.ethz.iks.slp.Advertiser;
 import ch.ethz.iks.slp.Locator;
 
 public class TestActivator implements BundleActivator {
-
+	protected String outputDirectory = System.getProperty("test.result.output.dir", System.getProperty("user.dir"));
+	
 	static Advertiser advertiser;
 	static Locator locator;
 
@@ -50,12 +56,25 @@ public class TestActivator implements BundleActivator {
 	}
 
 	protected void startTests() {
-		TestSuite suite = new TestSuite();
+		final TestSuite suite = new TestSuite();
+		final TestResult result = new TestResult();
+
+		final JUnitTest jUnitTest = new JUnitTest("ch.ethz.iks.slp.test");
+	    jUnitTest.setProperties(System.getProperties());
+	    
+	    // create a result formatter
+		final JUnitResultFormatter jUnitResultFormatter = new XMLJUnitResultFormatter();
+		final File file = new File(outputDirectory, "TEST-ch.ethz.iks.slp.test" + ".xml");
+		try {
+			jUnitResultFormatter.setOutput(new FileOutputStream(file));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		result.addListener(jUnitResultFormatter);
+
+		// add the actual tests to the test suite
 		Collection collection = new ArrayList();
-		
-		collection.add(SecuredSelfDiscoveryTest.class);
 		collection.add(SelfDiscoveryTest.class);
-		
 		for (Iterator iterator = collection.iterator(); iterator.hasNext();) {
 			Class clazz = (Class) iterator.next();
 			// run all methods starting with "test*"
@@ -77,7 +96,20 @@ public class TestActivator implements BundleActivator {
 				}
 			}
 		}
-		TestResult result = TestRunner.run(suite);
+		
+		// prepare to run tests
+		final long start = System.currentTimeMillis();
+		jUnitResultFormatter.startTestSuite(jUnitTest);
+		
+	    // run tests
+		suite.run(result);
+	    
+		// write stats and close reultformatter
+		jUnitTest.setCounts(result.runCount(), result.failureCount(), result.errorCount());
+	    jUnitTest.setRunTime(System.currentTimeMillis() - start);
+		jUnitResultFormatter.endTestSuite(jUnitTest);
+		
+		// print success of failure
 		if (result.wasSuccessful()) {
 			System.exit(0);
 		} else {
@@ -98,8 +130,7 @@ public class TestActivator implements BundleActivator {
 				}
 			}
 			System.exit(1);
-		}
-
+		};
 	}
 		
 	public void stop(BundleContext context) throws Exception {

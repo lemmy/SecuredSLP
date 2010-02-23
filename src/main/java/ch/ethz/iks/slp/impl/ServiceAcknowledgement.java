@@ -71,7 +71,7 @@ class ServiceAcknowledgement extends ReplyMessage {
 		locale = msg.locale;
 		address = msg.address;
 		port = msg.port;
-		sessionKey = msg.sessionKey;
+		securityGroup = msg.securityGroup;
 		errorCode = error;
 	}
 
