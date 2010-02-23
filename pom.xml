@@ -78,49 +78,26 @@
 					<arg line="package"/>
 				</exec>
 				<delete dir="test/storage" quiet="true"/>
-<!-- 
-				<echo file="target/init.xargs" append="false">
-					-Dorg.osgi.framework.system.packages=junit.framework,junit.textui,org.apache.tools.ant.taskdefs.optional.junit
-					-init
-					-istart file:target/jslp-osgi-${pom.version}.jar
-					-istart file:runtimeTests/target/jslp-test-${pom.version}.jar
-				</echo>
-				<java fork="true" classname="ch.ethz.iks.concierge.framework.Framework" failonerror="true" resultproperty="testresult">
-					<classpath>
-						<pathelement location="${maven.dependency.ch.ethz.iks.concierge.concierge.jar.path}"/>
-						<pathelement location="${maven.dependency.junit.junit.jar.path}"/> 
-					</classpath>
-					<jvmarg value="-Dxargs=target/init.xargs"/>
-					<jvmarg value="-Dnet.slp.port=${jslp.port}"/>
-					<jvmarg value="-Dch.ethz.iks.concierge.log.level=4"/> 
-					<jvmarg value="-Dch.ethz.iks.concierge.log.enabled=true"/>
-					<jvmarg value="-Dch.ethz.iks.slp.debug=true" />
-					<jvmarg value="-Dnet.slp.traceDATraffic=true" />
-					<jvmarg value="-Dnet.slp.traceMsg=true" />
-					<jvmarg value="-Dnet.slp.traceDrop=true" />
-					<jvmarg value="-Dnet.slp.traceReg=true" />
-					<jvmarg value="-Xrunjdwp:transport=dt_socket,address=${debug.port},server=y,suspend=${debug.suspend}" />
-					<jvmarg value="-Xdebug" />
-					<jvmarg value="-Dnet.slp.versionUnderTest=${pom.version}" />
-				</java>
-				<delete dir="test/storage" quiet="true"/>
- -->
+
 				<!-- run integration tests with two instances running -->
-				<get src="http://ecf2.osuosl.org/ch.ethz.iks.slp_1.1.0.v20090227-1900.jar" dest="target/ch.ethz.iks.slp_1.1.0.v20090227-1900.jar"/>
 				<get src="http://ecf2.osuosl.org/org.eclipse.ant.optional.junit_3.2.200.jar" dest="target/org.eclipse.ant.optional.junit_3.2.200.jar"/>
 
 				<mkdir dir="target/configuration" />
 				<echo file="target/configuration/config.ini" append="false">
 					eclipse.ignoreApp=true
 					eclipse.consoleLog=true
+					eclipse.console=true
 					osgi.noShutdown=true
 					osgi.bundles=file:${maven.dependency.org.eclipse.osgi.services.jar.path}@2:start, \
-								 file:${maven.dependency.org.junit.jar.path}@start, \
-								 file:${maven.dependency.org.apache.ant.jar.path}@start, \
-								 file:${basedir}/target/ch.ethz.iks.slp_1.1.0.v20090227-1900.jar@start, \
-								 file:${basedir}/target/org.eclipse.ant.optional.junit_3.2.200.jar, \
-								 file:${basedir}/target/jslp-osgi-${pom.version}.jar@start, \
-								 file:${basedir}/runtimeTests/target/jslp-test-${pom.version}.jar@start
+					file:${maven.dependency.org.apache.commons.com.springsource.org.apache.commons.logging.jar.path}@start, \
+					file:${maven.dependency.org.bouncycastle.com.springsource.org.bouncycastle.jce.jar.path}@start, \
+					file:${maven.dependency.org.jgroups.com.springsource.org.jgroups.jar.path}@start, \
+					file:${maven.dependency.de.rub.hgi.nds.tgdh.jar.path}@start, \
+					file:${maven.dependency.org.junit.jar.path}@start, \
+					file:${maven.dependency.org.apache.ant.jar.path}@start, \
+					file:${basedir}/target/org.eclipse.ant.optional.junit_3.2.200.jar, \
+					file:${basedir}/target/jslp-osgi-${pom.version}.jar@start, \
+					file:${basedir}/runtimeTests/target/jslp-test-${pom.version}.jar@start
 				</echo>
 				<java fork="true" classname="org.eclipse.core.runtime.adaptor.EclipseStarter" failonerror="true" resultproperty="testresult2">
 					<classpath>
@@ -142,38 +119,6 @@
 					<jvmarg value="-Xdebug" />
 					<jvmarg value="-noverify"/>
 				</java>
-				
-				<!-- run integration tests with openslp running on 427 -->
-			<!--
-				<condition property="openslp.running">
-				  <socket server="localhost" port="427"/>
-				</condition>
-				<fail message="An OpenSLP instance must be running on port 427" unless="openslp.running"/>
-				<echo file="target/configuration/config.ini" append="false">
-					eclipse.ignoreApp=true
-					eclipse.consoleLog=true
-					osgi.bundles=file:${maven.dependency.org.eclipse.osgi.services.jar.path}@2:start, \
-								 file:${maven.dependency.org.junit.jar.path}@start, \
-								 file:${basedir}/target/jslp-osgi-${pom.version}.jar@start, \
-								 file:${basedir}/runtimeTests/target/jslp-test-${pom.version}.jar@start
-				</echo>
-				<java fork="true" classname="org.eclipse.core.runtime.adaptor.EclipseStarter" failonerror="true" resultproperty="testresult3">
-					<classpath>
-						<pathelement location="${maven.dependency.org.eclipse.osgi.jar.path}"/>
-					</classpath>
-					<jvmarg value="-Dosgi.configuration.area=target/configuration" />
-					<jvmarg value="-Dnet.slp.port=427"/>
-					<jvmarg value="-Dch.ethz.iks.slp.debug=true" />
-					<jvmarg value="-Dnet.slp.traceDATraffic=true" />
-					<jvmarg value="-Dnet.slp.traceMsg=true" />
-					<jvmarg value="-Dnet.slp.traceDrop=true" />
-					<jvmarg value="-Dnet.slp.traceReg=true" />
-					<jvmarg value="-Dnet.slp.versionUnderTest=${pom.version}" />
-					<jvmarg value="-Xrunjdwp:transport=dt_socket,address=${debug.port},server=y,suspend=${debug.suspend}" />
-					<jvmarg value="-Xdebug" />
-					<jvmarg value="-noverify"/>
-				</java>
-			-->
               </tasks>
             </configuration>
             <goals>
@@ -256,6 +201,12 @@
 			<scope>provided</scope>
 		</dependency>		
       	<dependency>
+			<groupId>de.rub.hgi.nds</groupId>
+			<artifactId>tgdh</artifactId>
+			<version>0.0.1.SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>		
+      	<dependency>
 			<groupId>ch.ethz.iks.concierge</groupId>
 			<artifactId>concierge</artifactId>
 			<version>1.0.0</version>
@@ -310,6 +261,26 @@
       <name>Eclipse Maven</name>
       <url>http://repo2.maven.org/eclipse/</url>
     </repository>
+   <repository>
+           <id>com.springsource.repository.bundles.release</id>
+           <name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
+           <url>http://repository.springsource.com/maven/bundles/release</url>
+   </repository>
+   <repository>
+           <id>com.springsource.repository.bundles.external</id>
+           <name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+           <url>http://repository.springsource.com/maven/bundles/external</url>
+   </repository>
+   <repository>
+           <id>com.springsource.repository.libraries.release</id>
+           <name>SpringSource Enterprise Bundle Repository - SpringSource Library Releases</name>
+           <url>http://repository.springsource.com/maven/libraries/release</url>
+   </repository>
+   <repository>
+           <id>com.springsource.repository.libraries.external</id>
+           <name>SpringSource Enterprise Bundle Repository - External Library Releases</name>
+           <url>http://repository.springsource.com/maven/libraries/external</url>
+   </repository> 
   </repositories> 
   <pluginRepositories>
     <pluginRepository>
