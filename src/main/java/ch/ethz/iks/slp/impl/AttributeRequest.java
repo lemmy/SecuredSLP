@@ -94,7 +94,7 @@ class AttributeRequest extends RequestMessage {
 	AttributeRequest(final ServiceURL serviceURL, final List scopes,
 			final List tags, final Locale theLocale, String aSecurityGroup) {
 		this(serviceURL, scopes, tags, theLocale);
-		setSecurityGroup(aSecurityGroup);
+		securityGroup = aSecurityGroup;
 	}
 	
 	/**

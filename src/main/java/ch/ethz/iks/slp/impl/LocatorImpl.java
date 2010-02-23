@@ -177,7 +177,7 @@ public final class LocatorImpl implements Locator {
 					sgScopes, null);
 			while (sgs.hasMoreElements()) {
 				ServiceURL sgServiceURL = (ServiceURL) sgs.nextElement();
-				String sgName = sgServiceURL.getURLPath().substring(1);
+				String sgName = sgServiceURL.getURLPath();
 				TgdhKeyListener sgCallBack = new SLPTgdhKeyListener();
 				try {
 					sgIdentifiers.add(TreeGroupDiffieHellman.joinGroup(

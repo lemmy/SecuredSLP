@@ -61,7 +61,7 @@ class ServiceTypeReply extends ReplyMessage {
 		this.address = req.address;
 		this.port = req.port;
 		this.errorCode = 0;
-		this.sessionKey = req.sessionKey;
+		this.securityGroup = req.securityGroup;
 		this.serviceTypes = types;
 	}
 
