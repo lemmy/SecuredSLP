@@ -25,7 +25,7 @@ import ch.ethz.iks.slp.ServiceURL;
 
 public class SecuredSelfDiscoveryTest extends SLPTestCase {
 
-	private static final String SERVICE_TYPE = "service:securitygrouptestservice://";
+	private static final String SERVICE_TYPE = "service:securitygrouptestservice";
 	private KeyPair keyPair;
 
 	/*
