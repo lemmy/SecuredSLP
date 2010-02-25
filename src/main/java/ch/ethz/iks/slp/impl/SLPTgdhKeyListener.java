@@ -64,6 +64,13 @@ public class SLPTgdhKeyListener extends TgdhKeyListener {
 		
 		// the sender always just uses "$SG name" 
 		SLPCore.sgSessionKeys.put(sgSessionKey.getSecurityGroupIdentifer(), sgSessionKey);
+		
+		SLPCore.platform.logDebug("KEY EXCHANGED " + sgSessionKey.getFQN());
+
+		// notify all potential key listeners
+		synchronized (lock) {
+			lock.notifyAll();
+		}
 	}
 	
 }
