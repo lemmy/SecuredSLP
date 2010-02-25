@@ -72,7 +72,7 @@ class AttributeReply extends ReplyMessage {
 		xid = req.xid;
 		address = req.address;
 		port = req.port;
-		securityGroup = req.securityGroup;
+		sessionKey = req.sessionKey;
 		authBlocks = new AuthenticationBlock[0];
 	}
 

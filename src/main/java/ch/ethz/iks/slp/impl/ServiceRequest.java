@@ -116,7 +116,7 @@ class ServiceRequest extends RequestMessage {
 	ServiceRequest(ServiceType type, List scopes, String searchFilter,
 			Locale locale, String aSecurityGroup) {
 		this(type, scopes, searchFilter, locale);
-		securityGroup = aSecurityGroup;
+		setSecurityGroup(aSecurityGroup);
 	}
 	
 	/**

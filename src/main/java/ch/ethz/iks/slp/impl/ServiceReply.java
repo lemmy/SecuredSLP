@@ -64,7 +64,7 @@ class ServiceReply extends ReplyMessage {
 		this.address = req.address;
 		this.port = req.port;
 		this.errorCode = 0;
-		this.securityGroup = req.securityGroup;
+		this.sessionKey = req.sessionKey;
 		this.urlList = urls;
 	}
 
