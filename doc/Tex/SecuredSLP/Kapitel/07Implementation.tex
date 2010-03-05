@@ -1,0 +1,68 @@
+\section{Implementation}
+To combine SLP with our group key agreement protocol we changed following protocol properties:
+\begin{itemize}
+  \item SLP message
+  \item 
+\end{itemize}
+
+\subsection{SecuredSLP message format}
+The header of a SLP message was modified to distinguish SLP messages from SecuredSLP messages. We added the \texttt{S}, \texttt{Security Group Length} and \texttt{Security Group Name} flags into the header and changed the \texttt{Version} of SLP in the source code (compare figure \ref{fig:slp-header} and figure \ref{fig:sslp-header}).
+\begin{description}
+\item[Version:] Is now set to 3.
+\item[S:] This flag shows that the message body is encrypted.
+\item[Security Group Length:] This flag specifies the length of the \texttt{Security Group Name} string.  
+\item[Securety Group Name:] This flag shows the name of the security group the message belongs to.
+\end{description}
+
+\begin{figure}
+\begin{lstlisting}
+	 0                   1                   2                   3
+	 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	|    Version    |  Function-ID  |            Length             |
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	| Length, contd.|O|F|R|       reserved          |Next Ext Offset|
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	| Next Extension Offset, contd. |              XID              |
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	|      Language Tag Length      |         Language Tag          |
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+\end{lstlisting}
+\label{fig:slp-header}
+\caption{SLPv2 Header}
+\end{figure}
+
+\begin{figure}
+\begin{lstlisting}
+	 0                   1                   2                   3
+	 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	|    Version    |  Function-ID  |            Length             |
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	| Length, contd.|O|F|R|S|     reserved          |Next Ext Offset|
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	| Next Extension Offset, contd. |              XID              |
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	|      Language Tag Length      |         Language Tag          |
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	|      Security Group Length    |      Security Group Name      |
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+\end{lstlisting}
+\label{fig:sslp-header}
+\caption{SecuredSLP Header}
+\end{figure}
+
+
+
+
+
+
+
+\subsection{Key enchantment}\label{sec:keyenchange}
+To make a securety group work it is necessary to encrypt the messeges between secure scope members so nobody else can evedrop the network traffic. To encrypt messages every group member need to know a shared secret, a group session key. There are some solutions to generate and share a key in an open network like used in this work. We decided to use the Tree Group Diffie Hellman (TGDH) protocol. This decision was made by the following reasons:
+\begin{itemize}
+  \item TGDH is a protocol designed for dynamic networks to enchante key between many group members
+  \item TGDH can handle key enchantment between more then hundred members
+  \item the key can be enchanted between the users over an unsecured channel
+  \item and we found an implementation of TGDH in Java so we could use it without many troubles
+\end{itemize}

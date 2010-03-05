@@ -1,0 +1,13 @@
+#TeXlipse project settings
+#Sun Feb 07 17:50:08 CET 2010
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=Secure service discovery in open networks with SLP.tex
+outputFile=Secure service discovery in open networks with SLP.pdf
+langSpell=en
+markDer=true
+srcDir=

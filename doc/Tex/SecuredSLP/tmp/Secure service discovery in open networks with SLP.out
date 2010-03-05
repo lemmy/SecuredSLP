@@ -1,0 +1,13 @@
+\BOOKMARK [1][-]{section.1}{Concepts for Implementation}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Security Groups}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Tree-based Group Diffie-Hellman \(TGDH\)}{section.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Keys in TGDH}{subsection.1.2}% 4
+\BOOKMARK [3][-]{subsubsection.1.2.2}{Join protocol}{subsection.1.2}% 5
+\BOOKMARK [3][-]{subsubsection.1.2.3}{Leave protocol}{subsection.1.2}% 6
+\BOOKMARK [1][-]{section.2}{Integration of a group key agreement protocol into SLP}{}% 7
+\BOOKMARK [2][-]{subsection.2.1}{Hardcoded integration}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.2}{Modular integration}{section.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Workflow of SLP with a modular integration}{subsection.2.2}% 10
+\BOOKMARK [1][-]{section.3}{Implementation}{}% 11
+\BOOKMARK [2][-]{subsection.3.1}{SecuredSLP message format}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.2}{Key enchantment}{section.3}% 13

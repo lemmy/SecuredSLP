@@ -1,0 +1,54 @@
+\documentclass[normalsize]{acm_proc_article-sp}
+\usepackage[english]{babel}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage[colorlinks,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+\newcommand{\abc}{Securety Group Name}
+\usepackage{listings}
+
+	\lstset{
+		%alsoletter={Securety Group Name},
+		basicstyle=\ttfamily\tiny,
+		%morekeywords={S, Security Group Length, Securety Group Name},
+		%keywordstyle=\bfseries\color{red},
+		tabsize=5}
+	
+\makeatletter
+\AtBeginDocument{
+	\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+	\@addtoreset{figure}{section}
+	\renewcommand{\thetable}{\arabic{section}.\arabic{table}}
+	\@addtoreset{table}{section}
+	\@addtoreset{footnote}{section}}
+\makeatother
+
+\begin{document}
+%Titlepage
+%\input{Kapitel/00Titlepage}
+
+%Chapter 1: Introduction
+%\input{Kapitel/01Introduction}
+
+%Chapter 2: SLP Overview
+%\input{Kapitel/02SLP-Overview}
+
+%Chapter 3: SecureSLP
+%\input{Kapitel/03SecureSLP}
+
+%Chapter 4: Future Work
+%\input{Kapitel/04FutureWork}
+
+%Chapter 5: Concepts for Implementation
+\input{Kapitel/05Concepts}
+
+%Chapter 6: Integration of a group key agreement protocol into SLP
+\input{Kapitel/06Integration}
+
+%Chapter 7: Implementation
+\input{Kapitel/07Implementation}
+
+%References
+\bibliographystyle{plainnat}
+\clearpage\addcontentsline{toc}{chapter}{\bibname}
+%\bibliography{references}
+\end{document}

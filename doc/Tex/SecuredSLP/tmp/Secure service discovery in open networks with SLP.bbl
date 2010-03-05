@@ -1,0 +1,135 @@
+\begin{thebibliography}{17}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Almenarez and Campo(2003)]{Almenarez2003}
+Florina Almenarez and Celeste Campo.
+\newblock {SPDP: A Secure Service Discovery Protocol for Ad-hoc Networks}.
+\newblock In \emph{In Workshop on Next Generation Networks}, pages 9--9.
+  Springer Verlag, 2003.
+\newblock \doi{10.1.1.124.8021}.
+
+\bibitem[Armstrong et~al.(1992)Armstrong, Freier, and Marzullo]{Armstrong1992}
+S.~Armstrong, A.~Freier, and K.~Marzullo.
+\newblock {Multicast Transport Protocol}.
+\newblock RFC 1301 (Informational), February 1992.
+\newblock URL \url{http://www.ietf.org/rfc/rfc1301.txt}.
+
+\bibitem[Berners-Lee et~al.(1994)Berners-Lee, Masinter, and
+  McCahill]{Berners-Lee1994}
+T.~Berners-Lee, L.~Masinter, and M.~McCahill.
+\newblock {Uniform Resource Locators (URL)}.
+\newblock RFC 1738 (Proposed Standard), December 1994.
+\newblock URL \url{http://www.ietf.org/rfc/rfc1738.txt}.
+\newblock Obsoleted by RFCs 4248, 4266, updated by RFCs 1808, 2368, 2396, 3986.
+
+\bibitem[Bhaskar et~al.(2007)Bhaskar, Augot, Adjih, Muhlethaler, and
+  Boudjit]{Bhaskar2007}
+Raghav Bhaskar, Daniel Augot, Cedric Adjih, Paul Muhlethaler, and Saadi
+  Boudjit.
+\newblock {AGDH (Asymmetric Group Diffie Hellman): An Efficient and Dynamic
+  Group Key Agreement Protocol for Ad hoc Networks}.
+\newblock In \emph{New Technolgies, Mobility and Security (NTMS) conference},
+  2007.
+\newblock URL
+  \url{http://research.microsoft.com/en-us/um/people/rbhaskar/papers/ntms07.pd%
+f}.
+
+\bibitem[Cotroneo et~al.(2004)Cotroneo, Graziano, and Russo]{Cotroneo2004}
+Domenico Cotroneo, Almerindo Graziano, and Stefano Russo.
+\newblock Security requirements in service oriented architectures for
+  ubiquitous computing.
+\newblock In \emph{MPAC '04: Proceedings of the 2nd workshop on Middleware for
+  pervasive and ad-hoc computing}, pages 172--177, New York, NY, USA, 2004.
+  ACM.
+\newblock ISBN 1-58113-951-9.
+\newblock \doi{10.1145/1028509.1028522}.
+
+\bibitem[{Eastlake 3rd} and Jones(2001)]{Eastlake3rd2001}
+D.~{Eastlake 3rd} and P.~Jones.
+\newblock {US Secure Hash Algorithm 1 (SHA1)}.
+\newblock RFC 3174 (Informational), September 2001.
+\newblock URL \url{http://www.ietf.org/rfc/rfc3174.txt}.
+\newblock Updated by RFC 4634.
+
+\bibitem[Foundation(2009)]{Foundation2009}
+P2P Foundation.
+\newblock Free and open network definition, 2009.
+\newblock URL
+  \url{http://p2pfoundation.net/Free_and_Open_Network_Definition?title=Free_an%
+d_Open_Network_Definition&oldid=24960}.
+\newblock [Online; Stand 1. August 2009].
+
+\bibitem[Guttman et~al.(1999)Guttman, Perkins, Veizades, and Day]{Guttman1999}
+E.~Guttman, C.~Perkins, J.~Veizades, and M.~Day.
+\newblock {Service Location Protocol, Version 2}.
+\newblock RFC 2608 (Proposed Standard), June 1999.
+\newblock URL \url{http://www.ietf.org/rfc/rfc2608.txt}.
+\newblock Updated by RFC 3224.
+
+\bibitem[Hollick(2001)]{Hollick2001}
+Matthias Hollick.
+\newblock Security awareness in service discovery for multimedia collaboration.
+\newblock In \emph{MM\&\#38;Sec '01: Proceedings of the 2001 workshop on
+  Multimedia and security}, pages 60--63, New York, NY, USA, 2001. ACM.
+\newblock ISBN 1-58113-393-6.
+\newblock \doi{10.1145/1232454.1232476}.
+
+\bibitem[Howes(1997)]{Howes1997}
+T.~Howes.
+\newblock {The String Representation of LDAP Search Filters}.
+\newblock RFC 2254 (Proposed Standard), December 1997.
+\newblock URL \url{http://www.ietf.org/rfc/rfc2254.txt}.
+\newblock Obsoleted by RFCs 4510, 4515, updated by RFC 3377.
+
+\bibitem[Huang et~al.(2007)Huang, Chiu, Chen, and Lei]{Huang2007}
+Chun-Ying Huang, Yun-Peng Chiu, Kuan-Ta Chen, and Chin-Laung Lei.
+\newblock Secure multicast in dynamic environments.
+\newblock \emph{Comput. Netw.}, 51\penalty0 (10):\penalty0 2805--2817, 2007.
+\newblock ISSN 1389-1286.
+\newblock \doi{http://dx.doi.org/10.1016/j.comnet.2006.11.027}.
+
+\bibitem[Kent and Seo(2005)]{Kent2005}
+S.~Kent and K.~Seo.
+\newblock {Security Architecture for the Internet Protocol}.
+\newblock RFC 4301 (Proposed Standard), December 2005.
+\newblock URL \url{http://www.ietf.org/rfc/rfc4301.txt}.
+
+\bibitem[Kravitz(1993)]{Kravitz1993}
+Kravitz.
+\newblock Digital signature algorithm, July 1993.
+
+\bibitem[Prakash and Uthariaraj(2008)]{Prakash2008}
+A.J. Prakash and V.R. Uthariaraj.
+\newblock Multicast cryptosystem: A cryptosystem for secure multicast
+  communication.
+\newblock pages 119--124, Oct. 2008.
+\newblock \doi{10.1109/NPC.2008.73}.
+
+\bibitem[Ververidis and Polyzos(2008)]{Ververidis2008}
+C.N. Ververidis and G.C. Polyzos.
+\newblock Service discovery for mobile ad hoc networks: a survey of issues and
+  techniques.
+\newblock \emph{Communications Surveys \& Tutorials, IEEE}, 10\penalty0
+  (3):\penalty0 30--45, Quarter 2008.
+\newblock ISSN 1553-877X.
+\newblock \doi{10.1109/COMST.2008.4625803}.
+
+\bibitem[Wikipedia(2009)]{Wikipedia2009}
+Wikipedia.
+\newblock Replay attack --- wikipedia{,} the free encyclopedia, 2009.
+\newblock URL
+  \url{http://en.wikipedia.org/w/index.php?title=Replay_attack&oldid=281621146%
+}.
+\newblock [Online; accessed 4-April-2009].
+
+\bibitem[Zhao et~al.(2003)Zhao, Schulzrinne, and Guttman]{Zhao2003}
+W.~Zhao, H.~Schulzrinne, and E.~Guttman.
+\newblock {Mesh-enhanced Service Location Protocol (mSLP)}.
+\newblock RFC 3528 (Experimental), April 2003.
+\newblock URL \url{http://www.ietf.org/rfc/rfc3528.txt}.
+
+\end{thebibliography}
