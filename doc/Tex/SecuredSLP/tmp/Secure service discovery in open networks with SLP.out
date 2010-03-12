@@ -1,13 +1,41 @@
-\BOOKMARK [1][-]{section.1}{Concepts for Implementation}{}% 1
-\BOOKMARK [2][-]{subsection.1.1}{Security Groups}{section.1}% 2
-\BOOKMARK [2][-]{subsection.1.2}{Tree-based Group Diffie-Hellman \(TGDH\)}{section.1}% 3
-\BOOKMARK [3][-]{subsubsection.1.2.1}{Keys in TGDH}{subsection.1.2}% 4
-\BOOKMARK [3][-]{subsubsection.1.2.2}{Join protocol}{subsection.1.2}% 5
-\BOOKMARK [3][-]{subsubsection.1.2.3}{Leave protocol}{subsection.1.2}% 6
-\BOOKMARK [1][-]{section.2}{Integration of a group key agreement protocol into SLP}{}% 7
-\BOOKMARK [2][-]{subsection.2.1}{Hardcoded integration}{section.2}% 8
-\BOOKMARK [2][-]{subsection.2.2}{Modular integration}{section.2}% 9
-\BOOKMARK [3][-]{subsubsection.2.2.1}{Workflow of SLP with a modular integration}{subsection.2.2}% 10
-\BOOKMARK [1][-]{section.3}{Implementation}{}% 11
-\BOOKMARK [2][-]{subsection.3.1}{SecuredSLP message format}{section.3}% 12
-\BOOKMARK [2][-]{subsection.3.2}{Key enchantment}{section.3}% 13
+\BOOKMARK [1][-]{section.1}{Service discovery basics}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Open network}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Service discovery architecture}{section.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Directory-based architecture}{subsection.1.2}% 4
+\BOOKMARK [3][-]{subsubsection.1.2.2}{Directory-less architecture}{subsection.1.2}% 5
+\BOOKMARK [3][-]{subsubsection.1.2.3}{Hybrid architecture}{subsection.1.2}% 6
+\BOOKMARK [2][-]{subsection.1.3}{Secure service discovery basics}{section.1}% 7
+\BOOKMARK [1][-]{section.2}{Service Location Protocol}{}% 8
+\BOOKMARK [2][-]{subsection.2.1}{Protocols basics}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.2}{Authentication and Integrity}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.3}{Replay Prevention}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.4}{Availability}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.5}{Confidentiality and Authorization}{section.2}% 13
+\BOOKMARK [1][-]{section.3}{Secure SLP}{}% 14
+\BOOKMARK [2][-]{subsection.3.1}{Web of Trust or Public Key Infrastructure and reputation-based trust}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.2}{Confidentiality via Security Groups}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.3}{Initiating a Security Group}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.4}{Security Groups and Directory Agents}{section.3}% 18
+\BOOKMARK [1][-]{section.4}{Conclusion and Future Work}{}% 19
+\BOOKMARK [1][-]{section.5}{Concepts for Implementation}{}% 20
+\BOOKMARK [2][-]{subsection.5.1}{Security Groups}{section.5}% 21
+\BOOKMARK [2][-]{subsection.5.2}{Tree-based Group Diffie-Hellman \(TGDH\)}{section.5}% 22
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Keys in TGDH}{subsection.5.2}% 23
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Join protocol}{subsection.5.2}% 24
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Leave protocol}{subsection.5.2}% 25
+\BOOKMARK [1][-]{section.6}{Integration of a group key agreement protocol into SLP}{}% 26
+\BOOKMARK [2][-]{subsection.6.1}{Hardcoded integration}{section.6}% 27
+\BOOKMARK [2][-]{subsection.6.2}{Modular integration}{section.6}% 28
+\BOOKMARK [3][-]{subsubsection.6.2.1}{Workflow of SLP with a modular integration}{subsection.6.2}% 29
+\BOOKMARK [1][-]{section.7}{Implementation}{}% 30
+\BOOKMARK [2][-]{subsection.7.1}{SecuredSLP message format}{section.7}% 31
+\BOOKMARK [2][-]{subsection.7.2}{Key enchantment in SecuredSLP}{section.7}% 32
+\BOOKMARK [2][-]{subsection.7.3}{Communication in SecuredSLP}{section.7}% 33
+\BOOKMARK [1][-]{section.8}{Possible attacks on SecuredSLP}{}% 34
+\BOOKMARK [2][-]{subsection.8.1}{Denial of Service \(DoS\) attacks}{section.8}% 35
+\BOOKMARK [2][-]{subsection.8.2}{Replay attacks}{section.8}% 36
+\BOOKMARK [2][-]{subsection.8.3}{Evedrop attacks}{section.8}% 37
+\BOOKMARK [2][-]{subsection.8.4}{Manipulation attacks}{section.8}% 38
+\BOOKMARK [2][-]{subsection.8.5}{Man-in-the-middle attacks}{section.8}% 39
+\BOOKMARK [1][-]{section.9}{Evaluation}{}% 40
+\BOOKMARK [0][-]{section.9}{Bibliography}{}% 41

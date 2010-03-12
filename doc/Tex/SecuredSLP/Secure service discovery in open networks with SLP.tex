@@ -5,12 +5,11 @@
 \usepackage[colorlinks,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
 \newcommand{\abc}{Securety Group Name}
 \usepackage{listings}
-
 	\lstset{
-		%alsoletter={Securety Group Name},
-		basicstyle=\ttfamily\tiny,
+		%alsoletter={Securety Group Name},		
 		%morekeywords={S, Security Group Length, Securety Group Name},
 		%keywordstyle=\bfseries\color{red},
+		basicstyle=\ttfamily\tiny,
 		tabsize=5}
 	
 \makeatletter
@@ -24,19 +23,19 @@
 
 \begin{document}
 %Titlepage
-%\input{Kapitel/00Titlepage}
+\input{Kapitel/00Titlepage}
 
 %Chapter 1: Introduction
-%\input{Kapitel/01Introduction}
+\input{Kapitel/01Introduction}
 
 %Chapter 2: SLP Overview
-%\input{Kapitel/02SLP-Overview}
+\input{Kapitel/02SLP-Overview}
 
 %Chapter 3: SecureSLP
-%\input{Kapitel/03SecureSLP}
+\input{Kapitel/03SecureSLP}
 
 %Chapter 4: Future Work
-%\input{Kapitel/04FutureWork}
+\input{Kapitel/04FutureWork}
 
 %Chapter 5: Concepts for Implementation
 \input{Kapitel/05Concepts}
@@ -47,8 +46,14 @@
 %Chapter 7: Implementation
 \input{Kapitel/07Implementation}
 
+%Chapter 8: Possible Attacks on SecuredSLP
+\input{Kapitel/08Attacks}
+
+%Chapter 9: evaluation
+\input{Kapitel/09Evaluation}
+
 %References
 \bibliographystyle{plainnat}
 \clearpage\addcontentsline{toc}{chapter}{\bibname}
-%\bibliography{references}
+\bibliography{Kapitel/references}
 \end{document}

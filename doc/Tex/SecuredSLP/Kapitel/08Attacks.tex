@@ -1,0 +1,18 @@
+\section{Possible attacks on SecuredSLP}
+In this section we want to discuss which general attacks are possible on SecuredSLP and how they are prevented or why they can't be prevented.
+
+\subsection{Denial of Service (DoS) attacks}\label{sec:DoS}
+Like all distributed systems SecuredSLP suffers from DoS attacks. In SecuredSLP there are two attacking points for a DoS attack. The first one is to overfeed the UA/SA/DA with information or requests. In this scenario an attacker requests for example information about a service from a DA and prevents the usage of that DA by other network members. The seconds attacking point appears just if the secure mode \textcolor{red}{gibts dafür einen extra namen?} of SecuredSLP is enabled and a group key agreement protocol is used. In that case an attacker could initiate join/leave messages so the network would stuck in the rekeying phase. This problem is especially present in the case of TGDH as the group key agreement protocol. Each time a user joins or leaves the network the TGDH initiates a rekeying phase so an attacker could exploit this feature.\\
+There is no neat way to prevent attacks on UA/SA/DA because that's their purpose to send or answer requests. It would be possible to drop messages from a user who sends too many requests but this is not part of our paper so it won't be discussed here in detail. To prevent or reduce DoS attacks on the group key agreement protocol it is possible to use another protocol as TGDH. The keys could also be distributed by a network administrator (if possible) so there wouldn't be rekeying phase all the time. In case of rekeying the administrator would handle the distribution of the new keys. This solution is just possible in closed networks and the rekeying phase would take much longer and would also be an extra work.
+
+\subsection{Replay attacks}
+In SecuredSLP a possibility of a replay attacks is very low. To prevent replay attacks we made sure that the header of each message can't be manipulated. Therefor we make a HMAC over the message header and include it into the message which is encrypted.  A SecuredSLP message contains a \texttt{XID} which marks the message and binds it to a sequence of messages (compare with figure \ref{fig:sslp-header}) and the payload is encrypted and signed by the sender. That prevents that an attacker can change the header information without the receptor getting knowledge about. The only replay attack would be to use a current message to overfeed a peer with it which could count as a DoS attack (see section \ref{sec:DoS}).
+
+\subsection{Evedrop attacks}
+Evedrop attacks are still possible on the SecuredSLP. Everyone can log the networktraffic and learn about its behavior. The benifit in SecuredSLP is that the information stays confidentiality because all messages are encrypted and signed. An attacker can just intercept messages but not decrypt them as we assume the encpyrtion algorithms are safe.
+
+\subsection{Manipulation attacks}
+Like told above we exclude the manipulation of SecuredSLP messaged because the messages are encrypted and signed and the header of each message is linked with the payload using HMAC.
+
+\subsection{Man-in-the-middle attacks}
+Man-in-the-middle attacks still work on SecuredSLP. For example an attacker can act as a DA in a security group and communicate with his prey and get information about the services he provides or use.  

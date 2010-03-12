@@ -11,33 +11,121 @@
 \global \let \hyper@last\relax 
 \fi
 
+\providecommand\HyField@AuxAddToFields[1]{}
 \select@language{english}
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
 \@writefile{lot}{\select@language{english}}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Concepts for Implementation}{\thepage }{section.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Security Groups}{\thepage }{subsection.1.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Tree-based Group Diffie-Hellman (TGDH)}{\thepage }{subsection.1.2}}
-\newlabel{sec:TGDH}{{1.2}{\thepage }{Tree-based Group Diffie-Hellman (TGDH)\relax }{subsection.1.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1}Keys in TGDH}{\thepage }{subsubsection.1.2.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Example of a tree structure in TGDH}}{\thepage }{figure.1.1}}
-\newlabel{fig:tgdh_tree}{{1.1}{\thepage }{Example of a tree structure in TGDH\relax }{figure.1.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.2}Join protocol}{\thepage }{subsubsection.1.2.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.3}Leave protocol}{\thepage }{subsubsection.1.2.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Tree update after a join of a new member}}{\thepage }{figure.1.2}}
-\newlabel{fig:tgdh_join}{{1.2}{\thepage }{Tree update after a join of a new member\relax }{figure.1.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces Tree update after a member left the group}}{\thepage }{figure.1.3}}
-\newlabel{fig:tgdh_leave}{{1.3}{\thepage }{Tree update after a member left the group\relax }{figure.1.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Integration of a group key agreement protocol into SLP}{\thepage }{section.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Service discovery basics}{\thepage }{section.1}}
+\newlabel{sec:intro}{{1}{\thepage }{Service discovery basics\relax }{section.1}{}}
+\citation{Foundation2009}
+\citation{Ververidis2008}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Open network}{\thepage }{subsection.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Service discovery architecture}{\thepage }{subsection.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.1}Directory-based architecture}{\thepage }{subsubsection.1.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Directory-based architecture}}{\thepage }{figure.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.2}Directory-less architecture}{\thepage }{subsubsection.1.2.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Directory-less architecture}}{\thepage }{figure.1.2}}
+\citation{Cotroneo2004}
+\citation{Guttman1999}
+\citation{Berners-Lee1994}
+\citation{Howes1997}
+\citation{Armstrong1992}
+\citation{Kravitz1993}
+\citation{Eastlake3rd2001}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.3}Hybrid architecture}{\thepage }{subsubsection.1.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Secure service discovery basics}{\thepage }{subsection.1.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Service Location Protocol}{\thepage }{section.2}}
+\newlabel{sub:Protocols-basics}{{2.1}{\thepage }{Protocols basics\relax }{subsection.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Protocols basics}{\thepage }{subsection.2.1}}
+\newlabel{sub:Authentication-and-Integrity}{{2.2}{\thepage }{Authentication and Integrity\relax }{subsection.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Authentication and Integrity}{\thepage }{subsection.2.2}}
+\citation{Wikipedia2009}
+\citation{Cotroneo2004}
+\citation{Zhao2003}
+\citation{Cotroneo2004,Hollick2001}
+\citation{Almenarez2003}
+\newlabel{sub:Replay-Prevention}{{2.3}{\thepage }{Replay Prevention\relax }{subsection.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Replay Prevention}{\thepage }{subsection.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Availability}{\thepage }{subsection.2.4}}
+\newlabel{sub:Confidentiality-and-Authorization}{{2.5}{\thepage }{Confidentiality and Authorization\relax }{subsection.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Confidentiality and Authorization}{\thepage }{subsection.2.5}}
+\newlabel{SEC:SECURE-SLP}{{3}{\thepage }{Secure SLP\relax }{section.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Secure SLP}{\thepage }{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Web of Trust or Public Key Infrastructure and reputation-based trust}{\thepage }{subsection.3.1}}
+\citation{Hollick2001}
+\citation{Hollick2001}
+\citation{Kent2005}
+\citation{Huang2007}
+\citation{Prakash2008}
+\newlabel{sub:Confidentiality-via-Security}{{3.2}{\thepage }{Confidentiality via Security Groups\relax }{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Confidentiality via Security Groups}{\thepage }{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Initiating a Security Group}{\thepage }{subsection.3.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces A dedicated scope denoting security groups. Since SG-advertisements are sent out using unencrypted SLPv2, attackers (Carl) are capable to discover SGs. However this does not pose a security threat.}}{\thepage }{figure.3.1}}
+\newlabel{fig:SecurityGroup-Scope}{{3.1}{\thepage }{A dedicated scope denoting security groups. Since SG-advertisements are sent out using unencrypted SLPv2, attackers (Carl) are capable to discover SGs. However this does not pose a security threat}{figure.3.1}{}}
+\citation{Hollick2001}
+\citation{Bhaskar2007}
+\citation{Hollick2001}
+\citation{Hollick2001}
+\citation{Zhao2003}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Security Groups and Directory Agents}{\thepage }{subsection.3.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion and Future Work}{\thepage }{section.4}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces SLP and SecureSLP security comparision matrix}}{\thepage }{table.4.1}}
+\newlabel{tab:SLP-and-SecureSLP}{{4.1}{\thepage }{SLP and SecureSLP security comparision matrix\relax }{table.4.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Concepts for Implementation}{\thepage }{section.5}}
+\newlabel{sec:concepts}{{5}{\thepage }{Concepts for Implementation\relax }{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Security Groups}{\thepage }{subsection.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Tree-based Group Diffie-Hellman (TGDH)}{\thepage }{subsection.5.2}}
+\newlabel{sec:TGDH}{{5.2}{\thepage }{Tree-based Group Diffie-Hellman (TGDH)\relax }{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Keys in TGDH}{\thepage }{subsubsection.5.2.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Example of a tree structure in TGDH}}{\thepage }{figure.5.1}}
+\newlabel{fig:tgdh_tree}{{5.1}{\thepage }{Example of a tree structure in TGDH\relax }{figure.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Join protocol}{\thepage }{subsubsection.5.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Leave protocol}{\thepage }{subsubsection.5.2.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Tree update after a join of a new member}}{\thepage }{figure.5.2}}
+\newlabel{fig:tgdh_join}{{5.2}{\thepage }{Tree update after a join of a new member\relax }{figure.5.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Tree update after a member left the group}}{\thepage }{figure.5.3}}
+\newlabel{fig:tgdh_leave}{{5.3}{\thepage }{Tree update after a member left the group\relax }{figure.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Integration of a group key agreement protocol into SLP}{\thepage }{section.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Hardcoded integration}{\thepage }{subsection.6.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Modular integration}{\thepage }{subsection.6.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}Workflow of SLP with a modular integration}{\thepage }{subsubsection.6.2.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Implementation}{\thepage }{section.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}SecuredSLP message format}{\thepage }{subsection.7.1}}
+\newlabel{fig:slp-header}{{7.1}{\thepage }{SecuredSLP message format\relax }{lstnumber.-1.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces SLPv2 Header}}{\thepage }{figure.7.1}}
+\newlabel{fig:sslp-header}{{7.1}{\thepage }{SecuredSLP message format\relax }{lstnumber.-2.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces SecuredSLP Header}}{\thepage }{figure.7.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Key enchantment in SecuredSLP}{\thepage }{subsection.7.2}}
+\newlabel{sec:keyenchange}{{7.2}{\thepage }{Key enchantment in SecuredSLP\relax }{subsection.7.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Communication in SecuredSLP}{\thepage }{subsection.7.3}}
 \bibstyle{plainnat}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Hardcoded integration}{\thepage }{subsection.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Modular integration}{\thepage }{subsection.2.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Workflow of SLP with a modular integration}{\thepage }{subsubsection.2.2.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Implementation}{\thepage }{section.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}SecuredSLP message format}{\thepage }{subsection.3.1}}
-\newlabel{fig:slp-header}{{3.1}{\thepage }{SecuredSLP message format\relax }{lstnumber.-1.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces SLPv2 Header}}{\thepage }{figure.3.1}}
-\newlabel{fig:sslp-header}{{3.1}{\thepage }{SecuredSLP message format\relax }{lstnumber.-2.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces SecuredSLP Header}}{\thepage }{figure.3.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Key enchantment}{\thepage }{subsection.3.2}}
-\newlabel{sec:keyenchange}{{3.2}{\thepage }{Key enchantment\relax }{subsection.3.2}{}}
+\newlabel{fig:sslp_join}{{7.3}{\thepage }{Communication in SecuredSLP\relax }{Item.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces Communication sequence of a user joining a SecuredSLP security group}}{\thepage }{figure.7.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Possible attacks on SecuredSLP}{\thepage }{section.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Denial of Service (DoS) attacks}{\thepage }{subsection.8.1}}
+\newlabel{sec:DoS}{{8.1}{\thepage }{Denial of Service (DoS) attacks\relax }{subsection.8.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Replay attacks}{\thepage }{subsection.8.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Evedrop attacks}{\thepage }{subsection.8.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Manipulation attacks}{\thepage }{subsection.8.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}Man-in-the-middle attacks}{\thepage }{subsection.8.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Evaluation}{\thepage }{section.9}}
+\bibdata{Kapitel/references}
+\bibcite{Almenarez2003}{{1}{2003}{{Almenarez and Campo}}{{}}}
+\bibcite{Armstrong1992}{{2}{1992}{{Armstrong et~al.}}{{Armstrong, Freier, and Marzullo}}}
+\bibcite{Berners-Lee1994}{{3}{1994}{{Berners-Lee et~al.}}{{Berners-Lee, Masinter, and McCahill}}}
+\bibcite{Bhaskar2007}{{4}{2007}{{Bhaskar et~al.}}{{Bhaskar, Augot, Adjih, Muhlethaler, and Boudjit}}}
+\bibcite{Cotroneo2004}{{5}{2004}{{Cotroneo et~al.}}{{Cotroneo, Graziano, and Russo}}}
+\bibcite{Eastlake3rd2001}{{6}{2001}{{{Eastlake 3rd} and Jones}}{{}}}
+\bibcite{Foundation2009}{{7}{2009}{{Foundation}}{{}}}
+\bibcite{Guttman1999}{{8}{1999}{{Guttman et~al.}}{{Guttman, Perkins, Veizades, and Day}}}
+\bibcite{Hollick2001}{{9}{2001}{{Hollick}}{{}}}
+\bibcite{Howes1997}{{10}{1997}{{Howes}}{{}}}
+\bibcite{Huang2007}{{11}{2007}{{Huang et~al.}}{{Huang, Chiu, Chen, and Lei}}}
+\bibcite{Kent2005}{{12}{2005}{{Kent and Seo}}{{}}}
+\bibcite{Kravitz1993}{{13}{1993}{{Kravitz}}{{}}}
+\bibcite{Prakash2008}{{14}{2008}{{Prakash and Uthariaraj}}{{}}}
+\bibcite{Ververidis2008}{{15}{2008}{{Ververidis and Polyzos}}{{}}}
+\bibcite{Wikipedia2009}{{16}{2009}{{Wikipedia}}{{}}}
+\bibcite{Zhao2003}{{17}{2003}{{Zhao et~al.}}{{Zhao, Schulzrinne, and Guttman}}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{\thepage }{section.9}}

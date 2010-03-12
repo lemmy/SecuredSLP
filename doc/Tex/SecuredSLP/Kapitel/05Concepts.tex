@@ -1,5 +1,5 @@
 \newpage
-\section{Concepts for Implementation}
+\section{Concepts for Implementation}\label{sec:concepts}
 In chapters above we discussed some possible security concepts and increments for the service location protocol. In this section we will introduce our practical solutions to fulfill the requested requirements.\\
 First of all we need to establish security groups, where users can communicate using encryption. To create those groups we combined the already implemented SLP scopes with a group key agreement protocol. For this purpose we took the Tree-based Group Diffie-Hellman protocol (TGDH). TGDH is a group key agreement protocol which we use to create and share security group keys (details about TGDH will be introduced in section \ref{sec:TGDH}). We will describe why we picked this protocol and how we integrated it into the SLP.\\
 Further we will discuss possible attacks on SLP which uses TGDH and the solutions we made to prevent them. \textcolor{red}{(nachher etwas ausführlicher beschreiben)}
@@ -41,13 +41,13 @@ Furthermore there are also key sets a member has knowledge about. Each member kn
 \begin{align*}
 K_{<l,v>} &= (BK_{<l+1, 2v+1>})^{K_{<l+1, 2v>}}~mod~p\\
 &= (BK_{<l+1, 2v>})^{K_{<l+1, 2v+1>}}~mod~p\\
-&= g^{K_{l+1, 2v}K_{l+1, 2v+1}}~mod~p\\
-&= f(K_{l+1, 2v}K_{l+1, 2v+1})
+&= g^{K_{<l+1, 2v>}K_{<l+1, 2v+1>}}~mod~p\\
+&= f(K_{<l+1, 2v>}K_{<l+1, 2v+1>})
 \end{align*}
 It is also possible to compute the group key out of that information. For member $M_2$ the calculation would be:
 \begin{align*}
 K_{<0,0>} &= (BK_{<1,1>})^{K_{<1,0>}}~mod~p\\
-&= (BK_{1,1})^{(BK_{<2,1>})^{K_{<2,0>}}}~mod~p
+&= (BK_{<1,1>})^{(BK_{<2,1>})^{K_{<2,0>}}}~mod~p
 \end{align*}
 \begin{figure}[!h]
 \centering\includegraphics[width=0.5\textwidth]{Images/tgdh_tree}
