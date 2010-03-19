@@ -29,7 +29,7 @@
 \BOOKMARK [3][-]{subsubsection.6.2.1}{Workflow of SLP with a modular integration}{subsection.6.2}% 29
 \BOOKMARK [1][-]{section.7}{Implementation}{}% 30
 \BOOKMARK [2][-]{subsection.7.1}{SecuredSLP message format}{section.7}% 31
-\BOOKMARK [2][-]{subsection.7.2}{Key enchantment in SecuredSLP}{section.7}% 32
+\BOOKMARK [2][-]{subsection.7.2}{Key exchange in SecuredSLP}{section.7}% 32
 \BOOKMARK [2][-]{subsection.7.3}{Communication in SecuredSLP}{section.7}% 33
 \BOOKMARK [1][-]{section.8}{Possible attacks on SecuredSLP}{}% 34
 \BOOKMARK [2][-]{subsection.8.1}{Denial of Service \(DoS\) attacks}{section.8}% 35

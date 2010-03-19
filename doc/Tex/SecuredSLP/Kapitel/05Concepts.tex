@@ -1,30 +1,29 @@
 \newpage
 \section{Concepts for Implementation}\label{sec:concepts}
-In chapters above we discussed some possible security concepts and increments for the service location protocol. In this section we will introduce our practical solutions to fulfill the requested requirements.\\
-First of all we need to establish security groups, where users can communicate using encryption. To create those groups we combined the already implemented SLP scopes with a group key agreement protocol. For this purpose we took the Tree-based Group Diffie-Hellman protocol (TGDH). TGDH is a group key agreement protocol which we use to create and share security group keys (details about TGDH will be introduced in section \ref{sec:TGDH}). We will describe why we picked this protocol and how we integrated it into the SLP.\\
-Further we will discuss possible attacks on SLP which uses TGDH and the solutions we made to prevent them. \textcolor{red}{(nachher etwas ausführlicher beschreiben)}
+In chapters above we discussed some possible security concepts and increments for the service location protocol. In following sections we will introduce our practical solutions to fulfill the requested requirements.\\
+First of all we need to establish security groups, where users can communicate using encryption. To create those groups we combined the already implemented SLP scopes with a group key agreement protocol. For this purpose we took the Tree-based Group Diffie-Hellman protocol (TGDH). TGDH is a group key agreement protocol which we use to create and share security group keys (details about TGDH will be introduced in section \ref{sec:TGDH}). We will describe why we picked this protocol and how we integrated it into the SLP in detail.\\
+Further we will discuss possible attacks on SLP which uses TGDH and the solutions we made to prevent them or provide reasons why we couldn't prevent them.
 
 \subsection{Security Groups}
 Like discussed above we propose to create security groups in an open network to establish security between some users and still offer all SLP functions there. To create a secured group within an open network we worked out a concept and a new workflow for our SecuredSLP. First of all a security group in SecuredSLP is a SLP scope in which the group members use encryption to communicate with each other, which means the group members all share a secret. To create and share a secret we used the TGDH protocol. There are some requirements to a security group which we should look at:
 \begin{itemize}
-  \item To join a secured group a user needs to know that there is such a group and this information should be announced as a plain text message, otherwise it isn't possible to get knowlege about such a group. The message should contain at least the information about the group name and where to get access to this group.
-  \item After a user is allowed to join a group, he requires the shared secret of this group, the group key (see also sections \ref{sec:TGDH} and \ref{sec:keyenchange}).
+  \item To join a secured group a user needs to know that there is such a group and this information should be announced as a plain text message, otherwise it isn't possible to get knowledge about such a group. The message should contain at least the information about the group name and where to get access to this group.
+  \item After a user is allowed to join a group, he requires the shared secret of this group, the group key (see also sections \ref{sec:TGDH} and \ref{sec:keyexchange}). This key could be a manual distributed pre-shared key (e.g. an administrator provides network members with a group key) or a automatic generated and distributed key (e.g. a group agreement protocol which generates and distributes the group key)
   \item With a valid group key the user can decrypt all announced service information or offer services itself.
   \item If a user leaves a secured group, reasons could be for example an expired session key, the secured group key should be refreshed automatically.
 \end{itemize}
-We choose TGDH because it fulfill all the requirements above and we already found an implementation in java for it. But it is not necessary to use TGDH, so any other group key agreement protocol would work as well.\\
+We choose TGDH because it fulfills all the requirements above and we already found an implementation in java for it. But it is not necessary to use TGDH, so any other group key agreement protocol would work as well.\\
 With TGDH each user within a secured group has several cryptographic keys.\\
-\textcolor{red}{überarbeiten!!!}\\
 \textbf{Group Shared Key (GSK):} This key is same for all group members and allows to access the secured group.\\
-\textbf{Private-/Public-Key:} This is a key-pair that every user has and with those the users encrypt or decrypt their messages.
+\textbf{Private-/Public-Key:} This is a key-pair that every user has and with those the users sign or verify the messages.
 
 \subsection{Tree-based Group Diffie-Hellman (TGDH)}\label{sec:TGDH}
-Tree-based Group Diffie-Hellman is a protocol-suite for group key management. It handles the key distribution between all network members. TGDH is based on a binary tree structure. But the tree structure is just logical and isn't connected with the real position of the network members. This protocol-suite handles several dynamic group events like a new member joins or leaves the group and two networks merge together or one network partitions in several networks. So TGDH implements four protocols: \textsl{join}, \textsl{leave}, \textsl{merge} and \textsl{partition}\footnote{To secure SLP we only use the join and leave protocols. For that reason the other protocols won't be discussed in detail.}. But all of these protocols have some common structures with following features:
+Tree-based Group Diffie-Hellman is a protocol-suite for group key management. It handles the key distribution between all network members. TGDH is based on a binary tree structure. But the tree structure is just logical and isn't connected with the real position of the network members. This protocol-suite handles several dynamic group events like a new member joins or leaves the group and two networks merge together or one network partitions in several networks. So TGDH implements four messages: \textsl{join}, \textsl{leave}, \textsl{merge} and \textsl{partition}\footnote{To secure SLP we only use the join and leave messages of the TGDH Protocol. For that reason the other messages won't be discussed in detail.}. But all of these messages have some common structures with following features:
 \begin{itemize}
   \item Each network member computes the \textsl{group session key} out of the \textsl{group key} with a hash-function (the hash-function is the same for all members).
   \item Each \textsl{member session key} is just known to the member himself and shouldn't be published.
   \item In case a group gets larger, the \textsl{session keys} of new members will be included and some of old members have to refresh their \textsl{session key}.
-  \item In case a group gets smaller, the \textsl{session keys} of the members, who left the group, will be deleted and at least one member of the group have to refresh his \textsl{session key}.
+  \item In case a group gets smaller, the \textsl{session keys} of the members, who left the group, will be deleted and at least one member of the group refreshes his \textsl{session key}.
   \item All protocol-messages are signed by the sender. For the digital signature TGDH uses RSA or DSA with SHA-1 hash-function. 
 \end{itemize}
 After any changes each member refreshes his \textsl{key-tree} independently from each other.\\
