@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI verified="false" xmi.version="1.2" timestamp="2010-03-20T17:37:35" xmlns:UML="http://schema.omg.org/spec/UML/1.3" >
+ <XMI.header>
+  <XMI.documentation>
+   <XMI.exporter>umbrello uml modeller http://uml.sf.net</XMI.exporter>
+   <XMI.exporterVersion>1.5.8</XMI.exporterVersion>
+   <XMI.exporterEncoding>UnicodeUTF8</XMI.exporterEncoding>
+  </XMI.documentation>
+  <XMI.metamodel xmi.version="1.3" href="UML.xml" xmi.name="UML" />
+ </XMI.header>
+ <XMI.content>
+  <UML:Model isSpecification="false" isAbstract="false" isLeaf="false" xmi.id="m1" isRoot="false" name="UML Model" >
+   <UML:Namespace.ownedElement>
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="folder" name="folder" />
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="datatype" name="datatype" />
+    <UML:Stereotype visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="interface" name="interface" />
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Logical View" name="Logical View" >
+     <UML:Namespace.ownedElement>
+      <UML:Package stereotype="folder" visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Datatypes" name="Datatypes" >
+       <UML:Namespace.ownedElement>
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="mZ4dWMxOXzrQ" name="int" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="pWPs0RRVgDMq" name="char" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Y8YKIrR4PVht" name="bool" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="pcHNb9lQd8Ge" name="float" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Zg9DtT3Rbbjt" name="double" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="RAvodahTCyon" name="short" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="5ZCjfQND6UQz" name="long" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="xUOW38OSGJGu" name="unsigned int" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="uxN6u9szg4iL" name="unsigned short" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="U5YbZzYURx1U" name="unsigned long" />
+        <UML:DataType stereotype="datatype" visibility="public" isSpecification="false" namespace="Datatypes" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="3NvJgBBY9Wf3" name="string" />
+       </UML:Namespace.ownedElement>
+      </UML:Package>
+      <UML:Interface stereotype="interface" visibility="public" isSpecification="false" namespace="Logical View" isAbstract="true" isLeaf="false" isRoot="false" xmi.id="t3Fx4XfZqjeq" name="GKA" >
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="BCwWKknUJFFA" name="newSecurityGroup" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter kind="return" xmi.id="LtuUrINwQ6D3" type="7v7SZ6XYO8ZR" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="RLZUdfJyjbYb" type="0L3oc2gm4zXE" value="" name="aPrivateKey" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="qqm0mJJX4noK" name="joinGroup" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="Wfk69LjQKS1q" type="7v7SZ6XYO8ZR" value="" name="anAddress" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="IDsfb648lpCs" type="0L3oc2gm4zXE" value="" name="aPrivateKey" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="VJug6B87XHbF" name="agreeOnKey" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="CT7RB9vS3ZZC" type="0L3oc2gm4zXE" value="" name="aPrivateKey" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Interface>
+      <UML:Interface stereotype="interface" visibility="public" isSpecification="false" namespace="Logical View" isAbstract="true" isLeaf="false" isRoot="false" xmi.id="oYssY78Ulq3P" name="MulticastGroup" >
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="njR09Rzpad43" name="announceService" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="YOYA8VGQjsDa" type="7v7SZ6XYO8ZR" value="" name="aSecurityGroupAddress" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="UyRINYDevlkj" name="announceServiceInSecurityGroup" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="8ZmxOa9CEBp7" type="Kw1vLVXHjX1x" value="" name="aServiceURL" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="74FcKfLBqtlV" name="findService" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="FZ9ATXu4R0BV" type="Kw1vLVXHjX1x" value="" name="aScope" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="EchMRUZgTvqs" name="findServiceInSecurityGroup" />
+       </UML:Classifier.feature>
+      </UML:Interface>
+      <UML:Interface stereotype="interface" visibility="public" isSpecification="false" namespace="Logical View" isAbstract="true" isLeaf="false" isRoot="false" xmi.id="lfJeNu3RHw6A" name="SA" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Nq2lsEdH60Tn" name="Advertiser" >
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="GdQUcwDzmGlc" name="announceService" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="kG7FH4VvR6RN" type="Kw1vLVXHjX1x" value="" name="aServiceURL" />
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="4gAGfTJR3J7p" type="RhRFraOkVKr3" value="" name="aKeyPair" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Class>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Kw1vLVXHjX1x" name="Object" />
+      <UML:Interface stereotype="interface" visibility="public" isSpecification="false" namespace="Logical View" isAbstract="true" isLeaf="false" isRoot="false" xmi.id="7v7SZ6XYO8ZR" name="Address" />
+      <UML:Interface stereotype="interface" visibility="public" isSpecification="false" namespace="Logical View" isAbstract="true" isLeaf="false" isRoot="false" xmi.id="RhRFraOkVKr3" name="KeyPair" />
+      <UML:Interface stereotype="interface" visibility="public" isSpecification="false" namespace="Logical View" isAbstract="true" isLeaf="false" isRoot="false" xmi.id="0L3oc2gm4zXE" name="PrivateKey" />
+      <UML:Interface stereotype="interface" visibility="public" isSpecification="false" namespace="Logical View" isAbstract="true" isLeaf="false" isRoot="false" xmi.id="LESjsNfKhthL" name="Locator" >
+       <UML:Classifier.feature>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="xurjbtvu3CYD" name="findService" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="hnPK5ZDZG4gQ" type="RhRFraOkVKr3" value="" name="aKeyPair" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="UYdey4zuzDpM" name="receiveResult" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="9tFNgkhSdIWt" type="2TphPsgHrr7D" value="" name="SecurityGroups" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="VkEv3IrYnapk" name="receiveKey" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="y9DA4ETvmEVc" type="4lRGHLI9UHuj" value="" name="aSessionKey" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+        <UML:Operation visibility="public" isSpecification="false" isQuery="false" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="ybs9JFJUvsof" name="receiveResultFromSecurityGroup" >
+         <UML:BehavioralFeature.parameter>
+          <UML:Parameter visibility="private" isSpecification="false" xmi.id="cKR0mCwL35eI" type="Kw1vLVXHjX1x" value="" name="aServiceURL" />
+         </UML:BehavioralFeature.parameter>
+        </UML:Operation>
+       </UML:Classifier.feature>
+      </UML:Interface>
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="n4OX4iyYuPQG" name="UA" />
+      <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="4lRGHLI9UHuj" name="SessionKey" />
+     </UML:Namespace.ownedElement>
+     <XMI.extension xmi.extender="umbrello" >
+      <diagrams>
+       <diagram showopsig="1" linecolor="#ff0000" snapx="10" showattribassocs="1" snapy="10" linewidth="0" showattsig="1" showpubliconly="1" showpackage="1" showstereotype="1" name="Advertiser" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" canvasheight="863" canvaswidth="1393" localid="HcStxICt4Qhp" snapcsgrid="0" showgrid="1" showops="1" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="UIgE9P08GnRu" documentation="" showscope="1" snapgrid="1" showatts="1" type="3" >
+        <widgets>
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" instancename="" x="410" decon="0" showstereotype="1" y="50" font="DejaVu Sans,9,-1,0,50,0,1,0,0,0" localid="KILhfuYJ7b6j" width="50" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="t3Fx4XfZqjeq" height="25" drawasactor="0" />
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" instancename="" x="90" decon="0" showstereotype="1" y="50" font="DejaVu Sans,9,-1,0,50,0,1,0,0,0" localid="l8zhuVZn1gtU" width="50" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="lfJeNu3RHw6A" height="25" drawasactor="0" />
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" instancename="" x="550" decon="0" showstereotype="1" y="48" font="DejaVu Sans,9,-1,0,50,0,1,0,0,0" localid="XnozYTGCr8DI" width="113" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="oYssY78Ulq3P" height="25" drawasactor="0" />
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" instancename="" x="253" decon="0" showstereotype="1" y="48" font="DejaVu Sans,9,-1,0,50,0,1,0,0,0" localid="dLthzeKlLjUI" width="83" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="Nq2lsEdH60Tn" height="25" drawasactor="0" />
+         <notewidget width="113" showstereotype="1" x="131" noteType="0" y="237" usesdiagramusefillcolor="1" usesdiagramfillcolor="1" isinstance="0" fillcolor="none" height="64" linecolor="none" xmi.id="chIgLvLhWu4O" usefillcolor="1" linewidth="none" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" text="SLP scope set to &quot;securitygroup&quot;" />
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" instancename="" x="890" decon="0" showstereotype="1" y="50" font="DejaVu Sans,9,-1,0,50,0,1,0,0,0" localid="WETuLm6lVz78" width="67" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="LESjsNfKhthL" height="25" drawasactor="0" />
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" instancename="" x="1030" decon="0" showstereotype="1" y="50" font="DejaVu Sans,9,-1,0,50,0,1,0,0,0" localid="CWzhT6okunh1" width="50" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="n4OX4iyYuPQG" height="25" drawasactor="0" />
+         <notewidget width="133" showstereotype="1" x="126" noteType="0" y="142" usesdiagramusefillcolor="1" usesdiagramfillcolor="1" isinstance="0" fillcolor="none" height="61" linecolor="none" xmi.id="iRC4wGkumfIC" usefillcolor="1" linewidth="none" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" text="May reuse existing security group" />
+         <objectwidget linecolor="#ff0000" usesdiagramfillcolor="0" linewidth="none" usesdiagramusefillcolor="1" instancename="" x="730" decon="0" showstereotype="1" y="50" font="DejaVu Sans,9,-1,0,50,0,1,0,0,0" localid="HcStxICt4Qhp" width="50" isinstance="0" multipleinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="t3Fx4XfZqjeq" height="25" drawasactor="0" />
+         <notewidget width="149" showstereotype="1" x="950" noteType="0" y="330" usesdiagramusefillcolor="1" usesdiagramfillcolor="1" isinstance="0" fillcolor="none" height="57" linecolor="none" xmi.id="JbrtDMlGaX4w" usefillcolor="1" linewidth="none" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" text="Joins the group for each security group found" />
+         <notewidget width="161" showstereotype="1" x="950" noteType="0" y="510" usesdiagramusefillcolor="1" usesdiagramfillcolor="1" isinstance="0" fillcolor="none" height="50" linecolor="none" xmi.id="SibDni0f9KG0" usefillcolor="1" linewidth="none" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" text="Finds service in each security group" />
+        </widgets>
+        <messages>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="dLthzeKlLjUI" textid="luxdMmtjjJnu" operation="GdQUcwDzmGlc" linewidth="none" seqnum="1" usesdiagramusefillcolor="1" x="116" showstereotype="1" y="110" widgetaid="l8zhuVZn1gtU" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="177" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="GdQUcwDzmGlc" height="8" sequencemessagetype="1001" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="120" showstereotype="1" y="90" text="1: announceService(aServiceURL : Object, aKeyPair : KeyPair)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="375" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="luxdMmtjjJnu" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="KILhfuYJ7b6j" textid="FuIkRMTJH6f4" operation="BCwWKknUJFFA" linewidth="none" seqnum="2" usesdiagramusefillcolor="1" x="294" showstereotype="1" y="169" widgetaid="dLthzeKlLjUI" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="149" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="BCwWKknUJFFA" height="32" sequencemessagetype="1000" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="300" showstereotype="1" y="150" text="2: newSecurityGroup(aPrivateKey : PrivateKey) : Address" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="349" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="FuIkRMTJH6f4" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="XnozYTGCr8DI" textid="GOO0prqFSMYo" operation="njR09Rzpad43" linewidth="none" seqnum="3" usesdiagramusefillcolor="1" x="295" showstereotype="1" y="243" widgetaid="dLthzeKlLjUI" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="310" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="njR09Rzpad43" height="8" sequencemessagetype="1001" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="300" showstereotype="1" y="224" text="3: announceService(aSecurityGroupAddress : Address)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="340" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="GOO0prqFSMYo" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="XnozYTGCr8DI" textid="ATYwntGFMovh" operation="UyRINYDevlkj" linewidth="none" seqnum="4" usesdiagramusefillcolor="1" x="295" showstereotype="1" y="299" widgetaid="dLthzeKlLjUI" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="310" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="UyRINYDevlkj" height="8" sequencemessagetype="1001" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="300" showstereotype="1" y="280" text="4: announceServiceInSecurityGroup(aServiceURL : Object)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="363" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="ATYwntGFMovh" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="XnozYTGCr8DI" textid="xuICSRMvwExN" operation="74FcKfLBqtlV" linewidth="none" seqnum="6" usesdiagramusefillcolor="1" x="607" showstereotype="1" y="354" widgetaid="WETuLm6lVz78" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="315" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="74FcKfLBqtlV" height="8" sequencemessagetype="1001" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="610" showstereotype="1" y="340" text="6: findService(aScope : Object)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="197" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="xuICSRMvwExN" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="WETuLm6lVz78" textid="H18X4Xgvk4bU" operation="UYdey4zuzDpM" linewidth="none" seqnum="7" usesdiagramusefillcolor="1" x="607" showstereotype="1" y="404" widgetaid="XnozYTGCr8DI" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="315" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="UYdey4zuzDpM" height="8" sequencemessagetype="1001" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="610" showstereotype="1" y="390" text="7: receiveResult(SecurityGroups : Array)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="250" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="H18X4Xgvk4bU" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="HcStxICt4Qhp" textid="UzqfM3O95WEQ" operation="qqm0mJJX4noK" linewidth="none" seqnum="8" usesdiagramusefillcolor="1" x="756" showstereotype="1" y="443" widgetaid="WETuLm6lVz78" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="166" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="qqm0mJJX4noK" height="8" sequencemessagetype="1001" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="760" showstereotype="1" y="420" text="8: joinGroup(anAddress : Address, aPrivateKey : PrivateKey)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="366" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="UzqfM3O95WEQ" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="WETuLm6lVz78" textid="hAGCeFapuOzh" operation="VkEv3IrYnapk" linewidth="none" seqnum="10" usesdiagramusefillcolor="1" x="756" showstereotype="1" y="491" widgetaid="HcStxICt4Qhp" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="166" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="VkEv3IrYnapk" height="8" sequencemessagetype="1001" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="760" showstereotype="1" y="470" text="10: receiveKey(aSessionKey : SessionKey)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="257" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="hAGCeFapuOzh" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="KILhfuYJ7b6j" textid="2c1hO7rpFHyM" operation="VJug6B87XHbF" linewidth="none" seqnum="9" usesdiagramusefillcolor="1" x="427" showstereotype="1" y="455" widgetaid="HcStxICt4Qhp" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="328" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="VJug6B87XHbF" height="32" sequencemessagetype="1000" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="470" showstereotype="1" y="440" text="9: agreeOnKey(aPrivateKey : PrivateKey)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="249" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="2c1hO7rpFHyM" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="XnozYTGCr8DI" textid="5QN1P0xDL6w0" operation="EchMRUZgTvqs" linewidth="none" seqnum="11" usesdiagramusefillcolor="1" x="607" showstereotype="1" y="526" widgetaid="WETuLm6lVz78" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="315" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="EchMRUZgTvqs" height="8" sequencemessagetype="1001" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="610" showstereotype="1" y="510" text="11: findServiceInSecurityGroup()" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="209" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="5QN1P0xDL6w0" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="XnozYTGCr8DI" textid="JXvlkGtiMD3i" operation="UyRINYDevlkj" linewidth="none" seqnum="12" usesdiagramusefillcolor="1" x="295" showstereotype="1" y="552" widgetaid="dLthzeKlLjUI" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="310" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="UyRINYDevlkj" height="8" sequencemessagetype="1001" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="300" showstereotype="1" y="533" text="12: announceServiceInSecurityGroup(aServiceURL : Object)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="371" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="JXvlkGtiMD3i" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="WETuLm6lVz78" textid="N813phBMnew6" operation="xurjbtvu3CYD" linewidth="none" seqnum="5" usesdiagramusefillcolor="1" x="915" showstereotype="1" y="301" widgetaid="CWzhT6okunh1" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="140" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="xurjbtvu3CYD" height="327" sequencemessagetype="1000" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="920" showstereotype="1" y="280" text="5: findService(aKeyPair : KeyPair)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="205" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="N813phBMnew6" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="WETuLm6lVz78" textid="fPgTvT4oAM1g" operation="ybs9JFJUvsof" linewidth="none" seqnum="13" usesdiagramusefillcolor="1" x="607" showstereotype="1" y="591" widgetaid="XnozYTGCr8DI" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="315" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="ybs9JFJUvsof" height="8" sequencemessagetype="1001" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="610" showstereotype="1" y="570" text="13: receiveResultFromSecurityGroup(aServiceURL : Object)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="364" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="fPgTvT4oAM1g" height="19" />
+         </messagewidget>
+         <messagewidget linecolor="none" usesdiagramfillcolor="1" widgetbid="WETuLm6lVz78" textid="K25ezpURbG6m" operation="VkEv3IrYnapk" linewidth="none" seqnum="14" usesdiagramusefillcolor="1" x="756" showstereotype="1" y="676" widgetaid="HcStxICt4Qhp" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" width="166" isinstance="0" usefillcolor="1" fillcolor="none" xmi.id="VkEv3IrYnapk" height="8" sequencemessagetype="1001" >
+          <floatingtext linecolor="none" usesdiagramfillcolor="1" linewidth="none" usesdiagramusefillcolor="1" x="760" showstereotype="1" y="660" text="14: receiveKey(aSessionKey : SessionKey)" font="DejaVu Sans,9,-1,0,50,0,0,0,0,0" pretext="" role="704" width="257" isinstance="0" posttext="" usefillcolor="1" fillcolor="none" xmi.id="K25ezpURbG6m" height="19" />
+         </messagewidget>
+        </messages>
+        <associations>
+         <assocwidget indexa="1" indexb="1" visibilityA="0" widgetaid="chIgLvLhWu4O" visibilityB="0" roleBdoc="" roleAdoc="" linecolor="none" changeabilityA="900" totalcounta="2" changeabilityB="900" widgetbid="njR09Rzpad43" totalcountb="2" type="513" documentation="" linewidth="none" >
+          <linepath>
+           <startpoint startx="244" starty="251" />
+           <endpoint endx="295" endy="251" />
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" indexb="1" visibilityA="0" widgetaid="iRC4wGkumfIC" visibilityB="0" roleBdoc="" roleAdoc="" linecolor="none" changeabilityA="900" totalcounta="2" changeabilityB="900" widgetbid="BCwWKknUJFFA" totalcountb="2" type="513" documentation="" linewidth="none" >
+          <linepath>
+           <startpoint startx="260" starty="170" />
+           <endpoint endx="290" endy="170" />
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" indexb="1" visibilityA="0" widgetaid="JbrtDMlGaX4w" visibilityB="0" roleBdoc="" roleAdoc="" linecolor="none" changeabilityA="900" totalcounta="2" changeabilityB="900" widgetbid="qqm0mJJX4noK" totalcountb="2" type="513" documentation="" linewidth="none" >
+          <linepath>
+           <startpoint startx="950" starty="390" />
+           <endpoint endx="920" endy="440" />
+          </linepath>
+         </assocwidget>
+         <assocwidget indexa="1" indexb="1" visibilityA="0" widgetaid="SibDni0f9KG0" visibilityB="0" roleBdoc="" roleAdoc="" linecolor="none" changeabilityA="900" totalcounta="2" changeabilityB="900" widgetbid="EchMRUZgTvqs" totalcountb="2" type="513" documentation="" linewidth="none" >
+          <linepath>
+           <startpoint startx="950" starty="530" />
+           <endpoint endx="920" endy="530" />
+          </linepath>
+         </assocwidget>
+        </associations>
+       </diagram>
+      </diagrams>
+     </XMI.extension>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Use Case View" name="Use Case View" >
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Component View" name="Component View" >
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Deployment View" name="Deployment View" >
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+    <UML:Model stereotype="folder" visibility="public" isSpecification="false" namespace="m1" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="Entity Relationship Model" name="Entity Relationship Model" >
+     <UML:Namespace.ownedElement/>
+    </UML:Model>
+   </UML:Namespace.ownedElement>
+  </UML:Model>
+ </XMI.content>
+ <XMI.extensions xmi.extender="umbrello" >
+  <docsettings viewid="UIgE9P08GnRu" uniqueid="K25ezpURbG6m" documentation="" />
+  <listview>
+   <listitem open="1" type="800" label="Views" >
+    <listitem open="1" type="801" id="Logical View" >
+     <listitem open="0" type="810" id="UIgE9P08GnRu" label="Advertiser" />
+     <listitem open="1" type="813" id="Nq2lsEdH60Tn" >
+      <listitem open="0" type="815" id="GdQUcwDzmGlc" />
+     </listitem>
+     <listitem open="1" type="813" id="Kw1vLVXHjX1x" />
+     <listitem open="1" type="813" id="4lRGHLI9UHuj" />
+     <listitem open="1" type="813" id="n4OX4iyYuPQG" />
+     <listitem open="1" type="817" id="7v7SZ6XYO8ZR" />
+     <listitem open="1" type="817" id="t3Fx4XfZqjeq" >
+      <listitem open="0" type="815" id="BCwWKknUJFFA" />
+      <listitem open="0" type="815" id="qqm0mJJX4noK" />
+      <listitem open="1" type="815" id="VJug6B87XHbF" />
+     </listitem>
+     <listitem open="1" type="817" id="RhRFraOkVKr3" />
+     <listitem open="1" type="817" id="LESjsNfKhthL" >
+      <listitem open="1" type="815" id="xurjbtvu3CYD" />
+      <listitem open="1" type="815" id="UYdey4zuzDpM" />
+      <listitem open="1" type="815" id="VkEv3IrYnapk" />
+      <listitem open="1" type="815" id="ybs9JFJUvsof" />
+     </listitem>
+     <listitem open="1" type="817" id="oYssY78Ulq3P" >
+      <listitem open="1" type="815" id="njR09Rzpad43" />
+      <listitem open="1" type="815" id="UyRINYDevlkj" />
+      <listitem open="1" type="815" id="74FcKfLBqtlV" />
+      <listitem open="1" type="815" id="EchMRUZgTvqs" />
+     </listitem>
+     <listitem open="1" type="817" id="0L3oc2gm4zXE" />
+     <listitem open="1" type="817" id="lfJeNu3RHw6A" />
+     <listitem open="0" type="830" id="Datatypes" >
+      <listitem open="1" type="829" id="Y8YKIrR4PVht" />
+      <listitem open="1" type="829" id="pWPs0RRVgDMq" />
+      <listitem open="1" type="829" id="Zg9DtT3Rbbjt" />
+      <listitem open="1" type="829" id="pcHNb9lQd8Ge" />
+      <listitem open="1" type="829" id="mZ4dWMxOXzrQ" />
+      <listitem open="1" type="829" id="5ZCjfQND6UQz" />
+      <listitem open="1" type="829" id="RAvodahTCyon" />
+      <listitem open="1" type="829" id="3NvJgBBY9Wf3" />
+      <listitem open="1" type="829" id="xUOW38OSGJGu" />
+      <listitem open="1" type="829" id="U5YbZzYURx1U" />
+      <listitem open="1" type="829" id="uxN6u9szg4iL" />
+     </listitem>
+    </listitem>
+    <listitem open="1" type="802" id="Use Case View" />
+    <listitem open="1" type="821" id="Component View" />
+    <listitem open="1" type="827" id="Deployment View" />
+    <listitem open="1" type="836" id="Entity Relationship Model" />
+   </listitem>
+  </listview>
+  <codegeneration>
+   <codegenerator language="C++" />
+  </codegeneration>
+ </XMI.extensions>
+</XMI>
