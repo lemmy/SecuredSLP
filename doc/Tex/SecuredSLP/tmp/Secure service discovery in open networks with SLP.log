@@ -1,18 +1,19 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2010.3.19)  19 MAR 2010 22:25
+This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2010.3.20)  20 MAR 2010 21:59
 entering extended mode
 **Secure*service*discovery*in*open*networks*with*SLP.tex
 
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\S
-ecure service discovery in open networks with SLP.tex"
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Secure service discovery in open networks with SLP.tex"
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
 rman, ngerman, german-x-2009-06-19, ngerman-x-2009-06-19, french, loaded.
 
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\a
-cm_proc_article-sp.cls" ("C:\Programme\MiKTeX 2.8\tex\latex\graphics\epsfig.sty
-"
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\acm_proc_article-sp.cls"
+("C:\Programme\MiKTeX 2.8\tex\latex\graphics\epsfig.sty"
 Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
- ("C:\Programme\MiKTeX 2.8\tex\latex\graphics\graphicx.sty"
+
+("C:\Programme\MiKTeX 2.8\tex\latex\graphics\graphicx.sty"
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 ("C:\Programme\MiKTeX 2.8\tex\latex\graphics\keyval.sty"
@@ -377,8 +378,8 @@ LaTeX Warning: Unused global option(s):
     [normalsize].
 
 
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\S
-ecure service discovery in open networks with SLP.aux")
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Secure service discovery in open networks with SLP.aux")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
@@ -435,23 +436,22 @@ Package: gettitlestring 2009/12/18 v1.3 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 24.
 LaTeX Info: Redefining \pageref on input line 24.
 
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\S
-ecure service discovery in open networks with SLP.out")
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\S
-ecure service discovery in open networks with SLP.out")
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Secure service discovery in open networks with SLP.out")
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Secure service discovery in open networks with SLP.out")
 \@outlinefile=\write3
 \AtBeginShipoutBox=\box33
 \c@lstlisting=\count132
 
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\K
-apitel/00Titlepage.tex"
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Kapitel/00Titlepage.tex"
 LaTeX Font Info:    Try loading font information for U+msa on input line 11.
  ("C:\Programme\MiKTeX 2.8\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 11.
-
-("C:\Programme\MiKTeX 2.8\tex\latex\amsfonts\umsb.fd"
+ ("C:\Programme\MiKTeX 2.8\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for U+lasy on input line 11.
@@ -459,8 +459,8 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 11.
 ("C:\Programme\MiKTeX 2.8\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ))
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\K
-apitel/01Introduction.tex"
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Kapitel/01Introduction.tex"
 Underfull \hbox (badness 10000) in paragraph at lines 10--11
 
  []
@@ -498,11 +498,11 @@ een already used, duplicate ignored
                    \relax 
 l.36 \subsubsection{Hybrid architecture}
                                          [2 <C:/Dokumente und Einstellungen/Dem
-onoid/Desktop/EclipseWorkspace/SecuredSLP/Images/directory-based_architecture.p
-ng> <C:/Dokumente und Einstellungen/Demonoid/Desktop/EclipseWorkspace/SecuredSL
-P/Images/directory-less_architecture.png>])
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\K
-apitel/02SLP-Overview.tex"
+onoid/Desktop/SecuredSLP/doc/Tex/SecuredSLP/Images/directory-based_architecture
+.png> <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/Secur
+edSLP/Images/directory-less_architecture.png>])
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Kapitel/02SLP-Overview.tex"
 Overfull \hbox (5.71176pt too wide) in paragraph at lines 5--9
 \T1/aer/m/n/9 A UA may query for ser-vices by op-tion-ally us-ing a Lightweight
 
@@ -514,8 +514,8 @@ een already used, duplicate ignored
                    \relax 
 l.16 
       [3])
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\K
-apitel/03SecureSLP.tex"
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Kapitel/03SecureSLP.tex"
 Underfull \hbox (badness 10000) in paragraph at lines 15--18
 
  []
@@ -538,29 +538,34 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.38 
-      [5 <C:/Dokumente und Einstellungen/Demonoid/Desktop/EclipseWorkspace/Secu
-redSLP/Images/security-group_scope.png>])
+      [5 <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/Se
+curedSLP/Images/security-group_scope.png>])
 Underfull \hbox (badness 10000) in paragraph at lines 40--36
 
  []
 
 
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\K
-apitel/04FutureWork.tex"
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Kapitel/04FutureWork.tex"
 Overfull \hbox (4.52563pt too wide) in paragraph at lines 7--8
 \T1/aer/m/n/9 Agents. Where [][]Hol-lick[][] [[][]2001[][]] ex-cludes Di-rec-to
 ry Agents
  []
 
-)
-Underfull \hbox (badness 10000) in paragraph at lines 9--39
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--46
 
  []
 
 
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\K
-apitel/05Concepts.tex"pdfTeX warning (ext4): destination with the same identifi
-er (name{page.}) has been already used, duplicate ignored
+Underfull \hbox (badness 10000) in paragraph at lines 9--46
+
+ []
+
+)
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Kapitel/05Concepts.tex"pdfTeX warning (ext4): destination with the same identi
+fier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.1 \newpage
@@ -580,26 +585,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--30
  []
 
 
-Overfull \hbox (6.64943pt too wide) in paragraph at lines 32--33
-[]\T1/aer/m/n/9 There are sev-eral cryp-to-graphic keys which are used in TGDH.
- 
+Overfull \hbox (4.0845pt too wide) in paragraph at lines 32--33
+[]\T1/aer/m/n/9 There are sev-eral cryp-to-graphic keys which are used in TGDH
  []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.40 \begin{align*}
-                    [7]
-<Images/tgdh_tree.png, id=314, 876.27374pt x 406.51875pt>
+l.38 \end{description}
+                       [7]
+<Images/tgdh_tree.png, id=321, 876.27374pt x 406.51875pt>
 File: Images/tgdh_tree.png Graphic file (type png)
 
 <use Images/tgdh_tree.png>
-Overfull \hbox (12.0pt too wide) in paragraph at lines 52--53
- [][][] 
- []
-
-<Images/tgdh_join.png, id=316, 934.49126pt x 1005.7575pt>
+<Images/tgdh_join.png, id=323, 934.49126pt x 1005.7575pt>
 File: Images/tgdh_join.png Graphic file (type png)
 
 <use Images/tgdh_join.png>
@@ -610,7 +610,7 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 60--61
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Images/tgdh_leave.png, id=318, 1067.99pt x 1088.065pt>
+<Images/tgdh_leave.png, id=325, 1067.99pt x 1088.065pt>
 File: Images/tgdh_leave.png Graphic file (type png)
 
 <use Images/tgdh_leave.png>
@@ -619,50 +619,47 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 68--69
  []
 
 )
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\K
-apitel/06Integration.tex"
-Overfull \hbox (18.24658pt too wide) in paragraph at lines 1--1
-[]\secfnt INTEGRATION OF A GROUP KEY AGREE-
- []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Kapitel/06Integration.tex"pdfTeX warning (ext4): destination with the same ide
+ntifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1 ...of a group key agreement protocol into SLP}
-                                                   [8 <C:/Dokumente und Einstel
-lungen/Demonoid/Desktop/EclipseWorkspace/SecuredSLP/Images/tgdh_tree.png> <C:/D
-okumente und Einstellungen/Demonoid/Desktop/EclipseWorkspace/SecuredSLP/Images/
-tgdh_join.png> <C:/Dokumente und Einstellungen/Demonoid/Desktop/EclipseWorkspac
-e/SecuredSLP/Images/tgdh_leave.png>])
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\K
-apitel/07Implementation.tex"
+l.7 \subsection{Modular integration}
+                                     [8 <C:/Dokumente und Einstellungen/Demonoi
+d/Desktop/SecuredSLP/doc/Tex/SecuredSLP/Images/tgdh_tree.png> <C:/Dokumente und
+ Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/SecuredSLP/Images/tgdh_join.
+png>])
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Kapitel/07Implementation.tex"
 LaTeX Font Info:    Try loading font information for T1+aett on input line 10.
  ("C:\Programme\MiKTeX 2.8\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-Overfull \hbox (15.99974pt too wide) in paragraph at lines 10--11
-\T1/aer/m/n/9 source code (com-pare fig-ure [][]7.1[][] and fig-ure [][]7.1[][]
-). []Num-merierungs-
- []
-
-
 Overfull \hbox (2.78897pt too wide) in paragraph at lines 17--35
 []\T1/aett/m/n/9 Security Group Length \T1/aer/m/n/9 and \T1/aett/m/n/9 Se-cu-r
 ity Group Name \T1/aer/m/n/9 are both
  []
+
+
+LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
+(Font)              using `T1/aett/m/n' instead on input line 43.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.59 
-      [9]
+      [9 <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/Se
+curedSLP/Images/tgdh_leave.png>]
 Overfull \hbox (5.29063pt too wide) in paragraph at lines 65--66
 [][]\T1/aer/m/n/9 Group key agree-ment pro-to-col dis-tributes the new group
  []
 
-<Images/sSLP_join.png, id=370, 498.86375pt x 227.85126pt>
+<Images/sSLP_join.png, id=385, 498.86375pt x 227.85126pt>
 File: Images/sSLP_join.png Graphic file (type png)
 
 <use Images/sSLP_join.png>
@@ -671,25 +668,28 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 68--70
  []
 
 )
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\K
-apitel/08Attacks.tex"pdfTeX warning (ext4): destination with the same identifie
-r (name{page.}) has been already used, duplicate ignored
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Kapitel/08Attacks.tex"pdfTeX warning (ext4): destination with the same identif
+ier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.17 \subsection{Man-in-the-middle attacks}
-                                            [10 <C:/Dokumente und Einstellungen
-/Demonoid/Desktop/EclipseWorkspace/SecuredSLP/Images/sSLP_join.png>])
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\K
-apitel/09Evaluation.tex")pdfTeX warning (ext4): destination with the same ident
-ifier (name{page.}) has been already used, duplicate ignored
+l.13 
+      [10 <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/S
+ecuredSLP/Images/sSLP_join.png>])
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Kapitel/09Evaluation.tex")
+Underfull \hbox (badness 10000) in paragraph at lines 2--54
+
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.57 \clearpage
-               \addcontentsline{toc}{chapter}{\bibname} [11
-
-]
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\S
-ecure service discovery in open networks with SLP.bbl"
+               \addcontentsline{toc}{chapter}{\bibname} [11]
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Secure service discovery in open networks with SLP.bbl"
 Underfull \hbox (badness 1092) in paragraph at lines 42--50
 [][]\T1/aer/m/n/9 Domenico Cotro-neo, Almerindo Graziano, and Ste-fano
  []
@@ -716,21 +716,25 @@ l.59 \end{document}
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 59.
 
-("C:\Dokumente und Einstellungen\Demonoid\Desktop\EclipseWorkspace\SecuredSLP\S
-ecure service discovery in open networks with SLP.aux")
+("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
+\Secure service discovery in open networks with SLP.aux")
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 59.
 Package rerunfilecheck Info: File `Secure*service*discovery*in*open*networks*wi
 th*SLP.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
  ) 
 Here is how much of TeX's memory you used:
- 7901 strings out of 495269
- 114317 string characters out of 3180430
- 256826 words of memory out of 3000000
- 10795 multiletter control sequences out of 15000+200000
+ 7943 strings out of 495269
+ 114885 string characters out of 3180430
+ 254115 words of memory out of 3000000
+ 10834 multiletter control sequences out of 15000+200000
  59059 words of font info for 81 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 39i,10n,32p,1489b,997s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,10n,32p,2165b,1057s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Programme/MiKTeX 2.8/fonts/enc/dvips/fontname/8r.enc}<C:/Programme/MiKTeX
  2.8/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Programme/MiKTeX 2.8/fonts/ty
 pe1/public/amsfonts/cmextra/cmex9.pfb><C:/Programme/MiKTeX 2.8/fonts/type1/publ
@@ -748,9 +752,9 @@ elvetic/uhvb8a.pfb><C:/Programme/MiKTeX 2.8/fonts/type1/urw/helvetic/uhvr8a.pfb
 ><C:/Programme/MiKTeX 2.8/fonts/type1/urw/times/utmb8a.pfb><C:/Programme/MiKTeX
  2.8/fonts/type1/urw/times/utmri8a.pfb>
 Output written on "Secure service discovery in open networks with SLP.pdf" (12 
-pages, 524587 bytes).
+pages, 534065 bytes).
 PDF statistics:
- 486 PDF objects out of 1000 (max. 8388607)
- 108 named destinations out of 1000 (max. 500000)
+ 514 PDF objects out of 1000 (max. 8388607)
+ 111 named destinations out of 1000 (max. 500000)
  364 words of extra memory for PDF output out of 10000 (max. 10000000)
 

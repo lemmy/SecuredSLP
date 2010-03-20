@@ -3,15 +3,15 @@ Open networks become increasingly common due to the wide availability of mobile 
 This paper describes the fundamental security implications that arise from open networks. It picks up these implications in the scope of SLP and compiles a detailed threat analysis for SLP in open networks. It then continues to extend the current version of SLP with security enhancement to strengthen the protocol for use in untrustworthy and hostile environments by staying backward compatibility with earlier protocol versions. The major protocol modifications can be summarized as:
 \begin{itemize}
 \item SLPv2's pre-established trust model is replaced by a dynamic model that can deal with the dynamics of an open network. It is either implemented as a Public Key Infrastructure or a Web of Trust. On top a reputation based trust may be used when devices are not resource constrained by e.g. battery lifetime.
-\item Confidentiality is added to SLP by encrypted group and peer to peer communication. The symmetric group key is handled by using Group Diffie-Hellman, a known protocol for distributed group key agreement. This goes beyond the approach taken by \citet{Hollick2001} who leaves confidentiality to the Internet layer. Thus our SecureSLP stays independent of additional network facilities.
-\item SecureSLP is aware of all three agent types in SLP namely User Agents, Service Agents and Directory Agents. Where \citet{Hollick2001} excludes Directory Agents in his solution entirely, SecureSLP incorporates DAs into the protocol. This enables better performance and scalability when used in combination with the enhancements presented by \citet{Zhao2003}.
+\item Confidentiality is added to SLP by encrypted group and peer to peer communication. The symmetric group key is handled by using Group Diffie-Hellman, a known protocol for distributed group key agreement. This goes beyond the approach taken by \citet{Hollick2001} who leaves confidentiality to the Internet layer. Thus our SecuredSLP stays independent of additional network facilities.
+\item SecuredSLP is aware of all three agent types in SLP namely User Agents, Service Agents and Directory Agents. Where \citet{Hollick2001} excludes Directory Agents in his solution entirely, SecuredSLP incorporates DAs into the protocol. This enables better performance and scalability when used in combination with the enhancements presented by \citet{Zhao2003}.
 \end{itemize}
-Table \ref{tab:SLP-and-SecureSLP} shows a comparison between traditional SLP and the secured version of SLP as proposed in this paper.
+Table \ref{tab:SLP-and-SecuredSLP} shows a comparison between traditional SLP and the secured version of SLP as proposed in this paper.
 \begin{table}[!h]
 \begin{centering}
 \begin{tabular}{|c|c|c|}
 \hline 
- & SLP & SecureSLP
+ & SLP & SecuredSLP
 \tabularnewline
 \hline
 \hline 
@@ -39,7 +39,9 @@ Non-repudiation & $-$ & $-$
 \end{tabular}
 \par\end{centering}
 
-\caption{\label{tab:SLP-and-SecureSLP}SLP and SecureSLP security comparision matrix}
+\caption{\label{tab:SLP-and-SecuredSLP}SLP and SecuredSLP security comparision matrix}
 \end{table}\\\\
-With confidentiality being addressed in SecureSLP, peer authorization becomes feasible, to support different discovery results based on an UA authorization. Different authorization levels may be represented by a dedicated Security Group per level and Service Agent. However, more research has to be undertaken in order to validate this approach and add a concrete implementation to SecureSLP.\\
-Properties like non-repudiation and availability are regarded as unessential for SecureSLP in the scope of this paper. Whether this assumption holds true and e.g. message loss and agent unavailability is indeed tolerated by the protocol, has to be confirmed in future work. Even more important is concise performance and scalability measurements to prove that the protocol extensions maintain SLP's performance characteristics even in large open networks with many peers and strong fluctuations.
+With confidentiality being addressed in SecuredSLP, peer authorization becomes feasible, to support different discovery results based on an UA authorization. Different authorization levels may be represented by a dedicated Security Group per level and Service Agent. However, more research has to be undertaken in order to validate this approach and add a concrete implementation to SecuredSLP.\\
+Properties like non-repudiation and availability are regarded as unessential for SecuredSLP in the scope of this paper. Whether this assumption holds true and e.g. message loss and agent unavailability is indeed tolerated by the protocol, has to be confirmed in future work. Even more important is concise performance and scalability measurements to prove that the protocol extensions maintain SLP's performance characteristics even in large open networks with many peers and strong fluctuations.\\
+\hrule
+Until this section we discussed theoretical solutions to increase the security of the service discovery protocol. In the following parts of this paper we will describe how we integrated and implemented the suggested solutions and how they affect on the protocol and its environment.

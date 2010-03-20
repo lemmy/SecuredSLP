@@ -1,4 +1,4 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{20}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -98,9 +98,26 @@ S.~Kent and K.~Seo.
 \newblock RFC 4301 (Proposed Standard), December 2005.
 \newblock URL \url{http://www.ietf.org/rfc/rfc4301.txt}.
 
+\bibitem[Keromytis and Provos(2000)]{Kero00}
+A.~Keromytis and N.~Provos.
+\newblock The use of hmac-ripemd-160-96 within esp and ah, 2000.
+\newblock URL \url{http://www.faqs.org/rfcs/rfc2857.html}.
+
 \bibitem[Kravitz(1993)]{Kravitz1993}
 Kravitz.
 \newblock Digital signature algorithm, July 1993.
+
+\bibitem[Krawczyk et~al.(1997)Krawczyk, Bellare, and Canetti]{Kraw97}
+H.~Krawczyk, M.~Bellare, and R.~Canetti.
+\newblock Hmac: Keyed-hashing for message authentication, 1997.
+\newblock URL \url{http://www.ietf.org/rfc/rfc2104.txt}.
+
+\bibitem[Liao(2004)]{Liao2004}
+Lijun Liao.
+\newblock Java-implementierung von "tree-based group diffie-hellman(tgdh)",
+  2004.
+\newblock URL
+  \url{http://www.nds.rub.de/stcnt/research/top/gc/tgdh/docs/tgdh.pdf}.
 
 \bibitem[Prakash and Uthariaraj(2008)]{Prakash2008}
 A.J. Prakash and V.R. Uthariaraj.

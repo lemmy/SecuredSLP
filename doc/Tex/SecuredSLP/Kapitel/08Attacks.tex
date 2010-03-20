@@ -12,7 +12,7 @@ In SecuredSLP a possibility of a replay attacks is very low. To prevent replay a
 Evedrop attacks are still possible on the SecuredSLP. Everyone can log the network traffic and learn about its behavior. The benefit in SecuredSLP is that the information stays confidentiality because all messages are encrypted and signed. An attacker can just intercept messages and read the message header but not decrypt the payload as we assume that the encryption algorithms are safe.
 
 \subsection{Manipulation attacks}
-Like told above we exclude the manipulation of SecuredSLP messaged because the messages are encrypted and signed and the header of each message is linked with the payload using HMAC. For more information about HMAC see \textcolor{red}{quelle}.
+Like told above we exclude the manipulation of SecuredSLP messaged because the messages are encrypted and signed and the header of each message is linked with the payload using HMAC. For more information about HMAC see \cite{Kraw97} and \cite{Kero00}.
 
 \subsection{Man-in-the-middle attacks}
-Man-in-the-middle attacks still work on SecuredSLP. For example an attacker can act as a DA in a security group and communicate with his prey and get information about the services he provides or use. \textcolor{red}{haben wir eigentlich punkt-zu-punkt oder ende-zu-ende sicherheit?}
+Man-in-the-middle attacks still work on SecuredSLP. For example an attacker can act as a DA in a security group and communicate with his prey and get information about the services he provides or use. \textcolor{red}{muss wahrscheinlich raus!}
