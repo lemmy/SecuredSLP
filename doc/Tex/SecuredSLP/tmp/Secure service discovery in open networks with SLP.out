@@ -26,9 +26,9 @@
 \BOOKMARK [1][-]{section.6}{Integration: group key agreement protocol with SLP}{}% 26
 \BOOKMARK [2][-]{subsection.6.1}{Hardcoded integration}{section.6}% 27
 \BOOKMARK [2][-]{subsection.6.2}{Modular integration}{section.6}% 28
-\BOOKMARK [3][-]{subsubsection.6.2.1}{Workflow of SLP with a modular integration}{subsection.6.2}% 29
-\BOOKMARK [1][-]{section.7}{Implementation}{}% 30
-\BOOKMARK [2][-]{subsection.7.1}{SecuredSLP message format}{section.7}% 31
+\BOOKMARK [1][-]{section.7}{Implementation}{}% 29
+\BOOKMARK [2][-]{subsection.7.1}{SecuredSLP message format}{section.7}% 30
+\BOOKMARK [3][-]{subsubsection.7.1.1}{Message integrity}{subsection.7.1}% 31
 \BOOKMARK [2][-]{subsection.7.2}{Key exchange in SecuredSLP}{section.7}% 32
 \BOOKMARK [2][-]{subsection.7.3}{Communication in SecuredSLP}{section.7}% 33
 \BOOKMARK [1][-]{section.8}{Possible attacks on SecuredSLP}{}% 34

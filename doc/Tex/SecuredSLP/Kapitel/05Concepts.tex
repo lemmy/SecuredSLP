@@ -1,7 +1,7 @@
 \newpage
 \section{Concepts for Implementation}\label{sec:concepts}
 In chapters above we discussed some possible security concepts and increments for the service location protocol. In following sections we will introduce our practical solutions to fulfill the requested requirements.\\
-First of all we need to establish security groups, where users can communicate with athentication using encryption and having message integrity. To create those groups we combined the already implemented SLP scopes with a group key agreement protocol. For this purpose we took the Tree-based Group Diffie-Hellman protocol (TGDH). TGDH is a group key agreement protocol which we use to create and share security group keys (details about TGDH will be introduced in section \ref{sec:TGDH}). We will describe why we picked this protocol and how we integrated it into the SLP in detail.\\
+First of all we need to establish security groups, where users can communicate with athentication using encryption and having message integrity. To create those groups we combined the already implemented SLP scopes with a group key agreement protocol (GKA). For this purpose we took the Tree-based Group Diffie-Hellman protocol (TGDH). TGDH is a group key agreement protocol which we use to create and share security group keys (details about TGDH will be introduced in section \ref{sec:TGDH}). We will describe why we picked this protocol and how we integrated it into the SLP in detail.\\
 Further we will discuss possible attacks on SLP which uses TGDH and the solutions we made to prevent them or provide reasons why we couldn't prevent them.
 
 \subsection{Security Groups}

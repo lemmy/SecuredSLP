@@ -7,11 +7,3 @@ With this solution we have to take the SLP specification apart and change many m
 \subsection{Modular integration}
 With this solution we don't make many changes in the SLP specification. We use a group key agreement protocol as a module which we combine with SLP without fully integrates it into the SLP specification. In this way the module can easily be replaced anytime. So we are not bound to a special group key agreement protocol. Also it is possible to use many several group agreement protocols at the same time if needed. Our goal was to upgrade the SLP with minimum changes but to solve the requested requirements like discussed in section \ref{sec:conclusion}, so we decided to take this solution. Furthermore this solution can be applied much easier on current SLP implementation as a hardcoded integration.\\
 For this purpose we have minor changes in the source code. Like discussed above we took TGDH as our group agreement protocol. To make SLP work with TGDH we had to change the header of SLP messages and implement additional functions into SLP to communicate with our group agreement protocol. A disadvantage of this method is a bigger communication overhead because SLP and the group key agreement protocol don't work synchronized together.
-
-\subsubsection{Workflow of SLP with a modular integration}
-\begin{figure*}[!h]
-\centering\includegraphics[width=1.0\textwidth]{Images/SequenceDiagramm}
-\caption{Sequence diagramm \ldots}
-\label{}
-\end{figure*}
-\textcolor{red}{hier noch ein Bild einfügen}

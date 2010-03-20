@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2010.3.20)  20 MAR 2010 22:12
+This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2010.3.20)  20 MAR 2010 23:53
 entering extended mode
 **Secure*service*discovery*in*open*networks*with*SLP.tex
 
@@ -346,26 +346,33 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip46
 )
+("C:\Programme\MiKTeX 2.8\tex\latex\enumitem\enumitem.sty"
+Package: enumitem 2009/05/18 v2.2 Customized lists
+\enit@toks=\toks37
+\labelindent=\skip47
+\enit@outerparindent=\dimen127
+\enitdp@desc=\count118
+)
 ("C:\Programme\MiKTeX 2.8\tex\latex\listings\listings.sty"
-\lst@mode=\count118
+\lst@mode=\count119
 \lst@gtempboxa=\box30
-\lst@token=\toks37
-\lst@length=\count119
-\lst@currlwidth=\dimen127
-\lst@column=\count120
-\lst@pos=\count121
-\lst@lostspace=\dimen128
-\lst@width=\dimen129
-\lst@newlines=\count122
-\lst@lineno=\count123
-\abovecaptionskip=\skip47
-\belowcaptionskip=\skip48
-\lst@maxwidth=\dimen130
+\lst@token=\toks38
+\lst@length=\count120
+\lst@currlwidth=\dimen128
+\lst@column=\count121
+\lst@pos=\count122
+\lst@lostspace=\dimen129
+\lst@width=\dimen130
+\lst@newlines=\count123
+\lst@lineno=\count124
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\lst@maxwidth=\dimen131
 
 ("C:\Programme\MiKTeX 2.8\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-\c@lstnumber=\count124
-\lst@skipnumbers=\count125
+\c@lstnumber=\count125
+\lst@skipnumbers=\count126
 \lst@framebox=\box31
 )
 ("C:\Programme\MiKTeX 2.8\tex\latex\listings\listings.cfg"
@@ -380,33 +387,33 @@ LaTeX Warning: Unused global option(s):
 
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
 \Secure service discovery in open networks with SLP.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
 
 ("C:\Programme\MiKTeX 2.8\tex\context\base\supp-pdf.tex"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count126
-\scratchdimen=\dimen131
+\scratchcounter=\count127
+\scratchdimen=\dimen132
 \scratchbox=\box32
-\nofMPsegments=\count127
-\nofMParguments=\count128
-\everyMPshowfont=\toks38
-\MPscratchCnt=\count129
-\MPscratchDim=\dimen132
-\MPnumerator=\count130
-\everyMPtoPDFconversion=\toks39
+\nofMPsegments=\count128
+\nofMParguments=\count129
+\everyMPshowfont=\toks39
+\MPscratchCnt=\count130
+\MPscratchDim=\dimen133
+\MPnumerator=\count131
+\everyMPtoPDFconversion=\toks40
 )
 
 Package hyperref Warning: Height of page (\paperheight) is invalid (0.0pt),
@@ -420,7 +427,7 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
 )
-Package hyperref Info: Link coloring ON on input line 24.
+Package hyperref Info: Link coloring ON on input line 25.
 
 ("C:\Programme\MiKTeX 2.8\tex\latex\hyperref\nameref.sty"
 Package: nameref 2010/01/25 v2.36 Cross-referencing by name of section
@@ -431,10 +438,10 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 ("C:\Programme\MiKTeX 2.8\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2009/12/18 v1.3 Cleanup title references (HO)
 )
-\c@section@level=\count131
+\c@section@level=\count132
 )
-LaTeX Info: Redefining \ref on input line 24.
-LaTeX Info: Redefining \pageref on input line 24.
+LaTeX Info: Redefining \ref on input line 25.
+LaTeX Info: Redefining \pageref on input line 25.
 
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
 \Secure service discovery in open networks with SLP.out")
@@ -442,7 +449,7 @@ LaTeX Info: Redefining \pageref on input line 24.
 \Secure service discovery in open networks with SLP.out")
 \@outlinefile=\write3
 \AtBeginShipoutBox=\box33
-\c@lstlisting=\count132
+\c@lstlisting=\count133
 
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
 \Kapitel/00Titlepage.tex"
@@ -540,7 +547,7 @@ een already used, duplicate ignored
 l.38 
       [5 <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/Se
 curedSLP/Images/security-group_scope.png>])
-Underfull \hbox (badness 10000) in paragraph at lines 40--36
+Underfull \hbox (badness 10000) in paragraph at lines 40--37
 
  []
 
@@ -575,7 +582,7 @@ Overfull \hbox (3.17772pt too wide) in paragraph at lines 20--20
  []
 
 
-Overfull \hbox (1.96022pt too wide) in paragraph at lines 21--22
+Overfull \hbox (1.96022pt too wide) in paragraph at lines 21--23
 []\T1/aer/m/n/9 Tree-based Group Diffie-Hellman is a protocol-suite for group
  []
 
@@ -585,7 +592,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--30
  []
 
 
-Overfull \hbox (4.0845pt too wide) in paragraph at lines 32--33
+Overfull \hbox (4.0845pt too wide) in paragraph at lines 32--34
 []\T1/aer/m/n/9 There are sev-eral cryp-to-graphic keys which are used in TGDH
  []
 
@@ -632,10 +639,7 @@ l.7 \subsection{Modular integration}
                                      [8 <C:/Dokumente und Einstellungen/Demonoi
 d/Desktop/SecuredSLP/doc/Tex/SecuredSLP/Images/tgdh_tree.png> <C:/Dokumente und
  Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/SecuredSLP/Images/tgdh_join.
-png>] <Images/SequenceDiagramm.png, id=337, 779.91376pt x 493.845pt>
-File: Images/SequenceDiagramm.png Graphic file (type png)
-
-<use Images/SequenceDiagramm.png>)
+png>])
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
 \Kapitel/07Implementation.tex"
 LaTeX Font Info:    Try loading font information for T1+aett on input line 10.
@@ -651,37 +655,59 @@ ity Group Name \T1/aer/m/n/9 are both
 LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
 (Font)              using `T1/aett/m/n' instead on input line 43.
 
+<Images/HMAC.png, id=345, 911.405pt x 230.8625pt>
+File: Images/HMAC.png Graphic file (type png)
+ <use Images/HMAC.png>
+Overfull \hbox (12.0pt too wide) in paragraph at lines 59--60
+ [][][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.59 
+l.67 
       [9 <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/Se
 curedSLP/Images/tgdh_leave.png>]
-Overfull \hbox (5.29063pt too wide) in paragraph at lines 65--66
+Overfull \hbox (5.29063pt too wide) in paragraph at lines 73--74
 [][]\T1/aer/m/n/9 Group key agree-ment pro-to-col dis-tributes the new group
  []
 
-<Images/sSLP_join.png, id=386, 498.86375pt x 227.85126pt>
+<Images/sSLP_join.png, id=387, 1023.825pt x 497.86pt>
 File: Images/sSLP_join.png Graphic file (type png)
 
 <use Images/sSLP_join.png>
-Overfull \hbox (12.0pt too wide) in paragraph at lines 68--70
+Overfull \hbox (12.0pt too wide) in paragraph at lines 76--78
  [][][] 
  []
 
-)
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--83
+
+ []
+
+<Images/SequenceDiagramm.png, id=389, 779.91376pt x 493.845pt>
+File: Images/SequenceDiagramm.png Graphic file (type png)
+
+<use Images/SequenceDiagramm.png>)
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
 \Kapitel/08Attacks.tex"pdfTeX warning (ext4): destination with the same identif
 ier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.13 
-      [10 <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/S
-ecuredSLP/Images/sSLP_join.png>])
+l.7 
+     [10 <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/Se
+curedSLP/Images/HMAC.png> <C:/Dokumente und Einstellungen/Demonoid/Desktop/Secu
+redSLP/doc/Tex/SecuredSLP/Images/sSLP_join.png>])
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
 \Kapitel/09Evaluation.tex")
-Underfull \hbox (badness 10000) in paragraph at lines 2--54
+Underfull \hbox (badness 10000) in paragraph at lines 2--55
 
  []
 
@@ -689,13 +715,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.57 \clearpage
+l.58 \clearpage
                \addcontentsline{toc}{chapter}{\bibname} [11]pdfTeX warning (ext
 4): destination with the same identifier (name{page.}) has been already used, d
 uplicate ignored
 <to be read again> 
                    \relax 
-l.57 \clearpage
+l.58 \clearpage
                \addcontentsline{toc}{chapter}{\bibname} [12 <C:/Dokumente und E
 instellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/SecuredSLP/Images/SequenceDiag
 ramm.png (PNG copy)>]
@@ -716,20 +742,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--65
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 59.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 60.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.59 \end{document}
+l.60 \end{document}
                     [13
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 59.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 60.
 
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
 \Secure service discovery in open networks with SLP.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 59.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 60.
 Package rerunfilecheck Info: File `Secure*service*discovery*in*open*networks*wi
 th*SLP.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
@@ -739,10 +765,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 7951 strings out of 495269
- 115059 string characters out of 3180430
- 254161 words of memory out of 3000000
- 10840 multiletter control sequences out of 15000+200000
+ 8116 strings out of 495269
+ 117697 string characters out of 3180430
+ 257269 words of memory out of 3000000
+ 10994 multiletter control sequences out of 15000+200000
  59059 words of font info for 81 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  39i,10n,32p,2165b,1057s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -763,9 +789,9 @@ elvetic/uhvb8a.pfb><C:/Programme/MiKTeX 2.8/fonts/type1/urw/helvetic/uhvr8a.pfb
 ><C:/Programme/MiKTeX 2.8/fonts/type1/urw/times/utmb8a.pfb><C:/Programme/MiKTeX
  2.8/fonts/type1/urw/times/utmri8a.pfb>
 Output written on "Secure service discovery in open networks with SLP.pdf" (13 
-pages, 600608 bytes).
+pages, 616335 bytes).
 PDF statistics:
- 520 PDF objects out of 1000 (max. 8388607)
- 112 named destinations out of 1000 (max. 500000)
- 369 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 530 PDF objects out of 1000 (max. 8388607)
+ 118 named destinations out of 1000 (max. 500000)
+ 374 words of extra memory for PDF output out of 10000 (max. 10000000)
 

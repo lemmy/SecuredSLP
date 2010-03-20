@@ -52,7 +52,15 @@ The header of a SLP message was modified to distinguish SLP messages from Secure
 \label{fig:sslp-header}
 \caption{SecuredSLP Header}
 \end{figure}
-Additionally we need to ensure the header integrity to prevent several attacks. Otherwise it would be possible to change the XID of a message to reply on a not matching ServiceRequest or run a replay attack on ServiceReply for services which not exist anymore. To solve such problems we use a HMAC (96 Bit) over the header and add it into the encrypted message body so the header and payload are linked with each other (\cite{Kraw97} and \cite{Kero00}). This methode is also used in IPSec under the ESP mode and allows us to prevent replay attacks and header manipulation of each SecuredSLP message. See also section \ref{sub:Replay-Prevention}.
+
+\subsubsection{Message integrity}
+Additionally we need to ensure the message integrity to prevent several attacks. Otherwise it would be possible for example to change the XID of a message to reply on a not matching ServiceRequest or run a replay attack on ServiceReply for services which not exist anymore. To solve such problems we use a HMAC (96 Bit) over the header and the encrypted message body so the header and payload are linked with each other (\cite{Kraw97} and \cite{Kero00}). This method is also used in IPSec under the ESP mode and allows us to prevent replay attacks and header manipulation of each SecuredSLP message. See also section \ref{sub:Replay-Prevention}. The whole SecuredSLP message is shown in figure \ref{fig:sslp-message}
+\begin{figure}[!h]
+\centering\includegraphics[width=0.5\textwidth]{Images/HMAC}
+\caption{SecuredSLP message}
+\label{fig:sslp-message}
+\end{figure}
+
 
 \subsection{Key exchange in SecuredSLP}\label{sec:keyexchange}
 Like discussed above we use a group key agreement protocol to establish security between group members. To get knowledge about a security group, clients use extra discovery iteration. The information about a security group is announced as plain text; otherwise no one would be able to get knowledge about such a group. To join a security group a user has to send a join message to the group. Then the group key agreement protocol handles the key distribution. In our implementation we used TGDH, so the distribution works like discussed in section \ref{sec:TGDH}. After receiving the group key, security group members are able to discover services which are announced in this security group or provide services themselves. Also there is a rekeying phase after a user leaves the group. That is important to keep the security under the group members and to avoid that a key gets compromised. The key exchange doesn't increase the performance of SLP but raises the security aspects discussed in section \ref{sec:conclusion}.
@@ -69,4 +77,19 @@ Due to the additional changes in the protocol it is necessary to take a look at 
 \label{fig:sslp_join}
 \caption{Communication sequence of a user joining a SecuredSLP security group}
 \end{figure}
-Like told above the group agreement protocol is just a module adjacent to SLP and works asynchronous with it. Hence the key distribution is more complicated and fault-prone. Also there is just one valid key in the network at time so most problems arrive if a rekeying phase is initialized and there are still messages in the network encrypted with the old group key. Those messages will be refused by SecuredSLP. 
+Like told above the group agreement protocol is just a module adjacent to SLP and works asynchronous with it. Hence the key distribution is more complicated and fault-prone. Also there is just one valid key in the network at time so most problems arrive if a rekeying phase is initialized and there are still messages in the network encrypted with the old group key. Those messages will be refused by SecuredSLP.\\\\
+\textcolor{red}{---------Sequenzdiagramm erklären---------}\\
+After joining a group security group member are able to advertise and discover services like depict in figure \ref{fig:SequenceDiagramm}.
+\begin{enumerate}[label=\arabic{*}:]
+  \item SA wants to announce a service with a specified object and a KeyPair.
+  \item New security group is initialized, an already existing group is used, respectively.
+  \item Service is announced via multicast to the whole security group.
+  \item \textcolor{red}{nochmal?}
+  \item UA wants to discover services
+\end{enumerate}
+\textcolor{red}{---------Sequenzdiagramm erklären---------}
+\begin{figure*}[!h]
+\centering\includegraphics[width=1.0\textwidth]{Images/SequenceDiagramm}
+\caption{Sequence diagramm of service announcement and service discovery in SecuredSLP}
+\label{fig:SequenceDiagramm}
+\end{figure*}
