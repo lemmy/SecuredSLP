@@ -2,6 +2,7 @@
 To combine SLP with our group key agreement protocol we changed/added following protocol properties:
 \begin{itemize}
   \item SLP message
+  \item Message integrity
   \item Key exchange
   \item Communication
 \end{itemize}
@@ -29,8 +30,8 @@ The header of a SLP message was modified to distinguish SLP messages from Secure
 	|      Language Tag Length      |         Language Tag          |
 	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 \end{lstlisting}
-\label{fig:slp-header}
 \caption{SLPv2 Header}
+\label{fig:slp-header}
 \end{figure}
 
 \begin{figure}[!h]
@@ -49,12 +50,12 @@ The header of a SLP message was modified to distinguish SLP messages from Secure
 	|     Security Group Length     |      Security Group Name      |
 	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 \end{lstlisting}
-\label{fig:sslp-header}
 \caption{SecuredSLP Header}
+\label{fig:sslp-header}
 \end{figure}
 
 \subsubsection{Message integrity}
-Additionally we need to ensure the message integrity to prevent several attacks. Otherwise it would be possible for example to change the XID of a message to reply on a not matching ServiceRequest or run a replay attack on ServiceReply for services which not exist anymore. To solve such problems we use a HMAC (96 Bit) over the header and the encrypted message body so the header and payload are linked with each other (\cite{Kraw97} and \cite{Kero00}). This method is also used in IPSec under the ESP mode and allows us to prevent replay attacks and header manipulation of each SecuredSLP message. See also section \ref{sub:Replay-Prevention}. The whole SecuredSLP message is shown in figure \ref{fig:sslp-message}
+Additionally we need to ensure the message integrity to prevent several attacks. Otherwise it would be possible for example to change the XID of a message to reply on a not matching ServiceRequest or run a replay attack on ServiceReply for services which not exist anymore. To solve such problems we use a HMAC (96 Bit) over the header and the encrypted message body so the header and payload are linked with each other (\cite{Kraw97} and \cite{Kero00}). This method is also used in IPSec under the ESP mode and allows us to prevent replay attacks and header manipulation of each SecuredSLP message. See also section \ref{sub:Replay-Prevention}. The whole SecuredSLP message is shown in figure \ref{fig:sslp-message}.
 \begin{figure}[!h]
 \centering\includegraphics[width=0.5\textwidth]{Images/HMAC}
 \caption{SecuredSLP message}
@@ -67,16 +68,16 @@ Like discussed above we use a group key agreement protocol to establish security
 
 \subsection{Communication in SecuredSLP}
 Due to the additional changes in the protocol it is necessary to take a look at the communication between network members. SecuredSLP still provides unencrypted communication like in SLPv2 so it is still possible to create or join an unsafe SLP scope. In that case the communication works like in SLPv2 (compare section \ref{sec:intro}) without a group agreement protocol. In case SecuredSLP tries to establish connection to a security group the communication can be described as following:
+\begin{figure}[!h]
+\centering\includegraphics[width=0.5\textwidth]{Images/sSLP_join}
+\caption{Communication sequence of a user joining a SecuredSLP security group}
+\label{fig:sslp_join}
+\end{figure}
 \begin{enumerate}
   \item User discovers a security group and uses the interface of the group agreement protocol to get access to the security group.
   \item Group key agreement protocol initializes the rekeying phase and computes new group key.
   \item Group key agreement protocol distributes the new group key to the old security group members and to the new member, so the security group members are able to communicate with each other. Compare with figure \ref{fig:sslp_join}.
 \end{enumerate}
-\begin{figure}[!h]
-\centering\includegraphics[width=0.5\textwidth]{Images/sSLP_join}
-\label{fig:sslp_join}
-\caption{Communication sequence of a user joining a SecuredSLP security group}
-\end{figure}
 Like told above the group agreement protocol is just a module adjacent to SLP and works asynchronous with it. Hence the key distribution is more complicated and fault-prone. Also there is just one valid key in the network at time so most problems arrive if a rekeying phase is initialized and there are still messages in the network encrypted with the old group key. Those messages will be refused by SecuredSLP.\\\\
 \textcolor{red}{---------Sequenzdiagramm erklären---------}\\
 After joining a group security group member are able to advertise and discover services like depict in figure \ref{fig:SequenceDiagramm}.
