@@ -18,7 +18,7 @@ With TGDH each user within a security group has several cryptographic keys which
 \textbf{Private-/Public-Key:} This is a key-pair every user uses to sign or verify the messages.
 
 \subsection{Tree-based Group Diffie-Hellman (TGDH)}\label{sec:TGDH}
-Tree-based Group Diffie-Hellman (TDHG) is a protocol-suite for group key management. It manages the key distribution between all network members. TGDH is based on a binary tree structure. But the tree structure is only logical which means it is not connected with the real positions of the network members. This protocol-suite handles several dynamic group events, for example new joinings or exits, fusions of networks and network partition. So TGDH implements four messages: \textsl{join}, \textsl{leave}, \textsl{merge} and \textsl{partition}\footnote{The merge and partition messages are extensions of the join and leave messages so we won't discuss them in this paper in detail. For more information about TGDH and their messages see also \cite{Liao2004}}. But all of these messages have some common structures within the following features:
+Tree-based Group Diffie-Hellman (TDHG) is a protocol-suite for group key management. It manages the key distribution between all network members. TGDH is based on a binary tree structure. But the tree structure is only logical which means it is not connected with the real positions of the network members. This protocol-suite handles several dynamic group events, for example new joinings or exits, fusions of networks and network partition. So TGDH implements four messages: \textsl{join}, \textsl{leave}, \textsl{merge} and \textsl{partition}\footnote{The merge and partition messages are extensions of the join and leave messages so we won't discuss them in this paper in detail. For more information about TGDH and their messages see also \citep{Liao2004}}. But all of these messages have some common structures within the following features:
 \begin{itemize}
   \item Each network member computes the \textsl{group session key} out of the \textsl{group key} with a hash-function (the hash-function is the same for all members).
   \item Each \textsl{member session key} is just known to one member and should not be published.
@@ -26,10 +26,10 @@ Tree-based Group Diffie-Hellman (TDHG) is a protocol-suite for group key managem
   \item In case a group gets smaller, the \textsl{session keys} of the members, who left the group, will be deleted and at least one member of the group refreshes his \textsl{session key}.
   \item All protocol-messages are signed by the sender. For the digital signature TGDH uses RSA or DSA with SHA-1 hash-function. 
 \end{itemize}
-After any changes each member refreshes his \textsl{key-tree} independently from each other. At this point the network quality and the device performance are very important. The group shared key itself isn't distributed but need to be calculated by each network peer himself. Only after receiving all information from the sponsor the peers are able to compute the group shared key \cite{Liao2004}.\\
+After any changes each member refreshes his \textsl{key-tree} independently from each other. At this point the network quality and the device performance are very important. The group shared key itself isn't distributed but need to be calculated by each network peer himself. Only after receiving all information from the sponsor the peers are able to compute the group shared key \citep{Liao2004}.\\
 
 \subsubsection{Keys in TGDH}
-There are several cryptographic keys which are used in TGDH \cite{Liao2004}.
+There are several cryptographic keys which are used in TGDH \citep{Liao2004}.
 \begin{description}
 \item[Group key] $K_{<0,0>}$ which is represented as the root of the TGDH tree (compare with figure \ref{fig:tgdh_tree}).
 \item[Group session key] $K_{\text{\textit{group}}}$ which is derived from the group key. $K_{\text{\textit{group}}} = h(K_{<0,0>})$, where $h()$ is a cryptographic hash-function.

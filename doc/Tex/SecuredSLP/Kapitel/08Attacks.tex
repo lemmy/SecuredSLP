@@ -1,78 +1,18 @@
 \section{Possible attacks on SecuredSLP}
-In this section we discuss which attacks are possible on
-SecuredSLP and if or how they can be prevented.
+In this section we discuss which attacks are possible on SecuredSLP and if or how they can be prevented.
 
-\subsection{Denial of Service (DoS) attacks}\label{sec:-DoS}
-As most distributed systems SecuredSLP suffers from DoS attacks. In SecuredSLP
-there are two attack vectors for a DoS attack. The first is to overfeed the
-UA/SA/DA with information or requests. In this scenario an attacker requests for
-example information about a service from a DA and that way prevents the usage of that DA
-by other network members. The second attack vector appears only if the secure
-mode of SecuredSLP is enabled and a group key agreement protocol is used. In this
-that case an attacker could initiate join/leave messages and the GKA would be
-stuck in the rekeying phase. This problem is especially present in the group key
-agreement protocols which provide forward and backward secrecy as in the case
-of TGDH. Each time a user joins or leaves the network TGDH initiates a rekeying
-phase and therefore an opportunity to attack.\\ There is no reliable
-way to prevent attacks on UA/SA/DA because their function is to send or answer
-requests. It would be possible to drop messages from a user who sends too many
-requests. To prevent or reduce DoS attacks on the group key agreement protocol it
-is possible to use another protocol as the TGDH. The keys could also be distributed
-by a centralized infrastructure like a key distribution center (KDC) or even a
-network administrator to avoid the rekeying phase. If we
-set special intervals for the rekeying phase, we automatically assume that the
-security group can not be compromised in such an interval. This solution lowers
-the security of a group because it gives opportunities for attackers to use a
-compromised key in an interval. Such a distribution could only work in a closed
-network with stable security groups but not in open networks.
+\subsection{Denial of Service (DoS) attacks}\label{sec:DoS}
+As most distributed systems SecuredSLP suffers from DoS attacks. In SecuredSLP there are two attack vectors for a DoS attack. The first is to overfeed the UA/SA/DA with information or requests. In this scenario an attacker requests for example information about a service from a DA and that way prevents the usage of that DA by other network members. The second attack vector appears only if the secure mode of SecuredSLP is enabled and a group key agreement protocol is used. In this that case an attacker could initiate join/leave messages and the GKA would be stuck in the rekeying phase. This problem is especially present in the group key agreement protocols which provide forward and backward secrecy as in the case of TGDH. Each time a user joins or leaves the network TGDH initiates a rekeying phase and therefore an opportunity to attack.\\
+There is no reliable way to prevent attacks on UA/SA/DA because their function is to send or answer requests. It would be possible to drop messages from a user who sends too many requests. To prevent or reduce DoS attacks on the group key agreement protocol it is possible to use another protocol as the TGDH. The keys could also be distributed by a centralized infrastructure like a key distribution center (KDC) or even a network administrator to avoid the rekeying phase. If we set special intervals for the rekeying phase, we automatically assume that the security group can not be compromised in such an interval. This solution lowers the security of a group because it gives opportunities for attackers to use a compromised key in an interval. Such a distribution could only work in a closed network with stable security groups but not in open networks.
 
 \subsection{Replay attacks}
-In section \ref{sub:Replay-Prevention} we argue that SLPv2 timestamps,
-which are part of the authentication block, do not fully prevent replay
-attacks and thus suggest to extend the protocol with nonces based on random data. However, we have found that nonces will only mitigate replay attacks when used with request/response message patterns. But SLP's message flow does not always follow this pattern. Especially the most security relevant service registrations and deregistrations use much simpler one-way (robust in only) communication which cannot be extended with nonces unless they are changed to a request/response model. Since this paper
-tries to minimize the changes to SLP and completely stays away from
-alterations of the message exchange patterns\footnote{Modifications of
-message exchange patterns potentially carry undesired side effects which
-would require thorough testing and verification. Also fully switching to
-request/response patterns adds a considerable performance overhead.}, we
-discarded the idea of adding nonces.\\
-Still SecuredSLP reduces the chance of executing a successful replay
-attack further compared to traditional SLP. This is due to the newly
-integrated (header) integrity checks that cryptographically link a
-request message to a response message via the \texttt{XID} (compare with
-figure \ref{fig:sslp-header}). An attacker now has to send a response
-message with a matching \texttt{XID}. Otherwise the response will simply
-be discarded upon receive. Previously it has been possible for an
-attacker to adapt the \texttt{XID} to the current conversation.  While
-this (still) only works with request/response messages, a side effect of
-SecuredSLP's message encryption however applies to all SLP (think
-on-way) messages too. The asynchronous re-keying caused by group
-membership variations, results in the (indirect) invalidation of old
-messages even if their timestamp has not been expired yet. Replay a
-message for which the key has already expired, triggers the receiver to
-discard the message without parsing.\\
-For non-security group members the bar has considerably been raised to
-carry out a replay attack due to message encryption. Not knowing the
-message content and only deducing a valid response from the message
-header (particularly the function id) is next to impossible.\\
-In summary, it can be conclude that the window for a successful replay
-attack has been narrowed down by the recent extensions of SLP.
-Especially in cases with high re-keying. However, replay attacks can
-only be eliminated completely, if all message exchanges patterns are
-converted to the request/response model and the addition of nonces as
-part of all messages.
-
+In section \ref{sub:Replay-Prevention} we argue that SLPv2 timestamps, which are part of the authentication block, do not fully prevent replay attacks and thus suggest to extend the protocol with nonces based on random data. However, we have found that nonces will only mitigate replay attacks when used with request/response message patterns. But SLP's message flow does not always follow this pattern. Especially the most security relevant service registrations and deregistrations use much simpler one-way (robust in only) communication which cannot be extended with nonces unless they are changed to a request/response model. Since this paper tries to minimize the changes to SLP and completely stays away from alterations of the message exchange patterns\footnote{Modifications of message exchange patterns potentially carry undesired side effects which would require thorough testing and verification. Also fully switching to request/response patterns adds a considerable performance overhead.}, we discarded the idea of adding nonces.\\
+Still SecuredSLP reduces the chance of executing a successful replay attack further compared to traditional SLP. This is due to the newly integrated (header) integrity checks that cryptographically link a request message to a response message via the \texttt{XID} (compare with figure \ref{fig:sslp-header}). An attacker now has to send a response message with a matching \texttt{XID}. Otherwise the response will simply be discarded upon receive. Previously it has been possible for an attacker to adapt the \texttt{XID} to the current conversation.  While this (still) only works with request/response messages, a side effect of SecuredSLP's message encryption however applies to all SLP (think on-way) messages too. The asynchronous re-keying caused by group membership variations, results in the (indirect) invalidation of old messages even if their timestamp has not been expired yet. Replay a message for which the key has already expired, triggers the receiver to discard the message without parsing.\\
+For non-security group members the bar has considerably been raised to carry out a replay attack due to message encryption. Not knowing the message content and only deducing a valid response from the message header (particularly the function id) is next to impossible.\\
+In summary, it can be conclude that the window for a successful replay attack has been narrowed down by the recent extensions of SLP. Especially in cases with high re-keying. However, replay attacks can only be eliminated completely, if all message exchanges patterns are converted to the request/response model and the addition of nonces as part of all messages.
 
 \subsection{Evedrop attacks}
-Evedrop attacks are still possible on the SecuredSLP. Everyone can log the
-network traffic and learn about its behavior. The benefit in SecuredSLP is that
-the information stays confidentiality because all messages are encrypted and
-signed. An attacker can only intercept messages and read the message header but
-is not able to decrypt the payload, assuming the encryption algorithms
-are safe.
+Evedrop attacks are still possible on the SecuredSLP. Everyone can log the network traffic and learn about its behavior. The benefit in SecuredSLP is that the information stays confidentiality because all messages are encrypted and signed. An attacker can only intercept messages and read the message header but is not able to decrypt the payload, assuming the encryption algorithms are safe.
 
 \subsection{Manipulation attacks}
-As described above we exclude the manipulation of SecuredSLP messaged because
-the messages are encrypted and signed and the header of each message is linked with
-the payload using HMAC. For more information about HMAC see \cite{Kraw97} and
-\cite{Kero00}.
+As described above we exclude the manipulation of SecuredSLP messaged because the messages are encrypted and signed and the header of each message is linked with the payload using HMAC. For more information about HMAC see \citep{Kraw97} and \citep{Kero00}.

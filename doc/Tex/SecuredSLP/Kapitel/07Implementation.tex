@@ -55,7 +55,7 @@ The header of a SLP message was modified to distinguish SLP messages from Secure
 \end{figure}
 
 \subsubsection{Message integrity}
-Additionally we need to ensure the message integrity to prevent several attacks. Otherwise it would be possible to change the XID of a message, to reply on a not matching ServiceRequest or run a replay attack on ServiceReply for services which do not exist anymore. To solve such problems we use a HMAC (96 Bit) over the header and the encrypted message body to link the header and payload together (\cite{Kraw97} and \cite{Kero00}). This method is also used in IPSec under the ESP mode and allows us to prevent replay attacks and header manipulation of each SecuredSLP message. See also section \ref{sub:Replay-Prevention}. The whole SecuredSLP message is shown in figure \ref{fig:sslp-message}.
+Additionally we need to ensure the message integrity to prevent several attacks. Otherwise it would be possible to change the XID of a message, to reply on a not matching ServiceRequest or run a replay attack on ServiceReply for services which do not exist anymore. To solve such problems we use a HMAC (96 Bit) over the header and the encrypted message body to link the header and payload together (\citep{Kraw97} and \citep{Kero00}). This method is also used in IPSec under the ESP mode and allows us to prevent replay attacks and header manipulation of each SecuredSLP message. See also section \ref{sub:Replay-Prevention}. The whole SecuredSLP message is shown in figure \ref{fig:sslp-message}.
 \begin{figure}[!h]
 \centering\includegraphics[width=0.5\textwidth]{Images/HMAC}
 \caption{SecuredSLP message}
@@ -77,17 +77,9 @@ Due to the additional changes in the protocol it is necessary to take a look at 
   \item The group key agreement protocol initializes the rekeying phase and computes new group key.
   \item The group key agreement protocol distributes the new group key to all security group members to enable them to communicate with each other. (Compare with figure \ref{fig:sslp_join}.)
 \end{enumerate}
-As shown above, the group agreement protocol is a orthorgonal concept to SLP and works asynchronously. Hence the key distribution is more
-complicated and fault-prone. Also there is just one valid key in the network at
-time so most problems arise if a rekeying phase is initialized and there are
-still messages in the network encrypted with the old group key. Those messages
-will be refused by SecuredSLP.\\\\ After joining a group, security group members are able to
-advertise and discover services which is depicted in figure
-\ref{fig:SequenceDiagram}. The steps 1 to 4
-show service advertisement, while 5 to 13
-exemplify service discovery. Step 14 shows a
-(asynchronous) key notification coming from
-the GKA. \begin{enumerate}[label=\arabic{*}:]
+As shown above, the group agreement protocol is a orthorgonal concept to SLP and works asynchronously. Hence the key distribution is more complicated and fault-prone. Also there is just one valid key in the network at time so most problems arise if a rekeying phase is initialized and there are still messages in the network encrypted with the old group key. Those messages will be refused by SecuredSLP.\\\\
+After joining a group, security group members are able to advertise and discover services which is depicted in figure \ref{fig:SequenceDiagram}. The steps 1 to 4 show service advertisement, while 5 to 13 exemplify service discovery. Step 14 shows a (asynchronous) key notification coming from the GKA.
+\begin{enumerate}[label=\arabic{*}:]
   \item Following the original SLP contract, a client (role SA) announces a
   service via SLP. Contrary to traditional SLP the client has to provide an
   asymmetric key pair which will be used for authentication on the GKA layer.

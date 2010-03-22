@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2010.3.20)  22 MAR 2010 14:30
+This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2010.3.20)  22 MAR 2010 19:55
 entering extended mode
 **Secure*service*discovery*in*open*networks*with*SLP.tex
 
@@ -532,7 +532,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.18 
-      [4] <Images/security-group_scope.png, id=263, 604.50844pt x 308.65312pt>
+      [4] <Images/security-group_scope.png, id=262, 604.50844pt x 308.65312pt>
 File: Images/security-group_scope.png Graphic file (type png)
 
 <use Images/security-group_scope.png>
@@ -582,11 +582,6 @@ Overfull \hbox (3.17772pt too wide) in paragraph at lines 20--20
  []
 
 
-Overfull \hbox (1.96022pt too wide) in paragraph at lines 21--23
-[]\T1/aer/m/n/9 Tree-based Group Diffie-Hellman is a protocol-suite for group
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 29--30
 
  []
@@ -600,13 +595,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.38 \end{description}
-                       [7]
-<Images/tgdh_tree.png, id=321, 876.27374pt x 406.51875pt>
+l.40 \begin{align*}
+                    [7]
+<Images/tgdh_tree.png, id=320, 876.27374pt x 406.51875pt>
 File: Images/tgdh_tree.png Graphic file (type png)
 
 <use Images/tgdh_tree.png>
-<Images/tgdh_join.png, id=323, 934.49126pt x 1005.7575pt>
+<Images/tgdh_join.png, id=322, 934.49126pt x 1005.7575pt>
 File: Images/tgdh_join.png Graphic file (type png)
 
 <use Images/tgdh_join.png>
@@ -617,7 +612,7 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 60--61
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<Images/tgdh_leave.png, id=325, 1067.99pt x 1088.065pt>
+<Images/tgdh_leave.png, id=324, 1067.99pt x 1088.065pt>
 File: Images/tgdh_leave.png Graphic file (type png)
 
 <use Images/tgdh_leave.png>
@@ -635,11 +630,16 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 ntifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.7 \subsection{Modular integration}
-                                     [8 <C:/Dokumente und Einstellungen/Demonoi
-d/Desktop/SecuredSLP/doc/Tex/SecuredSLP/Images/tgdh_tree.png> <C:/Dokumente und
- Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/SecuredSLP/Images/tgdh_join.
-png>])
+l.3 
+     [8 <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/Sec
+uredSLP/Images/tgdh_tree.png> <C:/Dokumente und Einstellungen/Demonoid/Desktop/
+SecuredSLP/doc/Tex/SecuredSLP/Images/tgdh_join.png> <C:/Dokumente und Einstellu
+ngen/Demonoid/Desktop/SecuredSLP/doc/Tex/SecuredSLP/Images/tgdh_leave.png>]
+Overfull \hbox (4.28314pt too wide) in paragraph at lines 5--6
+\T1/aer/m/n/9 com-mu-ni-ca-tion work-flow with new mes-sage for-mats and time-
+ []
+
+)
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
 \Kapitel/07Implementation.tex"
 LaTeX Font Info:    Try loading font information for T1+aett on input line 11.
@@ -662,16 +662,13 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 60--61
  [][][] 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.67 
       [9 <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/Se
-curedSLP/Images/tgdh_leave.png>]
+curedSLP/Images/HMAC.png>]
 <Images/sSLP_join.png, id=386, 1023.825pt x 497.86pt>
 File: Images/sSLP_join.png Graphic file (type png)
 
@@ -681,21 +678,32 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 71--72
  []
 
 
-Overfull \hbox (5.29063pt too wide) in paragraph at lines 78--79
-[][]\T1/aer/m/n/9 Group key agree-ment pro-to-col dis-tributes the new group
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 80--83
+Underfull \hbox (badness 10000) in paragraph at lines 80--82
 
  []
 
-<Images/SequenceDiagramm.png, id=389, 779.91376pt x 493.845pt>
+
+Overfull \hbox (8.5656pt too wide) in paragraph at lines 103--106
+[][]\T1/aer/m/n/9 SecuredSLP ef-fec-tively au-then-ti-cates it-self with the GK
+A
+ []
+
+
+Overfull \hbox (3.47879pt too wide) in paragraph at lines 106--109
+[][]\T1/aer/m/n/9 Depending on the ac-tual GKA used, a new group shared
+ []
+
+
+Overfull \hbox (1.61896pt too wide) in paragraph at lines 106--109
+\T1/aer/m/n/9 key is ex-changed be-tween all group mem-bers. As shown
+ []
+
+<Images/SequenceDiagramm.png, id=390, 779.91376pt x 493.845pt>
 File: Images/SequenceDiagramm.png Graphic file (type png)
 
 <use Images/SequenceDiagramm.png>
 
-LaTeX Warning: Float too large for page by 58.66187pt on input line 95.
+LaTeX Warning: Float too large for page by 58.66187pt on input line 122.
 
 )
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
@@ -703,10 +711,15 @@ LaTeX Warning: Float too large for page by 58.66187pt on input line 95.
 ier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.7 
-     [10 <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/Se
-curedSLP/Images/HMAC.png> <C:/Dokumente und Einstellungen/Demonoid/Desktop/Secu
-redSLP/doc/Tex/SecuredSLP/Images/sSLP_join.png>])
+l.4 \subsection{Denial of Service (DoS) attacks}
+                                                \label{sec:DoS} [10 <C:/Dokumen
+te und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/SecuredSLP/Images/sSLP
+_join.png>])
+Overfull \hbox (3.46207pt too wide) in paragraph at lines 18--52
+\T1/aer/m/n/9 SLP mes-saged be-cause the mes-sages are en-crypted and signed
+ []
+
+
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
 \Kapitel/09Evaluation.tex"
 Underfull \hbox (badness 10000) in paragraph at lines 2--4
@@ -718,23 +731,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--4
 
  []
 
-)
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4 \hrule
+           [11])
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
 \Kapitel/10FurtherWork.tex")pdfTeX warning (ext4): destination with the same id
 entifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.60 \clearpage
-               \addcontentsline{toc}{chapter}{\bibname} [11]pdfTeX warning (ext
+               \addcontentsline{toc}{chapter}{\bibname} [12]pdfTeX warning (ext
 4): destination with the same identifier (name{page.}) has been already used, d
 uplicate ignored
-<to be read again> 
-                   \relax 
-l.60 \clearpage
-               \addcontentsline{toc}{chapter}{\bibname} [12
-
-]pdfTeX warning (ext4): destination with the same identifier (name{page.}) has 
-been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.60 \clearpage
@@ -781,13 +792,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 8121 strings out of 495269
- 117941 string characters out of 3180430
- 257364 words of memory out of 3000000
+ 8131 strings out of 495269
+ 118014 string characters out of 3180430
+ 259364 words of memory out of 3000000
  10996 multiletter control sequences out of 15000+200000
  59059 words of font info for 81 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 39i,10n,32p,2097b,1057s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,10n,32p,2091b,1057s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Programme/MiKTeX 2.8/fonts/enc/dvips/fontname/8r.enc}<C:/Programme/MiKTeX
  2.8/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Programme/MiKTeX 2.8/fonts/ty
 pe1/public/amsfonts/cmextra/cmex9.pfb><C:/Programme/MiKTeX 2.8/fonts/type1/publ
@@ -805,9 +816,9 @@ elvetic/uhvb8a.pfb><C:/Programme/MiKTeX 2.8/fonts/type1/urw/helvetic/uhvr8a.pfb
 ><C:/Programme/MiKTeX 2.8/fonts/type1/urw/times/utmb8a.pfb><C:/Programme/MiKTeX
  2.8/fonts/type1/urw/times/utmri8a.pfb>
 Output written on "Secure service discovery in open networks with SLP.pdf" (14 
-pages, 618980 bytes).
+pages, 623045 bytes).
 PDF statistics:
- 535 PDF objects out of 1000 (max. 8388607)
- 118 named destinations out of 1000 (max. 500000)
+ 548 PDF objects out of 1000 (max. 8388607)
+ 128 named destinations out of 1000 (max. 500000)
  374 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,23 +1,5 @@
 \section{Conclusion and Future Work}
-With SecuredSLP we adopted the service location protocol to a new environment -
-to open networks. Compared to SLP, the ``proof of concept'' implementation of
-SecuredSLP offers all required security features that a necessary in hostile
-environments. Authentication, integrity and confidentiality are now part of the
-protocol or have been added via extensions. However the current implementation is
-a ``proof of concept'' and not fully complete yet.\\ In the next version it would
-be useful to support more cryptographic algorithms to provide more flexibility
-for end users and offer several degrees of security. This requires additional
-header modification to indicate the used alrogithms. However, we treat this a low
-priority and a minor change as it does not change SLP semantics.\\ Also it is
-necessary to apply a trust model to the protocol. The best cryptographic
-algorithms are worthless if the communication partners can't trust each other.
-There are already good solutions, like PKI, WoT etc., to establish trust in a
-network. Those could be also used here but it's important to decide with trust
-model should be used and how should it be integrated into SecuredSLP.\\ Other
-outstanding work is to proof how 
-SecuredSLP works in practice especially in large networks with many
-peers. SecuredSLP provides the facility to configure the protocol behavior
-like keeping a specified amount of old group shared keys valid. But those
-features have not been fully tested yet. It is important to know how the
-extended protocol scales in real world scenarios to decide in which areas and
-with what amount of users it could be used.
+With SecuredSLP we adopted the service location protocol to a new environment - to open networks. Compared to SLP, the ``proof of concept'' implementation of SecuredSLP offers all required security features that a necessary in hostile environments. Authentication, integrity and confidentiality are now part of the protocol or have been added via extensions. However the current implementation is a ``proof of concept'' and not fully complete yet.\\
+In the next version it would be useful to support more cryptographic algorithms to provide more flexibility for end users and offer several degrees of security. This requires additional header modification to indicate the used alrogithms. However, we treat this a low priority and a minor change as it does not change SLP semantics.\\
+Also it is necessary to apply a trust model to the protocol. The best cryptographic algorithms are worthless if the communication partners can't trust each other. There are already good solutions, like PKI, WoT etc., to establish trust in a network. Those could be also used here but it's important to decide with trust model should be used and how should it be integrated into SecuredSLP.\\
+Other outstanding work is to proof how SecuredSLP works in practice especially in large networks with many peers. SecuredSLP provides the facility to configure the protocol behavior like keeping a specified amount of old group shared keys valid. But those features have not been fully tested yet. It is important to know how the extended protocol scales in real world scenarios to decide in which areas and with what amount of users it could be used.
