@@ -15,7 +15,15 @@ Authentication is used during service registration and registration cancellation
 The built-in algorithm is Digital Signature Algorithm (DSA) \citep{Kravitz1993} with Secure Hash Algorithm 1 (SHA1) \citep{Eastlake3rd2001} used for hashing, though other algorithms are possible as vendor extensions.
 
 \subsection{Replay Prevention\label{sub:Replay-Prevention}}
-``A replay attack is a form of network attack in which a valid data transmission is maliciously or fraudulently repeated or delayed" \citep{Wikipedia2009}. To prevent such replay attacks, SLP timestamps each signed message with a 32-bit unsigned fixed-point number UNIX time. The time stamp indicates when the signature expires. It is not part of the signed data and thus can be tampered with. Using a time stamp also does not fully prevent replay attacks as it leaves a door open to replay attack for the duration of the signature life-time. Hence a nonce\footnote{Random, non-guessable and externally non-influenceable data} that is to be included in the initial request (Service-/AttributeRequest) and signed by the responder undeniably associates the request with one response. However, we will show in later sections of this paper (see \ref{sub:Confidentiality-via-Security}) that replay attacks will be taken care of by the newly introduced encryption methods.
+``A replay attack is a form of network attack in which a valid data transmission
+is maliciously or fraudulently repeated or delayed" \citep{Wikipedia2009}. To
+prevent such replay attacks, SLP timestamps each signed message with a 32-bit
+unsigned fixed-point number UNIX time. The time stamp indicates when the
+signature expires. Using a time stamp does not fully prevent replay attacks as it leaves
+a door open to attacks for the duration of the signature life-time. Hence a
+nonce\footnote{Random, non-guessable and externally non-influenceable data} that
+is to be included in the initial request (Service-/AttributeRequest) and signed
+by the responder undeniably associates the request with one response.
 
 \subsection{Availability}
 ``Availability can be defined as the property of a system which always honors any legitimate requests by authorized entities." \citep{Cotroneo2004}. SLP only has weak countermeasures to answer to availability attacks. First it employs multicast messaging to make the communication more robust. Second, multiple DAs can be deployed per network to further scalability and robustness of operation. DAs may redundantly store service information for all SAs, in case one of the DAs fails. Database replication between DAs is not part of RFC 2608 itself, but of a mesh enhancement to SLP \citep{Zhao2003}.\\

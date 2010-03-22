@@ -1,5 +1,49 @@
 \section{Evaluation}\label{sec:evaluation}
-The integration and implementation of suggested solutions was successful. The specifications of common SLP were extended for confidentiality, integrity, authentication and replay attack prevention. The result of this extension is the SecuredSLP specification and it provides fundamental security features which are needed for a secure communication in an open network. Current SecuredSLP is implemented as a ``proof of concept'' version and works with TGDH as its group key agreement protocol. But the SecuredSLP specification is not bound to a special protocol, any other group key agreement protocol could be integrated as well as TGDH. Also it is possible to add or change the cipher-suite and use other cryptographic algorithms. In current state the implementation is limited to RSA.\\\\
-But there aren't just positive aspects about the extension to SecuredSLP. Several problems arrive with the usage of different group key agreement protocols. First of all the secured groups demand extra discovery iteration. In the first discovery iteration a user is just able to discover all plain scopes. To discover the security scopes/groups the user needs second discovery iteration. That means that the time to discover a security group is doubled and this is process deterioration especially in an open network with low performance devices. Another problem is the group key agreement protocol with forward/backward security features. The rekeying phase of the group key agreement protocol always disturbs the workflow of the service location protocol. A short time after rekeying old keys are useless and won't be accepted for the communication. So if the network is unstable and dynamic the rekeying phase becomes a thread. Many users join/leave the security group so the security group will stuck in the rekeying phase (compare section \ref{sec:DoS}). For that purpose we got validation intervals for the group shared keys. That means we dynamically keep several old group shared keys valid. The number of the keys, which are valid at the time, depends on the network behavior and changes on demand. We keep that many keys as necessary and that little as possible. In that way we avoid the intervals where the security group members aren't able to communicate and we still keep the security of the group shared key(s) high. This feature is already implemented in the current SecuredSLP version but not tested. The right balance for that algorithm isn't set yet. Also the scale ability of SecuredSLP with a big amount of users in a security group wasn't test in praxis yet. But we assume that it should work just fine with several hundred users. Also we didn't apply any trust model to the SecuredSLP implementation. So anyone, who wants to join a security group, can get the access.\\
-\hrule
-The extension from common SLP to SecuredSLP was a first step to increase the security of the service location protocol especially for the use in a new environment like an open network. SLP wasn't original design for the usage in open networks. In the first and second sections of this paper introduce the workflow of a service discovery protocol itself and its issues and the problems while using it in an open network. In section \ref{sec:slp-overview} some useful solutions were presented and discussed how to raise the security of this protocol. An overview of the suggested solutions can be found in section \ref{sec:conclusion}. In sections 5 - 9 the introduced solutions were applied to the SLP specification and a ``proof of concept'' version of SecuredSLP was implemented. Those sections describe how and why the integration of security was done.
+The integration and implementation of the suggested solutions were successful.
+The specifications of common SLP were extended for confidentiality, integrity,
+authentication and replay attack prevention. The result of this extension is
+the SecuredSLP specification and it provides fundamental security features
+which are needed for a secure communication in an open network. Current
+SecuredSLP is implemented as a ``proof of concept'' version and works with TGDH
+as its group key agreement protocol. But the SecuredSLP specification is not
+bound to a special protocol, any other group key agreement protocol could be
+integrated instead. It is also possible to add or change the cipher-suite and
+use other cryptographic algorithms. In current state the implementation is
+limited to RSA.\\\\ But there are not only positive aspects resulting from the
+extension to SecuredSLP. Several problems occur by useging different
+group key agreement protocols. First of all the secured groups demand extra
+discovery iteration. In the first discovery iteration a user is only able to
+discover all plain scopes. To discover the security scopes/groups the user
+needs a second discovery iteration. That means that the time to discover a
+security group is doubled and this is process deterioration especially in an
+open network with low performance devices. Another problem is the group key
+agreement protocol with forward/backward secrecy features. The rekeying phase of
+the group key agreement protocol always disturbs the workflow of the service
+location protocol. A short time after rekeying old keys are useless and won't
+be accepted for the communication. So if the network is unstable and dynamic
+the rekeying phase becomes a thread. If many users join/leave the security
+group the security group will be stuck in the rekeying phase (compare section
+\ref{sec:DoS}). For that purpose we get validation intervals for the group
+shared keys. That means we dynamically keep several old group shared keys
+valid. The number of the keys, which are valid at a time, depends on the
+network behavior and changes on demand. We reduce the number of keys valid at a
+time. In that way we minimize the intervals where the security group members
+are not able to communicate but we still keep the security of the group shared
+key(s) high. This feature is already implemented in the current SecuredSLP
+version but not tested. The right balance for that algorithm is not set yet.
+Also the scale ability of SecuredSLP with a large number of users in a security
+group has not been tested practically yet. But we assume that it will work
+with several hundred users. We did not apply any trust model to the SecuredSLP
+implementation. That means anyone, who wants to join a security group, can get
+the access.\\ \hrule The extension from common SLP to SecuredSLP is a first
+step to increase the security of the service location protocol especially for
+the use in a new environment like an open network. SLP was not originally
+designed for the usage in open networks. In the first and second sections of
+this paper we introduce the workflow of a service discovery protocol itself and
+its issues and the problems while using it in an open network. In section
+\ref{sec:slp-overview} some useful solutions are presented and discussed how to
+raise the security of this protocol. An overview of the suggested solutions can
+be found in section \ref{sec:conclusion}. In sections 5 - 9 the introduced
+solutions were applied to the SLP specification and a ``proof of concept''
+version of SecuredSLP was implemented. Those sections describe how and why the
+integration of security has been done.
