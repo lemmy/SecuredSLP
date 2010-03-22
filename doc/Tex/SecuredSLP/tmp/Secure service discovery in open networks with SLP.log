@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2010.3.20)  22 MAR 2010 12:27
+This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2010.3.20)  22 MAR 2010 14:30
 entering extended mode
 **Secure*service*discovery*in*open*networks*with*SLP.tex
 
@@ -669,24 +669,24 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.68 
+l.67 
       [9 <C:/Dokumente und Einstellungen/Demonoid/Desktop/SecuredSLP/doc/Tex/Se
 curedSLP/Images/tgdh_leave.png>]
 <Images/sSLP_join.png, id=386, 1023.825pt x 497.86pt>
 File: Images/sSLP_join.png Graphic file (type png)
 
 <use Images/sSLP_join.png>
-Overfull \hbox (12.0pt too wide) in paragraph at lines 72--73
+Overfull \hbox (12.0pt too wide) in paragraph at lines 71--72
  [][][] 
  []
 
 
-Overfull \hbox (5.29063pt too wide) in paragraph at lines 79--80
+Overfull \hbox (5.29063pt too wide) in paragraph at lines 78--79
 [][]\T1/aer/m/n/9 Group key agree-ment pro-to-col dis-tributes the new group
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--84
+Underfull \hbox (badness 10000) in paragraph at lines 80--83
 
  []
 
@@ -695,7 +695,7 @@ File: Images/SequenceDiagramm.png Graphic file (type png)
 
 <use Images/SequenceDiagramm.png>
 
-LaTeX Warning: Float too large for page by 58.66187pt on input line 96.
+LaTeX Warning: Float too large for page by 58.66187pt on input line 95.
 
 )
 ("C:\Dokumente und Einstellungen\Demonoid\Desktop\SecuredSLP\doc\Tex\SecuredSLP
@@ -782,12 +782,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
  ) 
 Here is how much of TeX's memory you used:
  8121 strings out of 495269
- 117942 string characters out of 3180430
- 257366 words of memory out of 3000000
+ 117941 string characters out of 3180430
+ 257364 words of memory out of 3000000
  10996 multiletter control sequences out of 15000+200000
  59059 words of font info for 81 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 39i,10n,32p,2109b,1057s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,10n,32p,2097b,1057s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Programme/MiKTeX 2.8/fonts/enc/dvips/fontname/8r.enc}<C:/Programme/MiKTeX
  2.8/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Programme/MiKTeX 2.8/fonts/ty
 pe1/public/amsfonts/cmextra/cmex9.pfb><C:/Programme/MiKTeX 2.8/fonts/type1/publ
@@ -805,7 +805,7 @@ elvetic/uhvb8a.pfb><C:/Programme/MiKTeX 2.8/fonts/type1/urw/helvetic/uhvr8a.pfb
 ><C:/Programme/MiKTeX 2.8/fonts/type1/urw/times/utmb8a.pfb><C:/Programme/MiKTeX
  2.8/fonts/type1/urw/times/utmri8a.pfb>
 Output written on "Secure service discovery in open networks with SLP.pdf" (14 
-pages, 618999 bytes).
+pages, 618980 bytes).
 PDF statistics:
  535 PDF objects out of 1000 (max. 8388607)
  118 named destinations out of 1000 (max. 500000)

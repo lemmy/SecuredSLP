@@ -62,12 +62,11 @@ Additionally we need to ensure the message integrity to prevent several attacks.
 \label{fig:sslp-message}
 \end{figure}
 
-
 \subsection{Key exchange in SecuredSLP}\label{sec:keyexchange}
 Like discussed above we use a group key agreement protocol to establish security between group members. To get knowledge about a security group, clients use extra discovery iteration. The information about a security group is announced as plain text; otherwise no one would be able to get knowledge about such a group. To join a security group a user has to send a join message to the group. Then the group key agreement protocol handles the key distribution. In our implementation we used TGDH, so the distribution works like discussed in section \ref{sec:TGDH}. After receiving the group key, security group members are able to discover services which are announced in this security group or provide services themselves. Also there is a rekeying phase after a user leaves the group. That is important to keep the security under the group members and to avoid that a key gets compromised. The key exchange doesn't increase the performance of SLP but raises the security aspects discussed in section \ref{sec:conclusion}.
 
 \subsection{Communication in SecuredSLP}
-Due to the additional changes in the protocol it is necessary to take a look at the communication between network members. SecuredSLP still provides unencrypted communication like in SLPv2 so it is still possible to create or join an unsafe SLP scope. In that case the communication works like in SLPv2 (compare section \ref{sec:intro}) without a group agreement protocol. In case SecuredSLP tries to establish connection to a security group the communication can be described as following:
+Due to the additional changes in the protocol it is necessary to take a look at the communication between network members. SecuredSLP still provides unencrypted communication like in SLPv2 so it is still possible to create or join an unsafe SLP scope. In that case, the communication works like in SLPv2 (compare section \ref{sec:intro}) without using a group key agreement protocol. In case SecuredSLP tries to establish connection to a security group the communication can be described as following:
 \begin{figure}[!h]
 \centering\includegraphics[width=0.5\textwidth]{Images/sSLP_join}
 \caption{Communication sequence of a user joining a SecuredSLP security group}
@@ -80,7 +79,7 @@ Due to the additional changes in the protocol it is necessary to take a look at 
 \end{enumerate}
 Like told above the group agreement protocol is just a module adjacent to SLP and works asynchronous with it. Hence the key distribution is more complicated and fault-prone. Also there is just one valid key in the network at time so most problems arrive if a rekeying phase is initialized and there are still messages in the network encrypted with the old group key. Those messages will be refused by SecuredSLP.\\\\
 \textcolor{red}{---------Sequenzdiagramm erklären---------}\\
-After joining a group security group member are able to advertise and discover services like depict in figure \ref{fig:SequenceDiagramm}.
+After joining a group security group member are able to advertise and discover services like depict in figure \ref{fig:SequenceDiagram}.
 \begin{enumerate}[label=\arabic{*}:]
   \item SA wants to announce a service with a specified object and a KeyPair.
   \item New security group is initialized, an already existing group is used, respectively.
@@ -91,6 +90,6 @@ After joining a group security group member are able to advertise and discover s
 \textcolor{red}{---------Sequenzdiagramm erklären---------}
 \begin{figure*}[!h]
 \centering\includegraphics[scale=0.9,angle=90]{Images/SequenceDiagramm}
-\caption{Sequence diagramm of service announcement and service discovery in SecuredSLP}
-\label{fig:SequenceDiagramm}
+\caption{Sequence diagram of service announcement and service discovery in SecuredSLP}
+\label{fig:SequenceDiagram}
 \end{figure*}

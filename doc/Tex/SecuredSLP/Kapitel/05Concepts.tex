@@ -1,7 +1,7 @@
 \newpage
 \section{Concepts for Implementation}\label{sec:concepts}
 In chapters above we discussed some possible security concepts and increments for the service location protocol. In following sections we will introduce our practical solutions to fulfill the requested requirements.\\
-First of all we need to establish security groups, where users can communicate with athentication using encryption and having message integrity. To create those groups we combined the already implemented SLP scopes with a group key agreement protocol (GKA). For this purpose we took the Tree-based Group Diffie-Hellman protocol (TGDH). TGDH is a group key agreement protocol which we use to create and share security group keys (details about TGDH will be introduced in section \ref{sec:TGDH}). We will describe why we picked this protocol and how we integrated it into the SLP in detail.\\
+First of all we need to establish security groups, where users can communicate with authentication using encryption and having message integrity. To create those groups we combined the already implemented SLP scopes with a group key agreement protocol (GKA). For this purpose we took the Tree-based Group Diffie-Hellman protocol (TGDH). TGDH is a group key agreement protocol which we use to create and share security group keys (details about TGDH will be introduced in section \ref{sec:TGDH}). We will describe why we picked this protocol and how we integrated it into the SLP in detail.\\
 Further we will discuss possible attacks on SLP which uses TGDH and the solutions we made to prevent them or provide reasons why we couldn't prevent them.
 
 \subsection{Security Groups}
@@ -26,7 +26,7 @@ Tree-based Group Diffie-Hellman is a protocol-suite for group key management. It
   \item In case a group gets smaller, the \textsl{session keys} of the members, who left the group, will be deleted and at least one member of the group refreshes his \textsl{session key}.
   \item All protocol-messages are signed by the sender. For the digital signature TGDH uses RSA or DSA with SHA-1 hash-function. 
 \end{itemize}
-After any changes each member refreshes his \textsl{key-tree} independently from each other. At this point the network quality and the device performance are very important. The group shared key itself istn't distributed but need to be calculated by each network peer himself. Only after receiving all information from the sponsor the peers are able to compute the group shared key \cite{Liao2004}.\\
+After any changes each member refreshes his \textsl{key-tree} independently from each other. At this point the network quality and the device performance are very important. The group shared key itself isn't distributed but need to be calculated by each network peer himself. Only after receiving all information from the sponsor the peers are able to compute the group shared key \cite{Liao2004}.\\
 
 \subsubsection{Keys in TGDH}
 There are several cryptographic keys which are used in TGDH \cite{Liao2004}.
